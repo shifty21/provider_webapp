@@ -1,0 +1,62 @@
+<style type="text/css">
+   input[type="text"],textarea[type="text"] {
+   background-color : #EEEEEE;
+   }
+</style>
+<div class="row" style="padding:10px;">
+   <h3 style="color:#ff3f3f; padding-left:10px;">Enter Details</h3>
+   <div class="col-lg-6 ">
+      <div>
+         Sports Academy <br><br>
+         <select ng-model="sportobj.type"  ng-change="selectedvalue()"  style="width:100%;height:34px;">
+            <option ng-repeat="x in clubs" value="{{x}}">{{x}}</option>
+         </select>
+      </div>
+      <br>
+      <div>
+         Name<br><br>
+         <input type="text" class="form-control" ng-model="sportobj.name">
+      </div>
+      <br>
+      <div>
+         Address <br><br>
+         <input type="text" class="form-control" ng-model="sportobj.address">
+      </div>
+      <br>
+      <div>Pin<br><br>
+         <input type="text" class="form-control" ng-model="sportobj.pincode">
+      </div>
+
+      <br>
+      <div>
+         Speciality<br><br>
+         <textarea type="text" class="form-control" ng-model="sportobj.specialities"></textarea>
+      </div>
+      <br>
+      <div>Facility<br><br>
+         <textarea type="text" class="form-control" ng-model="sportobj.facilities"></textarea>
+      </div>
+   </div>
+   <div class="col-lg-6 " style="height:500px;">
+      <div class="row" style="padding:10px; padding-top:0px;">
+
+        <div>Timing<br><br>
+         <input type="text" class="form-control" ng-model="sportobj.timings">
+      </div>
+<br>
+      <div>Amount Charged<br><br>
+         <input type="text" class="form-control" ng-model="sportobj.fees">
+      </div>
+<br>
+      <div>
+         Contact Number <br><br>
+         <input type="text" class="form-control" disabled value="+91" style="width:10%; float:left;"/>
+         <input type="text" class="form-control" ng-model="sportobj.phoneNumber" style="width:85%; float:right;"/>
+      </div>
+      <br><br>
+      <br>
+      <div style="margin:bottom:10px;">
+         <input type="submit" ng-click="addschoolservice()" class="form-control btn btn-default btn-send" value="Submit New Service"  style="background-color:#ff3f3f;">
+      </div>
+   </div>
+</div>

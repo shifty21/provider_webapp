@@ -1,0 +1,51 @@
+<section id="feature">
+                <div class="container raisedbox">
+                    <div class="section-heading">
+                        <h1 class="title wow fadeInDown" data-wow-delay=".3s">Services</h1>
+                        <p class="wow fadeInDown" data-wow-delay=".5s"  style="font-size:24px;">
+                            Connect with best service provider for your kids
+                        </p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-lg-4 col-xs-12" ng-repeat="x in service">
+                            <div class="media wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="300ms">
+                                <div class="media-left">
+                                    <div class="icon">
+                                        <img ng-src="{{x.image}}"/>
+
+                                    </div>
+                                    </div>
+                                    <div class="media-body">
+                                    <h4 class="media-heading">{{x.name}}</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, sint.</p>
+                                </div>
+                                
+                            </div>
+                        </div>
+</div>
+                        <div class="section-heading">
+                        <!-- <h1 class="title wow fadeInDown" data-wow-delay=".3s">Services</h1> -->
+                        <p class="wow fadeInDown" data-wow-delay=".5s" style="font-size:24px;">
+                           Engage yourself with kids other parents
+                        </p>
+                    </div>
+                        <div class="row">
+                        <div class="col-lg-2"></div>
+                        <div class="col-md-4 col-lg-4 col-xs-12" ng-repeat="x in socialService">
+                            <div class="media wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="300ms">
+                                <div class="media-left">
+                                    <div class="icon">
+                                        <img ng-src="{{x.image}}"/>
+
+                                    </div>
+                                    </div>
+                                    <div class="media-body">
+                                    <h4 class="media-heading">{{x.name}}</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, sint.</p>
+                                </div>
+                                
+                        </div>
+
+                    </div>
+                </div>
+            </section> <!-- /#feature -->

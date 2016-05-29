@@ -1,0 +1,34 @@
+<section id="works" class="works">
+                <div class="container raisedbox">
+                    <div class="section-heading">
+                        <h1 class="title wow fadeInDown" data-wow-delay=".3s">Latest Works</h1>
+                        <p class="wow fadeInDown" data-wow-delay=".5s">
+                            Aliquam lobortis. Maecenas vestibulum mollis diam. Pellentesque auctor neque nec urna. Nulla sit amet est. Aenean posuere <br> tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis lacus.
+                        </p>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-xs-12" ng-repeat="x in portfolio">
+                            <figure class="wow fadeInLeft animated portfolio-item" data-wow-duration="500ms" data-wow-delay="0ms">
+                                <div class="img-wrapper">
+                                    <img ng-src="{{x.image}}" class="img-responsive" alt="this is a title" >
+                                    <div class="overlay">
+                                        <div class="buttons">
+                                            <a target="_blank" href="single-portfolio.html">Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <figcaption>
+                                <h4>
+                                <a ui-href="homestate">
+                                    {{x.name}}
+                                </a>
+                                </h4>
+                                <p>
+                                    {{x.detail}}
+                                </p>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </section>

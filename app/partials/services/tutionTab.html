@@ -1,0 +1,90 @@
+<style type="text/css">
+   input[type="text"],textarea[type="text"] {
+   background-color : #EEEEEE;
+   }
+
+</style>
+<div class="row" style="padding:10px;">
+  <h3 style="color:#ff3f3f; padding-left:10px;">Enter Details</h3>
+  <div class="col-lg-6 ">
+    <div>
+      Health <br><br>
+      <select ng-model="tutionobj.subjects" ng-change="selectedvalue()" style="width:100%; height:34px;">
+        <option ng-repeat="x in subject" value="{{x}}">{{x}}</option>
+      </select>
+    </div>  <br>
+
+    <div>
+      Age Group
+      <br><br>
+      <input type="checkbox">&nbsp; 1 to 3 years<br>
+      <input type="checkbox">&nbsp; 3 to 5 years<br>
+      <input type="checkbox">&nbsp; 5 to 8 years<br>
+    </div><br>
+    
+    <div>
+      Class Location
+      <br><br>
+      <input type="checkbox">&nbsp; At Kid Home<br>
+      <input type="checkbox">&nbsp; At Teacher Home<br>
+      <input type="checkbox">&nbsp; At Institute/Coaching <br>
+    </div><br>
+    <div>
+      Board
+      <br><br>
+      <input type="checkbox">&nbsp; CBSE<br>
+      <input type="checkbox">&nbsp; ICSE<br>
+      <input type="checkbox">&nbsp; International Board<br>
+      <input type="checkbox">&nbsp; State Board<br>
+      <input type="checkbox">&nbsp; All type of Boards<br>
+    </div>
+    <br>
+    <div>Add schools name<br><br>
+        <input type="text" class="form-control" ng-model="tutionobj.instituteName">
+      </div>
+      <br>
+      <div>Adress<br><br>
+        <input type="text" class="form-control" ng-model="tutionobj.streetAddress">
+      </div>
+      <br>
+      <div>Pin<br><br>
+        <input type="text" class="form-control" ng-model="tutionobj.pincode">
+      </div>
+  </div>
+  <div class="col-lg-6 " style="height:500px;">
+
+    <div class="row" style="padding:10px; padding-top:0px;">
+
+<div>Facility<br><br>
+      <textarea type="text" class="form-control" ng-model="tutionobj.facilities"></textarea>
+    </div><br>
+    <div>
+      Speciality<br><br>
+      <textarea type="text" class="form-control" ng-model="tutionobj.specialities"></textarea>
+    </div>
+<br>
+      <div>Timing<br><br>
+        <input type="text" class="form-control" ng-model="tutionobj.startHour">
+      </div>
+      <br>
+      <div>Charges<br><br>
+        <input type="text" class="form-control" ng-model="tutionobj.fees">
+      </div>
+      <br>
+      <div>
+        Contact Number <br><br>
+        <input type="text" class="form-control" disabled value="+91" style="width:10%; float:left;"/>
+        <input type="text" class="form-control" ng-model="tutionobj.phoneNumber" style="width:85%; float:right;"/>
+      </div>
+      <br><br>
+      <br>
+      <div style="margin:bottom:10px;">
+        <input type="submit" ng-click="addtution()" class="form-control btn btn-default btn-send"
+               value="Submit New Service" style="background-color:#ff3f3f;">
+      </div>
+      <div style="margin:bottom:10px;margin-top :10px;">
+        <button ng-click="getProfile()" class="form-control btn btn-default btn-send"
+               style="background-color:#ff3f3f;">profile </button>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,84 @@
+<style type="text/css">
+   input[type="text"],textarea[type="text"] {
+   background-color : #EEEEEE;
+   }
+
+</style>
+<div class="row" style="padding:10px;">
+  <h3 style="color:#ff3f3f; padding-left:10px;">Enter Details</h3>
+  <div class="col-lg-6 ">
+    <div>
+      Event <br><br>
+      <select ng-model="eventobj.category" ng-change="selectedvalue()" style="width:100%; height:34px;">
+        <option ng-repeat="x in category" value="{{x}}">{{x}}</option>
+      </select>
+    </div>
+    <br>
+    <div>
+      Event Name<br><br>
+      <input type="text" class="form-control" ng-model="eventobj.eventName">
+    </div>
+    <br>
+    <div>
+      Person Name<br><br>
+      <input type="text" class="form-control" ng-model="eventobj.contactPersonName">
+    </div>
+    <br>
+    <div>
+      Enter Web Link <br><br>
+      <input type="text" class="form-control" ng-model="eventobj.webLink">
+    </div>
+    <br>
+    <div>
+      Enter Your Mail Id<br><br>
+      <input type="text" class="form-control" ng-model="eventobj.contactEmail">
+    </div>
+
+
+    <br>
+    <div>
+      Speciality<br><br>
+      <textarea type="text" class="form-control" ng-model="eventobj.specialities"></textarea>
+    </div>
+    <br>
+    <div>Facility<br><br>
+      <textarea type="text" class="form-control" ng-model="eventobj.facilities"></textarea>
+    </div>
+  </div>
+  <div class="col-lg-6 " style="height:500px;">
+
+    <div class="row" style="padding:10px; padding-top:0px;">
+
+      <div>Address of Event<br><br>
+        <input type="text" class="form-control" ng-model="eventobj.streetAddress">
+      </div>
+      <br>
+      <div>Pin<br><br>
+        <input type="text" class="form-control" ng-model="eventobj.pincode">
+      </div>
+      <br>
+      <div>Start Date<br><br>
+        <input type="text" class="form-control" ng-model="eventobj.startDate">
+      </div>
+      <br>
+      <div>End Date<br><br>
+        <input type="text" class="form-control" ng-model="eventobj.endDate">
+      </div>
+      <br>
+      <div>Timing<br><br>
+        <input type="text" class="form-control" ng-model="eventobj.timings">
+      </div>
+      <br>
+      <div>
+        Contact Number <br><br>
+        <input type="text" class="form-control" disabled value="+91" style="width:10%; float:left;"/>
+        <input type="text" class="form-control" ng-model="eventobj.contactPhone" style="width:85%; float:right;"/>
+      </div>
+      <br><br>
+      <br>
+      <div style="margin:bottom:10px;">
+        <input type="submit" ng-click="addevent()" class="form-control btn btn-default btn-send"
+               value="Submit New Service" style="background-color:#ff3f3f;">
+      </div>
+    </div>
+  </div>

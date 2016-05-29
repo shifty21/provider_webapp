@@ -1,0 +1,213 @@
+/*
+	Template Name: Droplet resposnive App landing template
+	Author: Themeturn
+	Author URI: http://themeforest.net/user/ThemeTurn
+	Description: App landing page
+	Version: 1.0
+*/
+
+/* Table of Content
+==================================================
+1.	Global Styles
+2. 	Typography
+3.	Button styles
+4.	Header area
+5.	Slideshow
+6.	Features
+7.	About
+8.	Process
+9.	Testimonial
+10.	Portfolio
+11.	Benefit
+12.	Counter
+13. Pricing
+14.	Download
+15.	Clients
+16.	Contact
+17.	About more
+18.	Subscription
+19.	Footer
+20.	Overlay
+21.Back To Top Button 
+
+
+*/
+
+
+/*CAROUSEL SLDIER COMMON STYLE
+================================================================*/
+.carousel-inner{
+	display: block;
+}
+.carousel-control.right, .carousel-control.left{
+	background-image: none;
+}
+.carousel-control{
+	top: 40%;
+}
+.carousel-control.left{
+	position: absolute;
+	left: -136px;
+}
+.carousel-control.right{
+	position: absolute;
+	right: -136px;
+}
+.carousel-control img{
+	max-width: 45px;
+}
+
+.thumbnail{
+	position: relative;
+}
+
+.caption{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,174,255,.7);
+	top: 800px;
+	left: 0px;
+	text-align: center;
+	opacity: 0;
+	-webkit-transition: all .4s ease-in-out 0s ;
+	-o-transition: all .4s ease-in-out 0s ;
+	transition: all .4s ease-in-out 0s;
+}
+.caption-content {
+	position: relative;
+	top: 40%;
+}
+.caption-content a i{
+	text-align: center;
+	margin: 0 auto;
+	width: 50px;
+	height: 50px;
+	background: rgba(0,0,0,0.7);
+	color: #fff;
+	border-radius: 100%;
+	padding-top: 18px;
+}
+#app-carousel .item img{
+	-webkit-transition: opacity .3s ease 0s;
+	-o-transition: opacity .3s ease 0s;
+	transition: all .3s ease 0s;
+	opacity: 1;
+}
+#app-carousel .item:hover img{
+	/*opacity: .4;*/
+
+}
+.thumbnail:hover .caption{
+	opacity: 1;
+	top: 0px;
+	z-index: 999;
+}
+
+
+/*=====================
+======Our Blog CSS=====
+======================*/
+.item.row.col-lg-4{
+	width:33%
+}
+.blog-heading {
+	margin-bottom: 35px;
+	margin-top: 15px;
+}
+
+.single-blog {
+	margin-bottom: 30px;
+	background-color:#FFFFFF;
+	padding:15px;
+	transition: all 1s ease 0s;
+	-moz-transition: all 1s ease 0s;
+	-webkit-transition: all 1s ease 0s;
+	-o-transition: all 1s ease 0s;
+	-webkit-box-shadow: 0 2px 0 0 #ddd;
+	box-shadow: 0 2px 0 0 #ddd;
+}
+
+/*.single-blog:hover {
+	background-color:#43484E;
+	color:#fff
+}*/
+
+.single-blog:hover.single-blog h2 {
+	color:#fff
+}
+
+.single-blog:hover.single-blog .btn-primary {
+	background-color:#fc7700;
+	color:#fff;
+	border-color:#fff;
+	transition: all 0.9s ease 0s;
+	-moz-transition: all 0.9s ease 0s;
+	-webkit-transition: all 0.9s ease 0s;
+	-o-transition: all 0.9s ease 0s;
+}
+
+.single-blog img{
+	width:100%;
+	margin-bottom:20px
+}
+
+.single-blog h2 {
+	color:#43484E;
+	font-size:24px;
+}
+
+.single-blog h2{
+	margin:0;
+	margin-bottom:15px;
+}
+
+.single-blog ul {
+	padding:0;
+	overflow:hidden;
+}
+
+.single-blog ul li {
+	border-right: 2px solid #999999;
+	float: left;
+	line-height: 10px;
+	list-style: none;
+	margin-right: 10px;
+	font-size: 12px;
+	color:#999;
+}
+
+.single-blog ul li:last-child {
+	border:none;
+}
+
+.blog-content {
+	margin-bottom: 25px;
+	margin-top: 0;
+}
+
+.single-blog .btn-primary {
+	text-transform: uppercase;
+	border: 1px solid #fc7700;
+	color: #686868;
+	background-color: rgba(255, 255, 255, 0);
+	border-color: #fc7700;
+}
+
+.single-blog:hover.single-blog .btn-primary:hover{
+	background-color:#fc7700;
+	color:#fff;
+}
+
+#blog-detail .modal-body {
+	padding:30px;
+}
+
+#blog-detail .modal-body img {
+	width:100%
+}
+
+#blog-detail .close {
+	margin-right: -15px;
+    margin-top: -25px;
+}

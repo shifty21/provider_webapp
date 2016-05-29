@@ -1,0 +1,63 @@
+<style type="text/css">
+   input[type="text"],textarea[type="text"] {
+   background-color : #EEEEEE;
+   }
+
+</style>
+<div class="row" style="padding:10px;">
+  <h3 style="color:#ff3f3f; padding-left:10px;">Enter Details For Day Care Center</h3>
+  <div class="col-lg-6 ">
+    <div>Name of Care<br><br>
+        <input type="text" class="form-control" ng-model="kidcareobj.name">
+      </div>
+      <br>
+    <br>
+    <div>
+      Age Group
+      <br><br>
+      <input type="checkbox">&nbsp; 1 to 3 years<br>
+      <input type="checkbox">&nbsp; 3 to 5 years<br>
+      <input type="checkbox">&nbsp; 5 to 8 years<br>
+    </div>
+    <br>
+    <div>
+      Speciality<br><br>
+      <textarea type="text" class="form-control" ng-model="kidcareobj.specialities"></textarea>
+    </div>
+<br>
+<div>Facility<br><br>
+      <textarea type="text" class="form-control" ng-model="kidcareobj.facilities"></textarea>
+    </div><br>
+      <div>Address<br><br>
+        <input type="text" class="form-control" ng-model="kidcareobj.address">
+      </div>
+  </div>
+  <div class="col-lg-6 " style="height:500px;">
+
+    <div class="row" style="padding:10px; padding-top:0px;">
+
+      <div>Pin<br><br>
+        <input type="text" class="form-control" ng-model="kidcareobj.pincode">
+      </div>
+      <br>
+      <div>Timing<br><br>
+        <input type="text" class="form-control" ng-model="kidcareobj.timings">
+      </div>
+      <br>
+      <div>Charges<br><br>
+        <input type="text" class="form-control" ng-model="kidcareobj.fees">
+      </div>
+      <br>
+      <div>
+        Contact Number <br><br>
+        <input type="text" class="form-control" disabled value="+91" style="width:10%; float:left;"/>
+        <input type="text" class="form-control" ng-model="kidcareobj.phoneNumber" style="width:85%; float:right;"/>
+      </div>
+      <br><br>
+      <br>
+      <div style="margin:bottom:10px;">
+        <input type="submit" ng-click="addkidcareservice()" class="form-control btn btn-default btn-send"
+               value="Submit New Service" style="background-color:#ff3f3f;">
+      </div>
+    </div>
+  </div>
