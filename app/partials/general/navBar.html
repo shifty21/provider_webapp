@@ -1,6 +1,6 @@
 <header id="top-bar" class="navbar-fixed-top animated-header">
             <div class="container">
-                <div class="navbar-header">
+                <div class="navbar-header row">
                     <!-- responsive nav button -->
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -11,34 +11,45 @@
                     <!-- /responsive nav button -->
                     
                     <!-- logo -->
-                    <div class="navbar-brand">
+                    <div class="navbar-brand col-lg-8">
                         <a ui-sref="homestate" >
-                            <img src="images/logo.png" alt="">
+                            <img src="images/t1.png" alt="">
                         </a>
                     </div>
                     <!-- /logo -->
                 </div>
                 <!-- main menu -->
-                <nav class="collapse navbar-collapse navbar-right" role="navigation">
-                    <div class="main-menu">
-                        <ul class="nav navbar-nav navbar-right">
+                <div class="collapse navbar-collapse navbar-right" role="navigation">
+                 
+                 <div class="main-menu" ng-show="loggedIn">
+                    <ul class="nav navbar-nav navbar-right">
+                            <li><a style="padding-top:10px;" href=""><img src="images/google-play-badge.png" style="height:30px;"></a></li>
+                            <li class="dropdown"><a ui-sref="quesandAns" class="dropdown-toggle" data-toggle="dropdown">Q & A</a></li>
+
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile <span class="caret"></span></a>
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown">{{username}} <span class="caret"></span></a>
                                 <div class="dropdown-menu">
                                     <ul>
                                         <li><a ui-sref="userprofile">Profile</a></li>
                                         <li><a ui-sref="newservice">Services</a></li>
-                                        <li><a href="userprofile">Logout</a></li>
+                                        <li><a href="" ng-click="logout()">Logout</a></li>
                                     </ul>
                                 </div>
                             </li>
-                            <li>
-                                <a ui-sref="login">login</a>
+
+                        </ul>
+
+                        </div>
+                        <div class="main-menu" ng-show="!loggedIn">
+                    <ul class="nav navbar-nav navbar-right">
+                    <li><a style="padding-top:10px;" href=""><img src="images/google-play-badge.png" style="height:30px;"></a></li>
+                            <li class="dropdown"><a  ui-sref="quesandAns" class="dropdown-toggle" data-toggle="dropdown">Q & A</a></li>
+                            <li class="dropdown">
+                               <a href="" ui-sref="login" class="dropdown-toggle" data-toggle="dropdown">Sign-In</a>
                             </li>
                             
                         </ul>
-                    </div>
-                </nav>
-                <!-- /main nav -->
+                        </div>
+                </div>
             </div>
         </header>

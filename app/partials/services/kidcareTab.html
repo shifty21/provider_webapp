@@ -15,9 +15,9 @@
     <div>
       Age Group
       <br><br>
-      <input type="checkbox">&nbsp; 1 to 3 years<br>
-      <input type="checkbox">&nbsp; 3 to 5 years<br>
-      <input type="checkbox">&nbsp; 5 to 8 years<br>
+      <input type="checkbox" ng-model="ageGroup.to1_3">&nbsp; 1 to 3 years<br>
+      <input type="checkbox" ng-model="ageGroup.to3_5">&nbsp; 3 to 5 years<br>
+      <input type="checkbox" ng-model="ageGroup.to5_8">&nbsp; 5 to 8 years<br>
     </div>
     <br>
     <div>
@@ -30,11 +30,9 @@
     </div><br>
       <div>Address<br><br>
         <input type="text" class="form-control" ng-model="kidcareobj.address">
-      </div>
+      </div><br>
   </div>
-  <div class="col-lg-6 " style="height:500px;">
-
-    <div class="row" style="padding:10px; padding-top:0px;">
+  <div class="col-lg-6">
 
       <div>Pin<br><br>
         <input type="text" class="form-control" ng-model="kidcareobj.pincode">
@@ -59,5 +57,5 @@
         <input type="submit" ng-click="addkidcareservice()" class="form-control btn btn-default btn-send"
                value="Submit New Service" style="background-color:#ff3f3f;">
       </div>
-    </div>
   </div>
+</div>

@@ -1,11 +1,17 @@
-<div class="row">
-<div class="col-lg-12" ng-repeat="x in enquires">
+<div class="row" ng-init="getConnectData()">
+<div class="col-lg-12" ng-repeat="x in connectRequests">
 <div class="col-lg-12 raisedbox">
 	<div class="col-lg-6">
-		{{x.name}}<br><span style="color:orange;">{{x.service}}</span><br>
-Call: <span style="color:orange;">{{x.contact}}</span><br>{{x.location}}
+		User: <span style="color:orange;">{{x.userName}}</span><br>
+		
+		Service: <span style="color:orange;">
+		 {{x.subCategory}}</span><br>
+<!-- Date: <span style="color:orange;">{{x.dateRequested}}</span><br> -->
+Provider : <span style="color:orange;">{{x.providerName}}</span>
 	</div>
-	<div class="col-lg-6" style="text-align:right;">{{x.readStatus?"New":"Contacted"}}<br>{{x.date}}</div>
+	<div class="col-lg-6" style="text-align:right;">{{x.seenByProvider?"Contacted":"New"}}<br>{{x.dateRequested | date:"MM/dd/yyyy 'at' h:mma"}}<br>
+	<button ng-click="connected(x.connectRequestId)">Conneted?</button>
+	</div>
 </div>
 </div>	
 </div>

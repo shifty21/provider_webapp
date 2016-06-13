@@ -1,0 +1,32 @@
+ <div class="col-lg-4"  style="background-color:#f5f5f5; padding-bottom:10px;">
+                	 <!-- <div> -->
+                            <h2 class="subtitle">Login</h2>
+                            <!-- <p class="subtitle-des wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".5s">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, ea!
+                                 consectetur adipisicing elit. Dolore, ea!
+                            </p> -->
+                            <div class="contact-form ">
+                                <form id="contact-form" ng-submit="loginUser()">                       
+                                    <div class="form-group">
+                                        <input type="email" placeholder="Your Email" ng-model="login.emailAddress"class="form-control" name="email" id="email" >
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" placeholder="Your Password" ng-model="login.password" class="form-control" name="password" id="password">   
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div id="submit">
+                                        <input type="submit" id="contact-submit" class="form-control btn btn-default btn-send" value="Submit"  style="background-color:#ff3f3f;">
+                                    </div> 
+
+                                    <br>
+                                     <div class="form-group" style="text-align:center;">
+                                       Forgot Password ? <span style="color:#ff3f3f;"><a href="">Reset Password</a></span>
+                                    </div>  
+                                     <div class="form-group" style="text-align:center;">
+                                       Don't have an account?  <span style="color:#ff3f3f;"><a ui-sref="register">Sign up</a></span>
+                                    </div>  
+                                </form>
+                            </div>
+                        <!-- </div> -->
+                </div>

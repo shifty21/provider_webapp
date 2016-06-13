@@ -1,15 +1,422 @@
-<div class="row">
-<div class="col-lg-12">
-<div class="col-lg-12 raisedbox">
-	<!-- <div class="col-lg-6"> -->
-		Samuel L Jack<br>
-Cell: <span style="color:orange;">+9185786578</span><br>BEML Layout
-	</div>
-	<div class="col-lg-12 raisedbox">
-	<!-- <div class="col-lg-6"> -->
-		Your Services<br>
-
-	</div>
+<div class="row" ng-init="getProfile()">
+   <div class="col-lg-12">
+      <div class="col-lg-12 raisedbox">
+         <!-- <div class="col-lg-6"> -->
+         {{providerdetails.name}}<br>
+         <span style="color:orange;">{{providerdetails.phoneNumber}}</span><br>{{providerdetails.emailAddress}}
+      </div>
+      <div class="col-lg-12 raisedbox">
+         <div>
+            <h4>Training Services</h4>
+            <div ng-repeat = "x in profiletraining" ng-if="x.subject!=null">
+               <table class="table  table-bordered" style="margin-bottom:0px;">
+                  <tr>
+                     <td class="centeralign col-md-1"><i class="fa fa-plus-square fa-1x" aria-hidden="true" href=""  ng-click="detailDiv = !detailDiv"></i></td>
+                     <td> {{x.subject}}</td>
+                  </tr>
+               </table>
+               <table class="table table-bordered table-hover" ng-show="detailDiv">
+                  <tr>
+                     <td><b>Student Age Group :</b> {{x.minAge}} to {{x.maxAge}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Teaching no of days :</b> {{x.daysPerWeek}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Name of School :</b> {{x.schoolNames}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Address :</b> {{x.streetAddress}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Locality :</b> {{x.locality}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>City :</b> {{x.city}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Country :</b> {{x.country}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Pincode :</b> {{x.pincode}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Class Locaiton :</b> {{x.classLocation}}</td>
+                  </tr>                  
+                  <tr>
+                     <td><b>Timing :</b> {{x.timings}}</td>
+                  </tr> 
+                  <tr>
+                     <td><b>Facility :</b> {{x.facilities}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Speciality :</b> {{x.instituteName}}</td>
+                  </tr>                 
+                  <tr>
+                     <td><b>How Much do you charge :</b> {{x.fees}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Image :</b> {{x.imageUrl}}</td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+         <div>
+            <h4>School Services</h4>
+            <div ng-repeat = "x in profileschool" ng-if="x.type!=null">
+               <table class="table  table-bordered" style="margin-bottom:0px;">
+                  <tr>
+                     <td class="centeralign col-md-1"><i class="fa fa-plus-square fa-1x" aria-hidden="true" href=""  ng-click="detailDiv = !detailDiv"></i></td>
+                     <td> {{x.type}}</td>
+                  </tr>
+               </table>
+               <table class="table table-bordered table-hover" ng-show="detailDiv">
+                  <tr>
+                     <td><b>Name :</b> {{x.name}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Timing :</b> {{x.timings}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Address :</b> {{x.streetAddress}}</td>
+                  </tr>
+                   <tr>
+                     <td><b>Locality :</b> {{x.locality}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>City :</b> {{x.city}}</td>
+                  </tr>                 
+                  <tr>
+                     <td><b>Country :</b> {{x.country}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Pincode :</b> {{x.pincode}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Phone Number :</b> {{x.phoneNumber}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Facility :</b> {{x.facilities}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Speciality :</b> {{x.specialities}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>How much do you charge :</b> {{x.fees}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Image :</b> {{x.imageUrl}}</td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+         <div>
+            <h4>Tution Services</h4>
+            <div ng-repeat = "x in profiletution" ng-if="x.subject!=null">
+               <table class="table  table-bordered" style="margin-bottom:0px;">
+                  <tr>
+                     <td class="centeralign col-md-1"><i class="fa fa-plus-square fa-1x" aria-hidden="true" href=""  ng-click="detailDiv = !detailDiv"></i></td>
+                     <td> {{x.subject}}</td>
+                  </tr>
+               </table>
+               <table class="table table-bordered table-hover" ng-show="detailDiv">
+                  <tr>
+                     <td><b>Class Range :</b> {{x.startClassRange}} to {{x.endClassRange}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Institute Name :</b> {{x.instituteName}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Address :</b> {{x.address}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Locality :</b> {{x.locality}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>City :</b> {{x.city}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Pincode :</b> {{x.pincode}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Phone Number :</b> {{x.phoneNumber}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Class Location :</b> {{x.classLocation}}</td>
+                  </tr>                
+                  <tr>
+                     <td><b>Days Per Week :</b> {{x.daysPerWeek}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Facility :</b> {{x.facilities}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Speciality :</b> {{x.specialities}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Schools :</b> {{x.schools}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Boards :</b> {{x.boards}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>How much do you charge :</b> {{x.fees}}</td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+         <div>
+            <h4>Event Services</h4>
+            <div ng-repeat = "x in profileevent" ng-if="x.eventCategory!=null">
+               <table class="table  table-bordered" style="margin-bottom:0px;">
+                  <tr>
+                     <td class="centeralign col-md-1"><i class="fa fa-plus-square fa-1x" aria-hidden="true" href=""  ng-click="detailDiv = !detailDiv"></i></td>
+                     <td> {{x.eventCategory}}</td>
+                  </tr>
+               </table>
+               <table class="table table-bordered table-hover" ng-show="detailDiv">
+                  <tr>
+                     <td><b>Event Name :</b> {{x.eventName}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Event Date :</b> {{x.eventStartDate}} to {{x.eventEndDate}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Timings :</b> {{x.timings}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Address :</b> {{x.streetAddress}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Locality :</b> {{x.locality}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>City :</b> {{x.city}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Pincode :</b> {{x.eventPincode}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Latitude :</b> {{x.latitude}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Longitude :</b> {{x.longitude}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Contact Number :</b> {{x.contactPhone}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Contact Email :</b> {{x.contactEmail}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Contact Person Name :</b> {{x.contactPersonName}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Weblink :</b> {{x.webLink}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Image :</b> {{x.imageFileName}}</td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+         <div>
+            <h4>Sports Services</h4>
+            <div ng-repeat = "x in profilesport" ng-if="x.name!=null">
+               <table class="table  table-bordered" style="margin-bottom:0px;">
+                  <tr>
+                     <td class="centeralign col-md-1"><i class="fa fa-plus-square fa-1x" aria-hidden="true" href=""  ng-click="detailDiv = !detailDiv"></i></td>
+                     <td> {{x.name}}</td>
+                  </tr>
+               </table>
+               <table class="table table-bordered table-hover" ng-show="detailDiv">
+                  <tr>
+                     <td><b>Name of Center/Trainer :</b> {{x.name}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Timings :</b> {{x.timings}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Address :</b> {{x.streetAddress}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Locality :</b> {{x.locality}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>City :</b> {{x.city}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Country :</b> {{x.country}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Pincode :</b> {{x.pincode}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Phone Number :</b> {{x.phoneNumber}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Facility :</b> {{x.facilities}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Speciality :</b> {{x.specialities}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Pincode :</b> {{x.fees}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Image :</b> {{x.imageFileName}}</td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+         <div>
+            <h4>DayCare Services</h4>
+            <div ng-repeat = "x in profiledayCare" ng-if="x.serviceId!=null">
+               <table class="table  table-bordered" style="margin-bottom:0px;">
+                  <tr>
+                     <td class="centeralign col-md-1"><i class="fa fa-plus-square fa-1x" aria-hidden="true" href=""  ng-click="detailDiv = !detailDiv"></i></td>
+                     <td>Kid Care</td>
+                  </tr>
+               </table>
+               <table class="table table-bordered table-hover" ng-show="detailDiv">
+                  <tr>
+                     <td><b>Age :</b> {{x.minAge}} to {{x.maxAge}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Timings :</b> {{x.timings}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Address :</b> {{x.streetAddress}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Locality :</b> {{x.locality}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>City :</b> {{x.city}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Country :</b> {{x.country}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Pincode :</b> {{x.pincode}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Phone Number :</b> {{x.phoneNumber}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Facility :</b> {{x.facilities}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Speciality :</b> {{x.specialities}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Fees :</b> {{x.fees}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Image :</b> {{x.imageUrl}}</td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+         <div>
+            <h4>Celebration Services</h4>
+            <div ng-repeat = "x in profilecelebration" ng-if="x.type!=null">
+               <table class="table  table-bordered" style="margin-bottom:0px;">
+                  <tr>
+                     <td class="centeralign col-md-1"><i class="fa fa-plus-square fa-1x" aria-hidden="true" href=""  ng-click="detailDiv = !detailDiv"></i></td>
+                     <td>{{x.type}}</td>
+                  </tr>
+               </table>
+               <table class="table table-bordered table-hover" ng-show="detailDiv">
+                  <tr>
+                     <td><b>Name :</b> {{x.name}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Timings :</b> {{x.timings}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Address :</b> {{x.streetAddress}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Locality :</b> {{x.locality}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>City :</b> {{x.city}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Country :</b> {{x.country}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Pincode :</b> {{x.pincode}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Phone Number :</b> {{x.phoneNumber}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Facility :</b> {{x.facilities}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Speciality :</b> {{x.specialities}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Price Range :</b> {{x.priceRange}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Image :</b> {{x.imageUrl}}</td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+         <div>
+            <h4>Health Services</h4>
+            <div ng-repeat = "x in profilehealth" ng-if="x.serviceName!=null">
+               <table class="table  table-bordered" style="margin-bottom:0px;">
+                  <tr>
+                     <td class="centeralign col-md-1"><i class="fa fa-plus-square fa-1x" aria-hidden="true" href=""  ng-click="detailDiv = !detailDiv"></i></td>
+                     <td>{{x.serviceName}}</td>
+                  </tr>
+               </table>
+               <table class="table table-bordered table-hover" ng-show="detailDiv">
+                  <tr>
+                     <td><b>Name :</b> {{x.serviceName}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Timings :</b> {{x.timings}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Address :</b> {{x.streetAddress}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Locality :</b> {{x.locality}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>City :</b> {{x.city}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Country :</b> {{x.country}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Pincode :</b> {{x.pincode}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Phone Number :</b> {{x.phoneNumber}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Facility :</b> {{x.facilities}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Speciality :</b> {{x.specialities}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Fees :</b> {{x.fees}}</td>
+                  </tr>
+                  <tr>
+                     <td><b>Image :</b> {{x.imageUrl}}</td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+      </div>
+   </div>
 </div>
-</div>	
 </div>

@@ -1,0 +1,44 @@
+                <div class="col-lg-4"  style="background-color:#f5f5f5; padding-bottom:10px;">
+                	 <!-- <div> -->
+                            <h2 class="subtitle">Create Profile</h2>
+                            <!-- <h2 class="subtitle  wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s">Create Profile</h2> -->
+                            <!-- <p class="subtitle-des wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".5s">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, ea!
+                                 consectetur adipisicing elit. Dolore, ea!
+                            </p> --> 
+                            <div class="contact-form">
+                                <form id="contact-form" ng-submit="registerUser()" role="form">
+                        
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Your Name / Company" ng-model="registerData.fullName" class="form-control" name="name" id="name">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <input type="email" placeholder="Your Email" ng-model="registerData.emailAddress" class="form-control" name="email" id="email" >
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Your Phone Number" ng-model="registerData.phoneNumber" class="form-control" name="subject" id="subject">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <input type="password" placeholder="Your Password" ng-model="registerData.password" class="form-control" name="password" id="password">   
+                                    </div>
+                                    
+                                    <br>
+                                    <br>
+                                    <div id="submit">
+                                        <input type="submit" id="contact-submit" class="form-control btn btn-default btn-send" value="Submit"  style="background-color:#ff3f3f;">
+                                    </div> 
+                                    <br>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="Terms" value="Terms" required ng-click=''> Accept terms and conditions
+                                    </div>    
+                                    <div class="form-group" style="text-align:center;">
+                                        Already a member ? <span style="color:#ff3f3f;"><a ui-sref="login">Login Now</a></span>
+                                    </div>                    
+                                    
+                                </form>
+                            </div>
+                        <!-- </div> -->
+                </div>

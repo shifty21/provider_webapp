@@ -17,17 +17,19 @@
     <div>
       Age Group
       <br><br>
-      <input type="checkbox">&nbsp; 1 to 3 years<br>
-      <input type="checkbox">&nbsp; 3 to 5 years<br>
-      <input type="checkbox">&nbsp; 5 to 8 years<br>
+      <input type="checkbox" ng-model="ageGroup.to1_3">&nbsp; 1 to 3 years<br>
+      <input type="checkbox" ng-model="ageGroup.to3_5">&nbsp; 3 to 5 years<br>
+      <input type="checkbox" ng-model="ageGroup.to5_8">&nbsp; 5 to 8 years<br>
     </div>
     <br>
     <div>
       Class Location
       <br><br>
-      <input type="checkbox">&nbsp; At Kid Home<br>
-      <input type="checkbox">&nbsp; At Teacher Home<br>
-      <input type="checkbox">&nbsp; At Institute/Coaching <br>
+      <form>
+      <input type="checkbox" ng-model="classLocation.kid_home">&nbsp; At Kid Home<br>
+      <input type="checkbox" ng-model="classLocation.teacher_home">&nbsp; At Teacher Home<br>
+      <input type="checkbox" ng-model="classLocation.at_instu">&nbsp; At Institute/Coaching <br>
+      </form>
     </div><br>
     <div>
       Number of days in a week
@@ -43,26 +45,23 @@
     <br>
     <div>
       Add School Name of your students<br><br>
-      <input type="text" class="form-control" ng-model="trainingobj.schoolNames">
+      <input type="text" class="form-control" ng-model="trainingobj.schoolNames" placeholder="Enter School Name">
     </div>
     <br>
     <div>
       Enter your Institute Name <br><br>
-      <input type="text" class="form-control" ng-model="trainingobj.instituteName">
+      <input type="text" class="form-control" ng-model="trainingobj.instituteName" placeholder="Enter Institute Name">
     </div>
     <br>
     <div>
       Speciality<br><br>
-      <textarea type="text" class="form-control" ng-model="trainingobj.specialities"></textarea>
+      <textarea type="text" class="form-control" ng-model="trainingobj.specialities" placeholder="Enter Speciality"></textarea>
     </div>
-
+    <br>
   </div>
-  <div class="col-lg-6 " style="height:500px;">
-
-    <div class="row" style="padding:10px; padding-top:0px;">
-
+  <div class="col-lg-6 ">
     <div>Facility<br><br>
-      <textarea type="text" class="form-control" ng-model="trainingobj.facilities"></textarea>
+      <textarea type="text" class="form-control" ng-model="trainingobj.facilities" placeholder="Enter Facility"></textarea>
     </div><br>
       <div>Address<br><br>
         <input type="text" class="form-control" ng-model="trainingobj.streetAddress">
@@ -91,5 +90,5 @@
         <input type="submit" ng-click="addtrainingService()" class="form-control btn btn-default btn-send"
                value="Submit New Service" style="background-color:#ff3f3f;">
       </div>
-    </div>
   </div>
+</div>

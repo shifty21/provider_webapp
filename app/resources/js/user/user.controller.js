@@ -2,19 +2,28 @@
 {   
 	SG.Modules.SG.controller("userController",userController);
     // MainCtrl.$inject = ['healthAZModuleData'];
-	function userController ($scope, $http,$window,$templateCache)
-		{	$scope.idvalue = ""
+	function userController ($scope, $http,$window,$templateCache,$log)
+		{	
+
+//             $scope.setActiveTab = function( activeTab ){
+//                 console.log("active tab " + activeTab);
+//     $window.localStorage.setItem("activeTab", activeTab);
+// };
+
+// $scope.getActiveTab = function(){
+//     return $window.localStorage.getItem("activeTab");
+// };
+
+// $scope.isActiveTab = function( tabName, index ){
+//     var activeTab = $scope.getActiveTab();
+//     return ( activeTab === tabName || ( activeTab === null && $index === 0 ) );
+// };
+            $scope.idvalue = ""
 			$scope.idva = function(){
-			console.log("value " + $scope.idvalue);
+			$log.info("value " + $scope.idvalue);
 		}
-            console.log("User Controller");
-            $scope.enquires = [
-            {name:"samuel L",contact:"+9134243434324",service:"Day Care",location:"BEML",date:"25 May 2016",readStatus:false},
-            {name:"jack reacher",contact:"+9134243434324",service:"Sports",location:"Kundalahalli",date:"25 May 2016",readStatus:true},
-            {name:"Captain",contact:"+9134243434324",service:"Yoga",location:"Thubarahalli",date:"25 May 2016",readStatus:true},
-            {name:"ryan G",contact:"+9134243434324",service:"Gym",location:"Marathalli",date:"25 May 2016",readStatus:true}
-            ]
-            
+            $log.info("User Controller");
+                        
    }
 	
 

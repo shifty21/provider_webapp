@@ -17,26 +17,28 @@
     <div>
       Age Group
       <br><br>
-      <input type="checkbox">&nbsp; 1 to 3 years<br>
-      <input type="checkbox">&nbsp; 3 to 5 years<br>
-      <input type="checkbox">&nbsp; 5 to 8 years<br>
+      <input type="checkbox" ng-model="ageGroup.to1_3">&nbsp; 1 to 3 years<br>
+      <input type="checkbox" ng-model="ageGroup.to3_5">&nbsp; 3 to 5 years<br>
+      <input type="checkbox" ng-model="ageGroup.to5_8">&nbsp; 5 to 8 years<br>
     </div><br>
     
     <div>
       Class Location
       <br><br>
-      <input type="checkbox">&nbsp; At Kid Home<br>
-      <input type="checkbox">&nbsp; At Teacher Home<br>
-      <input type="checkbox">&nbsp; At Institute/Coaching <br>
+      <input type="checkbox" ng-model="classLocation.kid_home">&nbsp; At Kid Home<br>
+      <input type="checkbox" ng-model="classLocation.teacher_home">&nbsp; At Teacher Home<br>
+      <input type="checkbox" ng-model="classLocation.at_instu">&nbsp; At Institute/Coaching <br>
     </div><br>
     <div>
       Board
       <br><br>
-      <input type="checkbox">&nbsp; CBSE<br>
-      <input type="checkbox">&nbsp; ICSE<br>
-      <input type="checkbox">&nbsp; International Board<br>
-      <input type="checkbox">&nbsp; State Board<br>
-      <input type="checkbox">&nbsp; All type of Boards<br>
+      <form>
+      <input type="radio" ng-model="tutionobj.boards" name="board" value="CBSE">&nbsp; CBSE<br>
+      <input type="radio" ng-model="tutionobj.boards" name="board" value="ICSE">&nbsp; ICSE<br>
+      <input type="radio" ng-model="tutionobj.boards" name="board" value="International Board">&nbsp; International Board<br>
+      <input type="radio" ng-model="tutionobj.boards" name="board" value="State Board">&nbsp; State Board<br>
+      <input type="radio" ng-model="tutionobj.boards" name="board" value="All type of Boards">&nbsp; All type of Boards<br>
+      </form>
     </div>
     <br>
     <div>Add schools name<br><br>
@@ -50,12 +52,10 @@
       <div>Pin<br><br>
         <input type="text" class="form-control" ng-model="tutionobj.pincode">
       </div>
+      <br>
   </div>
-  <div class="col-lg-6 " style="height:500px;">
-
-    <div class="row" style="padding:10px; padding-top:0px;">
-
-<div>Facility<br><br>
+  <div class="col-lg-6">
+    <div>Facility<br><br>
       <textarea type="text" class="form-control" ng-model="tutionobj.facilities"></textarea>
     </div><br>
     <div>
@@ -82,9 +82,5 @@
         <input type="submit" ng-click="addtution()" class="form-control btn btn-default btn-send"
                value="Submit New Service" style="background-color:#ff3f3f;">
       </div>
-      <div style="margin:bottom:10px;margin-top :10px;">
-        <button ng-click="getProfile()" class="form-control btn btn-default btn-send"
-               style="background-color:#ff3f3f;">profile </button>
-      </div>
-    </div>
   </div>
+</div>
