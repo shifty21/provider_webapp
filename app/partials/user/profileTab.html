@@ -1,9 +1,16 @@
+<style type="text/css"></style>
 <div class="row" ng-init="getProfile()">
    <div class="col-lg-12">
       <div class="col-lg-12 raisedbox">
-         <!-- <div class="col-lg-6"> -->
-         {{providerdetails.name}}<br>
+         <div>
+            <input type="file" accept="image/*" image="image2"
+    resize-max-height="300"
+    resize-max-width="250"
+    resize-quality="0.7" />
+         </div>
+         <div>{{providerdetails.name}}<br>
          <span style="color:orange;">{{providerdetails.phoneNumber}}</span><br>{{providerdetails.emailAddress}}
+         </div>
       </div>
       <div class="col-lg-12 raisedbox">
          <div>

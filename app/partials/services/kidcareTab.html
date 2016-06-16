@@ -6,9 +6,10 @@
 </style>
 <div class="row" style="padding:10px;">
   <h3 style="color:#ff3f3f; padding-left:10px;">Enter Details For Day Care Center</h3>
-  <div class="col-lg-6 ">
+  <form id="main-contact-form" name="contact-form" ng-submit="addkidcareservice()">
+  <div class="col-lg-6 form-group">
     <div>Name of Care<br><br>
-        <input type="text" class="form-control" ng-model="kidcareobj.name">
+        <input type="text" class="form-control" ng-model="kidcareobj.name" placeholder="Name Of Care">
       </div>
       <br>
     <br>
@@ -20,42 +21,43 @@
       <input type="checkbox" ng-model="ageGroup.to5_8">&nbsp; 5 to 8 years<br>
     </div>
     <br>
-    <div>
-      Speciality<br><br>
-      <textarea type="text" class="form-control" ng-model="kidcareobj.specialities"></textarea>
+    <div>Facilities<br><br>
+      <textarea type="text" class="form-control" ng-model="kidcareobj.facilities" placeholder="Facilities"></textarea>
     </div>
 <br>
-<div>Facility<br><br>
-      <textarea type="text" class="form-control" ng-model="kidcareobj.facilities"></textarea>
-    </div><br>
+<div>
+      Specialities<br><br>
+      <textarea type="text" class="form-control" ng-model="kidcareobj.specialities" placeholder="Specialities"></textarea>
+    </div>
+<br>
       <div>Address<br><br>
-        <input type="text" class="form-control" ng-model="kidcareobj.address">
+        <input type="text" class="form-control" ng-model="kidcareobj.address" placeholder="Address">
       </div><br>
   </div>
-  <div class="col-lg-6">
+  <div class="col-lg-6 form-group">
 
       <div>Pin<br><br>
-        <input type="text" class="form-control" ng-model="kidcareobj.pincode">
+        <input type="text" class="form-control" ng-model="kidcareobj.pincode" placeholder="Pincode">
       </div>
       <br>
       <div>Timing<br><br>
-        <input type="text" class="form-control" ng-model="kidcareobj.timings">
+        <input type="text" class="form-control" ng-model="kidcareobj.timings" placeholder="Timings">
       </div>
       <br>
       <div>Charges<br><br>
-        <input type="text" class="form-control" ng-model="kidcareobj.fees">
+        <input type="text" class="form-control" ng-model="kidcareobj.fees" placeholder="Charges">
       </div>
       <br>
       <div>
         Contact Number <br><br>
         <input type="text" class="form-control" disabled value="+91" style="width:10%; float:left;"/>
-        <input type="text" class="form-control" ng-model="kidcareobj.phoneNumber" style="width:85%; float:right;"/>
+        <input type="text" class="form-control" ng-model="kidcareobj.phoneNumber" style="width:85%; float:right;" placeholder="Contact Number" />
       </div>
       <br><br>
       <br>
       <div style="margin:bottom:10px;">
-        <input type="submit" ng-click="addkidcareservice()" class="form-control btn btn-default btn-send"
-               value="Submit New Service" style="background-color:#ff3f3f;">
+        <input type="submit" class="form-control btn btn-default btn-send"
+               value="Submit New Service" style="background-color:#5c6bc0;">
       </div>
-  </div>
+  </div></form>
 </div>

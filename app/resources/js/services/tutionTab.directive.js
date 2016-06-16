@@ -26,24 +26,24 @@
                     }
                     
                     $scope.tutionobj = {
-                        startClassRange: "3",
-                        endClassRange: "8",
-                        subjects: "maths tuition",
-                        boards: "cbse",
-                        phoneNumber: "9019816937",
-                        schools: "all",
-                        daysPerWeek: "5",
-                        startHour: "10",
-                        endHour: "5",
-                        facilities: "special attention to each individual",
-                        specialities: "specialized in science and maths",
-                        pincode: "560100",
-                        fees: "5000",
-                        address: "19th main,5th cross",
-                        classLocation: "Institute,kids home,yahan bhi,wahan bhi",
-                        streetAddress: "HSR LAYOUT",
-                        subject: "maths",
-                        instituteName: "Add schools name"
+                        startClassRange: "",
+                        endClassRange: "",
+                        subjects: "",
+                        boards: "",
+                        phoneNumber: "",
+                        schools: "",
+                        daysPerWeek: "",
+                        startHour: "",
+                        endHour: "",
+                        facilities: "",
+                        specialities: "",
+                        pincode: "",
+                        fees: "",
+                        address: "",
+                        classLocation: "",
+                        streetAddress: "",
+                        subject: "",
+                        instituteName: ""
                     }
                     $scope.addtution = function() {
                         // console.log("age group " + $scope.ageGroup.to1_3)

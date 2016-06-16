@@ -40,7 +40,7 @@
           
 // $logProvider.debugEnabled(true);
 // $compileProvider.debugInfoEnabled(true);
-        
+
 		$stateProvider
 			.state('homestate', {
               url: "/homestate",
@@ -49,9 +49,44 @@
 
 
         })
-      .state('quesandAns', {
-      				url: "/ques-and-ans",
-      				templateUrl: SG.PartialsPath + "home/quesandAns.html",
+      .state('eductionqa', {
+              url: "/eduction-ques-and-anss",
+              templateUrl: SG.PartialsPath + "question-blog/education-blog.html",
+              controller : 'quesandansController'
+
+
+        })
+      .state('healthqueqa', {
+              url: "/health-ques-and-ans",
+              templateUrl: SG.PartialsPath + "question-blog/health-blog.html",
+              controller : 'quesandansController'
+
+
+        })
+      .state('eventqa', {
+              url: "/event-ques-and-ans",
+              templateUrl: SG.PartialsPath + "question-blog/events-blog.html",
+              controller : 'quesandansController'
+
+
+        })
+      .state('sportsqa', {
+              url: "/sports-ques-and-ans",
+              templateUrl: SG.PartialsPath + "question-blog/sports-blog.html",
+              controller : 'quesandansController'
+
+
+        })
+      .state('celebrationqa', {
+              url: "/celebration-ques-and-ans",
+              templateUrl: SG.PartialsPath + "question-blog/celebration-blog.html",
+              controller : 'quesandansController'
+
+
+        })
+      .state('terms_policy', {
+              url: "/terms_policy",
+              templateUrl: SG.PartialsPath + "general/termsOfUse.html",
               controller : 'homeController'
 
 
@@ -113,8 +148,13 @@ $rootScope.$on('$stateChangeStart',
         var isLogin = toState.name === "login";
         var home = toState.name === "homestate";
         var register = toState.name === "register";
-        var quesandAns = toState.name === "quesandAns";
-        if(isLogin || home || register || quesandAns){
+        var eductionqa = toState.name === "eductionqa";
+        var healthqueqa = toState.name === "healthqueqa";
+        var eventqa = toState.name === "eventqa";
+        var sportsqa = toState.name === "sportsqa";
+        var celebrationqa = toState.name === "celebrationqa";
+        var terms_of_use = toState.name === "terms_policy";
+        if(isLogin || home || register || eductionqa || terms_of_use || healthqueqa || eventqa || sportsqa || celebrationqa){
            return; // no need to redirect 
         }
 
@@ -165,10 +205,12 @@ $rootScope.$on('$stateChangeStart',
 }(SG.Directives = SG.Directives || {} ));
 (function (Controllers, undefined)
 {   
+      
 	SG.Modules.SG.controller("homeController",homeController);
     // MainCtrl.$inject = ['healthAZModuleData'];
 	function homeController ($scope, $http,$window,$templateCache,loginService,$state,$rootScope,$log,$location)
-		{
+		{   
+
                   $scope.checkloggedIn = function () {
                         if(typeof loginService.getProviderId() == 'undefined')
                         {
@@ -256,6 +298,28 @@ $rootScope.$on('$stateChangeStart',
 
 	}])
 }(SG.Directives = SG.Directives || {} ));
+
+(function (Controllers, undefined)
+{   
+
+	SG.Modules.SG.controller("quesandansController",quesandansController);
+    // MainCtrl.$inject = ['healthAZModuleData'];
+	function quesandansController ($scope, $http,$window,$templateCache,$state,$rootScope,$location)
+		{   
+
+            $scope.PAGE_URL = window.location.href;
+            console.log("quesandansController")
+          $scope.disqusConfig = {
+    disqus_shortname: 'smartgrowthforkids',
+    disqus_identifier: 'health',disqus_title: 'health',
+    disqus_url: $scope.PAGE_URL
+};
+          
+   }
+	
+
+}(SG.Controllers = SG.Controllers || {} ));
+
 (function (Directives, undefined)
 {
 	SG.Modules.SG.directive("serviceSection", [ 
@@ -676,12 +740,12 @@ function addServiceService($http)
 }(SG.Service = SG.Service || {} ));
 
 (function(Directives, undefined) {
-    SG.Modules.SG.directive("birthdayTab", [
+    SG.Modules.SG.directive("celebrationTab", [
         function() {
             return {
                 restrict: 'E',
                 scope: {},
-                templateUrl: 'partials/services/birthdayTab.html',
+                templateUrl: 'partials/services/celebrationTab.html',
                 controller: function($scope, addServiceService) {
                     console.info("Enter Training tab directive controller");
                     $scope.type = ["Kids Celebration",
@@ -695,17 +759,17 @@ function addServiceService($http)
 
 
                     $scope.celebration = {
-                        name: "planner/cakeShop/catererName",
-                        type: "type of products",
-                        timings: "10 to 9",
-                        facilities: "any provided facilities",
-                        specialities: "any special things",
-                        phoneNumber: "7898789878",
-                        webLink: "www.mycatering.com",
-                        services: "breakfast,lunch,dinner",
-                        pincode: "560100",
-                        priceRange: "1000-5000",
-                        streetAddress: "HSR LAYOUT"
+                        name: "",
+                        type: "",
+                        timings: "",
+                        facilities: "",
+                        specialities: "",
+                        phoneNumber: "",
+                        webLink: "",
+                        services: "",
+                        pincode: "",
+                        priceRange: "",
+                        streetAddress: ""
                     }
                     $scope.addbirthday = function() {
                         addServiceService.addbirthdayService($scope.celebration).then(function(response) {
@@ -741,20 +805,26 @@ function addServiceService($http)
                         "Summer Camps",
                         "Winter Camps",
                     ];
+                    $scope.endDate = new Date();
+                    $scope.startDate = new Date();
+                    $scope.dateChange = function () {
+                        $scope.eventobj.startDate =  moment(new Date($scope.startDate)).format('MMDDYYYY')
+                        $scope.eventobj.endDate = moment(new Date($scope.endDate)).format('MMDDYYYY')
+                    }
                     $scope.eventobj = {
-                        eventName: "science exhibition",
-                        category: "camps",
-                        startDate: "09102015",
-                        endDate: "30092015",
-                        facilities: "any provided facilities",
-                        specialities: "any special things",
-                        timings: "10:00AM to 5:00PM",
-                        pincode: "560100",
-                        contactPhone: "9019816937",
-                        contactEmail: "pritamkray@gmail.com",
-                        contactPersonName: "pritam kumar",
-                        webLink: "web.summercamp.com",
-                        streetAddress: "7/10.9th main,12th Street"
+                        eventName: "",
+                        category: "",
+                        startDate: moment(new Date()).format('MMDDYYYY'),
+                        endDate: moment(new Date()).format('MMDDYYYY'),
+                        facilities: "",
+                        specialities: "",
+                        timings: "",
+                        pincode: "",
+                        contactPhone: "",
+                        contactEmail: "",
+                        contactPersonName: "",
+                        webLink: "",
+                        streetAddress: ""
                     }
                     $scope.addevent = function() {
                         addServiceService.addeventService($scope.eventobj).then(function(response) {
@@ -788,16 +858,16 @@ function addServiceService($http)
                     ];
 
                     $scope.healthobj = {
-                        name: "doctor/clinic name",
-                        serviceName: "child specialist",
-                        timings: "10 to 6",
-                        facilities: "special attention to each individual",
-                        specialities: "special things",
-                        phoneNumber: "7898789878",
-                        pincode: "560100",
-                        fees: "5000",
-                        address: "19th main,5th cross",
-                        streetAddress: "HSR LAYOUT"
+                        name: "",
+                        serviceName: "",
+                        timings: "",
+                        facilities: "",
+                        specialities: "",
+                        phoneNumber: "",
+                        pincode: "",
+                        fees: "",
+                        address: "",
+                        streetAddress: ""
                     }
                     $scope.addhealthservice = function() {
                         addServiceService.addhealthService($scope.healthobj).then(function(response) {
@@ -835,17 +905,17 @@ function addServiceService($http)
                     }
                     
                     $scope.kidcareobj = {
-                        minAge: "3",
-                        maxAge: "8",
-                        timings: "10 to 6",
-                        facilities: "special attention to each individual",
-                        specialities: "specialized in training kids",
-                        phoneNumber: "7898789878",
-                        pincode: "560100",
-                        fees: "5000",
-                        address: "19th main,5th cross",
-                        streetAddress: "HSR LAYOUT",
-                        name: "Day care"
+                        minAge: "",
+                        maxAge: "",
+                        timings: "",
+                        facilities: "",
+                        specialities: "",
+                        phoneNumber: "",
+                        pincode: "",
+                        fees: "",
+                        address: "",
+                        streetAddress: "",
+                        name: ""
                     }
 
                     $scope.addkidcareservice = function() {
@@ -895,16 +965,16 @@ function addServiceService($http)
                         "Play School"
                     ];
                     $scope.schoolobj = {
-                        name: "school name",
-                        type: "play school",
-                        timings: "10 to 6",
-                        facilities: "special attention to each individual",
-                        specialities: "special things",
-                        phoneNumber: "7898789878",
-                        pincode: "560100",
-                        fees: "5000",
-                        address: "19th main,5th cross",
-                        streetAddress: "HSR LAYOUT"
+                        name: "",
+                        type: "",
+                        timings: "",
+                        facilities: "",
+                        specialities: "",
+                        phoneNumber: "",
+                        pincode: "",
+                        fees: "",
+                        address: "",
+                        streetAddress: ""
                     }
                     $scope.addschoolservice = function() {
                         addServiceService.addschoolService($scope.schoolobj).then(function(response) {
@@ -941,18 +1011,18 @@ function addServiceService($http)
                         "Volleyball Academy"
                     ];
                     $scope.sportobj = {
-                        name: "academy/trainerName",
-                        type: "chess academy",
-                        timings: "10 to 6",
-                        facilities: "special attention to each individual",
-                        specialities: "special things",
-                        phoneNumber: "7898789878",
-                        pincode: "560100",
-                        fees: "5000",
-                        address: "19th main,5th cross",
-                        streetAddress: "HSR LAYOUT"
+                        name: "",
+                        type: "",
+                        timings: "",
+                        facilities: "",
+                        specialities: "",
+                        phoneNumber: "",
+                        pincode: "",
+                        fees: "",
+                        address: "",
+                        streetAddress: ""
                     }
-                    $scope.addschoolservice = function() {
+                    $scope.addsportservice = function() {
                         addServiceService.addsportService($scope.sportobj).then(function(response) {
                             console.log("sport service added");
                         })
@@ -1098,24 +1168,24 @@ function addServiceService($http)
                     }
                     
                     $scope.tutionobj = {
-                        startClassRange: "3",
-                        endClassRange: "8",
-                        subjects: "maths tuition",
-                        boards: "cbse",
-                        phoneNumber: "9019816937",
-                        schools: "all",
-                        daysPerWeek: "5",
-                        startHour: "10",
-                        endHour: "5",
-                        facilities: "special attention to each individual",
-                        specialities: "specialized in science and maths",
-                        pincode: "560100",
-                        fees: "5000",
-                        address: "19th main,5th cross",
-                        classLocation: "Institute,kids home,yahan bhi,wahan bhi",
-                        streetAddress: "HSR LAYOUT",
-                        subject: "maths",
-                        instituteName: "Add schools name"
+                        startClassRange: "",
+                        endClassRange: "",
+                        subjects: "",
+                        boards: "",
+                        phoneNumber: "",
+                        schools: "",
+                        daysPerWeek: "",
+                        startHour: "",
+                        endHour: "",
+                        facilities: "",
+                        specialities: "",
+                        pincode: "",
+                        fees: "",
+                        address: "",
+                        classLocation: "",
+                        streetAddress: "",
+                        subject: "",
+                        instituteName: ""
                     }
                     $scope.addtution = function() {
                         // console.log("age group " + $scope.ageGroup.to1_3)

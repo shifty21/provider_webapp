@@ -1,0 +1,69 @@
+<style type="text/css">
+   input[type="text"],textarea[type="text"] {
+   background-color : #EEEEEE;
+   }
+
+</style>
+<div class="row" style="padding:10px;">
+  <h3 style="color:#ff3f3f; padding-left:10px;">Enter Details</h3>
+  <form id="main-contact-form" name="contact-form" ng-submit="addbirthday()">
+  <div class="col-lg-6 form-group">
+
+    <div>
+      Celebration <br><br>
+      <select ng-model="celebration.type" ng-change="selectedvalue()" style="width:100%; height:34px;">
+        <option ng-repeat="x in type" value="{{x}}">{{x}}</option>
+      </select>
+    </div><br>
+    <div>Add name<br><br>
+        <input type="text" class="form-control" ng-model="celebration.name" placeholder="Name" required>
+      </div>
+      <br>
+    <div>Weblink<br><br>
+        <input type="text" class="form-control" ng-model="celebration.webLink" placeholder="WebLink">
+      </div>
+      <br>
+      <div>Adress<br><br>
+        <input type="text" class="form-control" ng-model="celebration.streetAddress" placeholder="Address" required>
+      </div>
+      <br>
+      <div>Pin<br><br>
+        <input type="text" class="form-control" ng-model="celebration.pincode" placeholder="Pincode" required>
+      </div>
+      <br>
+
+<div>Facility<br><br>
+      <textarea type="text" class="form-control" ng-model="celebration.facilities" placeholder="Facilities"></textarea>
+    </div><br>
+        <div>
+      Speciality<br><br>
+      <textarea type="text" class="form-control" ng-model="celebration.specialities" placeholder="Specialities"></textarea>
+    </div><br>
+  </div>
+
+  <div class="col-lg-6 form-group">
+
+      <div>Timing<br><br>
+        <input type="text" class="form-control" ng-model="celebration.timings" placeholder="Timings" required>
+      </div>
+      <br>
+      <div>Price Range<br><br>
+        <input type="text" class="form-control" ng-model="celebration.priceRange" placeholder="Price Range" required>
+      </div>
+      <br>
+      <div>
+        Contact Number <br><br>
+        <input type="text" class="form-control" disabled value="+91" style="width:10%; float:left;"/>
+        <input type="text" class="form-control" ng-model="celebration.phoneNumber" style="width:85%; float:right;" placeholder="Contact Number" required/>
+      </div>
+      <br><br>
+      <br>
+      <div style="margin:bottom:10px;">
+        <input type="submit" class="form-control btn btn-default btn-send"
+               value="Submit New Service" style="background-color:#5c6bc0;">
+      </div>
+
+  </div>
+  </form>
+  </div>
+

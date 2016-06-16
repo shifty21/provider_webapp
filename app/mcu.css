@@ -3385,6 +3385,12 @@ h2 {
 a:hover {
   text-decoration: none;
 }
+.login-img-div{
+}
+.login-img{
+  display: inline-block;
+    vertical-align: middle;
+}
 .centeralign{
     text-align: center; vertical-align: center;
   }

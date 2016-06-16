@@ -6,7 +6,8 @@
 </style>
 <div class="row" style="padding:10px;">
   <h3 style="color:#ff3f3f; padding-left:10px;">Enter Details</h3>
-  <div class="col-lg-6 ">
+  <form id="main-contact-form" name="contact-form" ng-submit="addevent()">
+  <div class="col-lg-6 form-group">
     <div>
       Event <br><br>
       <select ng-model="eventobj.category" ng-change="selectedvalue()" style="width:100%; height:34px;">
@@ -16,65 +17,66 @@
     <br>
     <div>
       Event Name<br><br>
-      <input type="text" class="form-control" ng-model="eventobj.eventName">
+      <input type="text" class="form-control" ng-model="eventobj.eventName" placeholder="Event Name">
     </div>
     <br>
     <div>
       Person Name<br><br>
-      <input type="text" class="form-control" ng-model="eventobj.contactPersonName">
+      <input type="text" class="form-control" ng-model="eventobj.contactPersonName" placeholder="Contact Person">
     </div>
     <br>
-    <div>
-      Enter Web Link <br><br>
-      <input type="text" class="form-control" ng-model="eventobj.webLink">
-    </div>
+    <div>Address of Event<br><br>
+        <input type="text" class="form-control" ng-model="eventobj.streetAddress" placeholder="Address">
+      </div>
+      <br>
+      <div>Pin<br><br>
+        <input type="text" class="form-control" ng-model="eventobj.pincode" placeholder="Pincode">
+      </div>
     <br>
-    <div>
-      Enter Your Mail Id<br><br>
-      <input type="text" class="form-control" ng-model="eventobj.contactEmail">
+    <div>Facility<br><br>
+      <textarea type="text" class="form-control" ng-model="eventobj.facilities" placeholder="Facilities"></textarea>
     </div>
     <br>
     <div>
       Speciality<br><br>
-      <textarea type="text" class="form-control" ng-model="eventobj.specialities"></textarea>
-    </div>
-    <br>
-    <div>Facility<br><br>
-      <textarea type="text" class="form-control" ng-model="eventobj.facilities"></textarea>
+      <textarea type="text" class="form-control" ng-model="eventobj.specialities" placeholder="Specialities"></textarea>
     </div><br>
   </div>
-  <div class="col-lg-6">
+  <div class="col-lg-6 form-group">
 
-      <div>Address of Event<br><br>
-        <input type="text" class="form-control" ng-model="eventobj.streetAddress">
-      </div>
-      <br>
-      <div>Pin<br><br>
-        <input type="text" class="form-control" ng-model="eventobj.pincode">
-      </div>
+      <div>
+      Enter Web Link <br><br>
+      <input type="text" class="form-control" ng-model="eventobj.webLink" placeholder="WebLink">
+    </div>
+    <br>
+    <div>
+      Enter Your Mail Id<br><br>
+      <input type="text" class="form-control" ng-model="eventobj.contactEmail" placeholder="Contact Email">
+    </div>
       <br>
       <div>Start Date<br><br>
-        <input type="text" class="form-control" ng-model="eventobj.startDate">
+        <input type="date" class="form-control" ng-model="startDate" placeholder="Start Date" ng-change="dateChange()">
       </div>
       <br>
       <div>End Date<br><br>
-        <input type="text" class="form-control" ng-model="eventobj.endDate">
+        <input type="date" class="form-control" ng-model="endDate" placeholder="End Date" ng-change="dateChange()">
       </div>
       <br>
       <div>Timing<br><br>
-        <input type="text" class="form-control" ng-model="eventobj.timings">
+        <input type="text" class="form-control" ng-model="eventobj.timings" placeholder="Timings">
       </div>
       <br>
       <div>
         Contact Number <br><br>
         <input type="text" class="form-control" disabled value="+91" style="width:10%; float:left;"/>
-        <input type="text" class="form-control" ng-model="eventobj.contactPhone" style="width:85%; float:right;"/>
+        <input type="text" class="form-control" ng-model="eventobj.contactPhone" style="width:85%; float:right;" placeholder="Contact Number" />
       </div>
       <br><br>
       <br>
       <div style="margin:bottom:10px;">
-        <input type="submit" ng-click="addevent()" class="form-control btn btn-default btn-send"
-               value="Submit New Service" style="background-color:#ff3f3f;">
+        <input type="submit" class="form-control btn btn-default btn-send"
+               value="Submit New Service" style="background-color:#5c6bc0;">
       </div>
   </div>
+  </form>
 </div>

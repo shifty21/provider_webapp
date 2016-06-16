@@ -6,7 +6,7 @@
           
 // $logProvider.debugEnabled(true);
 // $compileProvider.debugInfoEnabled(true);
-        
+
 		$stateProvider
 			.state('homestate', {
               url: "/homestate",
@@ -15,9 +15,44 @@
 
 
         })
-      .state('quesandAns', {
-      				url: "/ques-and-ans",
-      				templateUrl: SG.PartialsPath + "home/quesandAns.html",
+      .state('eductionqa', {
+              url: "/eduction-ques-and-anss",
+              templateUrl: SG.PartialsPath + "question-blog/education-blog.html",
+              controller : 'quesandansController'
+
+
+        })
+      .state('healthqueqa', {
+              url: "/health-ques-and-ans",
+              templateUrl: SG.PartialsPath + "question-blog/health-blog.html",
+              controller : 'quesandansController'
+
+
+        })
+      .state('eventqa', {
+              url: "/event-ques-and-ans",
+              templateUrl: SG.PartialsPath + "question-blog/events-blog.html",
+              controller : 'quesandansController'
+
+
+        })
+      .state('sportsqa', {
+              url: "/sports-ques-and-ans",
+              templateUrl: SG.PartialsPath + "question-blog/sports-blog.html",
+              controller : 'quesandansController'
+
+
+        })
+      .state('celebrationqa', {
+              url: "/celebration-ques-and-ans",
+              templateUrl: SG.PartialsPath + "question-blog/celebration-blog.html",
+              controller : 'quesandansController'
+
+
+        })
+      .state('terms_policy', {
+              url: "/terms_policy",
+              templateUrl: SG.PartialsPath + "general/termsOfUse.html",
               controller : 'homeController'
 
 
@@ -79,8 +114,13 @@ $rootScope.$on('$stateChangeStart',
         var isLogin = toState.name === "login";
         var home = toState.name === "homestate";
         var register = toState.name === "register";
-        var quesandAns = toState.name === "quesandAns";
-        if(isLogin || home || register || quesandAns){
+        var eductionqa = toState.name === "eductionqa";
+        var healthqueqa = toState.name === "healthqueqa";
+        var eventqa = toState.name === "eventqa";
+        var sportsqa = toState.name === "sportsqa";
+        var celebrationqa = toState.name === "celebrationqa";
+        var terms_of_use = toState.name === "terms_policy";
+        if(isLogin || home || register || eductionqa || terms_of_use || healthqueqa || eventqa || sportsqa || celebrationqa){
            return; // no need to redirect 
         }
 

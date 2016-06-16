@@ -5,7 +5,8 @@
 </style>
 <div class="row" style="padding:10px;">
    <h3 style="color:#ff3f3f; padding-left:10px;">Enter Details</h3>
-   <div class="col-lg-6 ">
+   <form id="main-contact-form" name="contact-form" ng-submit="addsportservice()">
+   <div class="col-lg-6 form-group">
       <div>
          Sports Academy <br><br>
          <select ng-model="sportobj.type"  ng-change="selectedvalue()"  style="width:100%;height:34px;">
@@ -15,48 +16,48 @@
       <br>
       <div>
          Name<br><br>
-         <input type="text" class="form-control" ng-model="sportobj.name">
+         <input type="text" class="form-control" ng-model="sportobj.name" placeholder="Academy / Trainer Name" required>
       </div>
       <br>
       <div>
          Address <br><br>
-         <input type="text" class="form-control" ng-model="sportobj.address">
+         <input type="text" class="form-control" ng-model="sportobj.address" placeholder="Address" required>
       </div>
       <br>
       <div>Pin<br><br>
-         <input type="text" class="form-control" ng-model="sportobj.pincode">
+         <input type="text" class="form-control" ng-model="sportobj.pincode" placeholder="Pincode" required>
       </div>
 
+      <br>
+      <div>Facility<br><br>
+         <textarea type="text" class="form-control" ng-model="sportobj.facilities" placeholder="Facilities"></textarea>
+      </div>
       <br>
       <div>
          Speciality<br><br>
-         <textarea type="text" class="form-control" ng-model="sportobj.specialities"></textarea>
-      </div>
-      <br>
-      <div>Facility<br><br>
-         <textarea type="text" class="form-control" ng-model="sportobj.facilities"></textarea>
+         <textarea type="text" class="form-control" ng-model="sportobj.specialities" placeholder="Specialities"></textarea>
       </div>
       <br>
    </div>
-   <div class="col-lg-6">
+   <div class="col-lg-6 form-group">
 
         <div>Timing<br><br>
-         <input type="text" class="form-control" ng-model="sportobj.timings">
+         <input type="text" class="form-control" ng-model="sportobj.timings" placeholder="Timings" required>
       </div>
 <br>
       <div>Amount Charged<br><br>
-         <input type="text" class="form-control" ng-model="sportobj.fees">
+         <input type="text" class="form-control" ng-model="sportobj.fees" placeholder="Amount Charged" required>
       </div>
 <br>
       <div>
          Contact Number <br><br>
          <input type="text" class="form-control" disabled value="+91" style="width:10%; float:left;"/>
-         <input type="text" class="form-control" ng-model="sportobj.phoneNumber" style="width:85%; float:right;"/>
+         <input type="text" class="form-control" ng-model="sportobj.phoneNumber" style="width:85%; float:right;" placeholder="Contact Number" required/>
       </div>
       <br><br>
       <br>
       <div style="margin:bottom:10px;">
-         <input type="submit" ng-click="addschoolservice()" class="form-control btn btn-default btn-send" value="Submit New Service"  style="background-color:#ff3f3f;">
+         <input type="submit" class="form-control btn btn-default btn-send" value="Submit New Service"  style="background-color:#5c6bc0;">
       </div>
-</div>
+</div></form>
 </div>

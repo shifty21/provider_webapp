@@ -1,9 +1,44 @@
 <section id="works" class="works">
    <div class="container raisedbox">
       <div class="section-heading">
-         <h1 class="title wow fadeInDown" data-wow-delay=".3s">Latest Blogs</h1>
+         <h1 class="title wow fadeInDown" data-wow-delay=".3s">LATEST BLOGS</h1>
          <p class="wow fadeInDown" data-wow-delay=".5s">
-            Aliquam lobortis. Maecenas vestibulum mollis diam. Pellentesque auctor neque nec urna. Nulla sit amet est. Aenean posuere <br> tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis lacus.
+            Be a smart parent by reading the useful parenting tips and resources. <br>Have a glance and discover a new journey of Parenthood...
+         </p>
+      </div>
+      <div class="row">
+         <div class="col-sm-4 col-xs-12" ng-repeat="x in blogs">
+            <figure class="wow fadeInLeft animated portfolio-item" data-wow-duration="500ms" data-wow-delay="0ms">
+               <div class="img-wrapper">
+                  <img ng-src="{{x.image}}" class="img-responsive" alt="this is a title" >
+                  <div class="overlay">
+                     <div class="buttons">
+                        <a href="" data-toggle="modal" data-target="#myModal">Details</a>
+                     </div>
+                  </div>
+               </div>
+               <figcaption>
+                  <h4>
+                     <a ui-href="homestate">
+                     {{x.name}}
+                     </a>
+                  </h4>
+                  <p>
+                     {{x.detail}}
+                  </p>
+               </figcaption>
+            </figure>
+         </div>
+      </div>
+   </div>
+</section>
+<section id="works" class="works">
+   <div class="container raisedbox">
+      <div class="section-heading">
+         <h1 class="title wow fadeInDown" data-wow-delay=".3s">LATEST EVENTS</h1>
+         <p class="wow fadeInDown" data-wow-delay=".5s">
+            
+Looking for upcoming events and activities for your kids?<br> Discover and book amazing events nearby your area.
          </p>
       </div>
       <div class="row">
@@ -35,9 +70,9 @@
 <section id="works1" class="works">
    <div class="container raisedbox">
       <div class="section-heading">
-         <h1 class="title wow fadeInDown" data-wow-delay=".3s">Latest Stories</h1>
+         <h1 class="title wow fadeInDown" data-wow-delay=".3s">LATEST STORIES</h1>
          <p class="wow fadeInDown" data-wow-delay=".5s">
-            Aliquam lobortis. Maecenas vestibulum mollis diam. Pellentesque auctor neque nec urna. Nulla sit amet est. Aenean posuere <br> tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis lacus.
+            A huge collection of bed-time stories is just a click away!!<br> Snuggle up together, explore and go on an adventure with your kids.
          </p>
       </div>
       <div class="row">
@@ -69,9 +104,9 @@
 <section id="works2" class="works">
    <div class="container raisedbox">
       <div class="section-heading">
-         <h1 class="title wow fadeInDown" data-wow-delay=".3s">Latest Recipes</h1>
+         <h1 class="title wow fadeInDown" data-wow-delay=".3s">LATEST RECIPES</h1>
          <p class="wow fadeInDown" data-wow-delay=".5s">
-            Aliquam lobortis. Maecenas vestibulum mollis diam. Pellentesque auctor neque nec urna. Nulla sit amet est. Aenean posuere <br> tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis lacus.
+            A healthy eating starts with SmarthGrowth!! Try these yummy recipes of snacks, breakfast and lunch/dinner. <br>We bet your kids gonna love these.
          </p>
       </div>
       <div class="row">

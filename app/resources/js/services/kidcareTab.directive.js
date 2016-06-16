@@ -17,17 +17,17 @@
                     }
                     
                     $scope.kidcareobj = {
-                        minAge: "3",
-                        maxAge: "8",
-                        timings: "10 to 6",
-                        facilities: "special attention to each individual",
-                        specialities: "specialized in training kids",
-                        phoneNumber: "7898789878",
-                        pincode: "560100",
-                        fees: "5000",
-                        address: "19th main,5th cross",
-                        streetAddress: "HSR LAYOUT",
-                        name: "Day care"
+                        minAge: "",
+                        maxAge: "",
+                        timings: "",
+                        facilities: "",
+                        specialities: "",
+                        phoneNumber: "",
+                        pincode: "",
+                        fees: "",
+                        address: "",
+                        streetAddress: "",
+                        name: ""
                     }
 
                     $scope.addkidcareservice = function() {

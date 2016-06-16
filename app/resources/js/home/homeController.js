@@ -1,9 +1,11 @@
 (function (Controllers, undefined)
 {   
+      
 	SG.Modules.SG.controller("homeController",homeController);
     // MainCtrl.$inject = ['healthAZModuleData'];
 	function homeController ($scope, $http,$window,$templateCache,loginService,$state,$rootScope,$log,$location)
-		{
+		{   
+
                   $scope.checkloggedIn = function () {
                         if(typeof loginService.getProviderId() == 'undefined')
                         {

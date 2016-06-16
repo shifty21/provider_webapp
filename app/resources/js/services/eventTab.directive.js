@@ -20,20 +20,26 @@
                         "Summer Camps",
                         "Winter Camps",
                     ];
+                    $scope.endDate = new Date();
+                    $scope.startDate = new Date();
+                    $scope.dateChange = function () {
+                        $scope.eventobj.startDate =  moment(new Date($scope.startDate)).format('MMDDYYYY')
+                        $scope.eventobj.endDate = moment(new Date($scope.endDate)).format('MMDDYYYY')
+                    }
                     $scope.eventobj = {
-                        eventName: "science exhibition",
-                        category: "camps",
-                        startDate: "09102015",
-                        endDate: "30092015",
-                        facilities: "any provided facilities",
-                        specialities: "any special things",
-                        timings: "10:00AM to 5:00PM",
-                        pincode: "560100",
-                        contactPhone: "9019816937",
-                        contactEmail: "pritamkray@gmail.com",
-                        contactPersonName: "pritam kumar",
-                        webLink: "web.summercamp.com",
-                        streetAddress: "7/10.9th main,12th Street"
+                        eventName: "",
+                        category: "",
+                        startDate: moment(new Date()).format('MMDDYYYY'),
+                        endDate: moment(new Date()).format('MMDDYYYY'),
+                        facilities: "",
+                        specialities: "",
+                        timings: "",
+                        pincode: "",
+                        contactPhone: "",
+                        contactEmail: "",
+                        contactPersonName: "",
+                        webLink: "",
+                        streetAddress: ""
                     }
                     $scope.addevent = function() {
                         addServiceService.addeventService($scope.eventobj).then(function(response) {

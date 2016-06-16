@@ -7,10 +7,13 @@
 		Service: <span style="color:orange;">
 		 {{x.subCategory}}</span><br>
 <!-- Date: <span style="color:orange;">{{x.dateRequested}}</span><br> -->
-Provider : <span style="color:orange;">{{x.providerName}}</span>
+Contact : <span style="color:orange;">{{x.phoneNumber}}</span><br>
+Locality : <span style="color:orange;">{{x.locality}}</span><br>
+Email Address : <span style="color:orange;">{{x.emailAddress}}</span><br>
 	</div>
-	<div class="col-lg-6" style="text-align:right;">{{x.seenByProvider?"Contacted":"New"}}<br>{{x.dateRequested | date:"MM/dd/yyyy 'at' h:mma"}}<br>
-	<button ng-click="connected(x.connectRequestId)">Conneted?</button>
+	<div class="col-lg-6" style="text-align:right;">{{x.seenByProvider?"Contacted":"New"}}<br>{{x.dateRequested | date:"MM/dd/yyyy"}}<br>
+	<button ng-click="connected(x.connectRequestId)" ng-if = "!x.seenByProvider" class="btn btn-default btn-send"
+               style="background-color:#5c6bc0;">Conneted?</button>
 	</div>
 </div>
 </div>	
