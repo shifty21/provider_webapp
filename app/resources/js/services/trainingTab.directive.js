@@ -5,8 +5,9 @@
                 restrict: 'E',
                 scope: {},
                 templateUrl: 'partials/services/trainingTab.html',
-                controller: function($scope, addServiceService) {
-                    console.info("Enter Training tab directive controller");
+                controller: function($scope, addServiceService,loginService) {
+                    $scope.providerId = loginService.getProviderId();
+                    // console.info("Enter Training tab directive controller");
                     $scope.subject = [
                         "Guitar classes",
                         "Musical Instrument Classes",
@@ -46,7 +47,8 @@
                         address: "",
                         classLocation: "",
                         streetAddress: "",
-                        instituteName: ""
+                        instituteName: "",
+                        locality:""
                     }
                     $scope.addtrainingService = function() {
                         if($scope.ageGroup.to1_3 && $scope.ageGroup.to3_5 && $scope.ageGroup.to5_8)
@@ -83,10 +85,10 @@
                         else
                             {$scope.trainingobj.classLocation = "At Institute/Coaching, At Teacher Home, At Kid Home"}
 
-                        console.log("startClassRange " + $scope.trainingobj.minAge)
-                        console.log("startClassRange " + $scope.trainingobj.maxAge)
-                        console.log("startClassRange " + $scope.trainingobj.classLocation)
-                        addServiceService.addtrainingService($scope.trainingobj).then(function(response) {
+                        // console.log("startClassRange " + $scope.trainingobj.minAge)
+                        // console.log("startClassRange " + $scope.trainingobj.maxAge)
+                        // console.log("startClassRange " + $scope.trainingobj.classLocation)
+                        addServiceService.addtrainingService($scope.trainingobj,$scope.providerId).then(function(response) {
                             console.log("training service added");
                         })
                     }

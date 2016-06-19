@@ -6,10 +6,11 @@
 		return {
 			restrict: 'E',
 			templateUrl : 'partials/user/profileTab.html',
-			controller: function($scope, userService,$log) {
+			controller: function($scope, userService,$log,loginService) {
                                $scope.detailDiv =false;
-                        $scope.getProfile = function (argument) {
-                 	userService.getProfile().then(function (response) {
+                               $scope.providerId = loginService.getProviderId();
+                        $scope.getProfile = function () {
+                 	userService.getProfile($scope.providerId).then(function (response) {
                  		$scope.profileData = response.data;
                  		$scope.profiletraining = response.data.training;
                  		$scope.profileschool = response.data.school;
@@ -20,7 +21,7 @@
                  		$scope.profilecelebration = response.data.celebration;
                  		$scope.profilehealth = response.data.health;
                  		$scope.providerdetails = response.data.provider;
-                 		$log.info("user profile " + $scope.profileschool[0].providerName)
+                 		// $log.info("user profile " + $scope.profileschool[0].providerName)
                                 for (x in $scope.profiletraining)
                                 {
                                         console.log("profile data " + $scope.profiletraining[0].providerName )

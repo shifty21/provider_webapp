@@ -17,12 +17,12 @@
                                     <br>
                                     <br>
                                     <div id="submit">
-                                        <input type="submit" id="contact-submit" class="form-control btn btn-default btn-send" value="Submit"  style="background-color:#5c6bc0;">
+                                        <input type="submit" id="contact-submit" class="form-control btn btn-default btn-send button-std" value="Submit">
                                     </div> 
 
                                     <br>
                                      <div class="form-group" style="text-align:center;">
-                                       Forgot Password ? <span style="color:#ff3f3f;"><a href="">Reset Password</a></span>
+                                       Forgot Password ? <span style="color:#ff3f3f;"><a href="" data-toggle="modal" data-target="#myModal">Reset Password</a></span>
                                     </div>  
                                      <div class="form-group" style="text-align:center;">
                                        Don't have an account?  <span style="color:#ff3f3f;"><a ui-sref="register">Sign up</a></span>
@@ -31,3 +31,23 @@
                             </div>
                         <!-- </div> -->
                 </div>
+
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="margin-top:15%;">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header"  style="display:none">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <!-- <h4 class="modal-title" id="myModalLabel">Modal title</h4> -->
+         </div>
+         <div class="modal-body centeralign" style="">Let's get you into your account<br>
+         <br>
+            <span style="font-size: 12px;">Recovery email address</span> <br><input type="text" style="width:50%;" placeholder="Email Registered Email id" /><br><br><button class="btn btn-default btn-send button-std" style="width:50%;">Send Mail</button>
+            
+         </div>
+         <div class="modal-footer"  style="display:none">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+         </div>
+      </div>
+   </div>
+</div>

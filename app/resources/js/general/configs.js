@@ -6,6 +6,8 @@
           
 // $logProvider.debugEnabled(true);
 // $compileProvider.debugInfoEnabled(true);
+// $disqusProvider.setShortname('smartgrowthforkids');
+$locationProvider.hashPrefix('!');
 
 		$stateProvider
 			.state('homestate', {

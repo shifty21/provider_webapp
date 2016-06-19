@@ -5,8 +5,9 @@
                 restrict: 'E',
                 scope: {},
                 templateUrl: 'partials/services/healthTab.html',
-                controller: function($scope, addServiceService) {
-                    console.info("Enter Training tab directive controller");
+                controller: function($scope, addServiceService,loginService) {
+                    $scope.providerId = loginService.getProviderId();
+                    // console.info("Enter Training tab directive controller");
                     $scope.serviceName = ["Fitness Trainer",
                         "Child Specialist",
                         "Child Counsellor",
@@ -26,7 +27,7 @@
                         streetAddress: ""
                     }
                     $scope.addhealthservice = function() {
-                        addServiceService.addhealthService($scope.healthobj).then(function(response) {
+                        addServiceService.addhealthService($scope.healthobj,$scope.providerId).then(function(response) {
                             console.log("health service added");
                         })
                     }

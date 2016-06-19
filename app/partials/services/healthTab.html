@@ -19,9 +19,13 @@
       </div>
       <br>
       <div>Address<br><br>
-        <input type="text" class="form-control" ng-model="healthobj.address" placeholder="Address" required> 
+        <input type="text" class="form-control" ng-model="healthobj.streetAddress" placeholder="Address" required> 
       </div>
       <br>
+                  <div>Locality<br><br>
+        <input type="text" class="form-control" ng-model="healthobj.locality" placeholder="Locality" required>
+      </div><br>
+
       <div>Pin<br><br>
         <input type="text" class="form-control" ng-model="healthobj.pincode" placeholder="Pincode" required>
       </div><br>
@@ -48,13 +52,13 @@
       <div>
         Contact Number <br><br>
         <input type="text" class="form-control" disabled value="+91" style="width:10%; float:left;"/>
-        <input type="text" class="form-control" ng-model="healthobj.phoneNumber" style="width:85%; float:right;" placeholder="Contact Number" required/>
+        <input type="text" class="form-control" ng-model="healthobj.phoneNumber" pattern="[0-9]{10}" style="width:85%; float:right;" placeholder="Enter 10 digit Number" required/>
       </div>
       <br><br>
       <br>
       <div style="margin:bottom:10px;">
-        <input type="submit" class="form-control btn btn-default btn-send"
-               value="Submit New Service" style="background-color:#5c6bc0;">
+        <input type="submit" class="form-control btn btn-default btn-send button-std"
+               value="Submit New Service">
       </div>
   </div></form>
 </div>

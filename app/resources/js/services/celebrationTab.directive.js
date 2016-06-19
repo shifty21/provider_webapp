@@ -5,8 +5,9 @@
                 restrict: 'E',
                 scope: {},
                 templateUrl: 'partials/services/celebrationTab.html',
-                controller: function($scope, addServiceService) {
-                    console.info("Enter Training tab directive controller");
+                controller: function($scope, addServiceService,loginService) {
+                    $scope.providerId = loginService.getProviderId();
+                    // console.info("Enter Training tab directive controller");
                     $scope.type = ["Kids Celebration",
                         "Catering",
                         "Cakes"
@@ -31,7 +32,7 @@
                         streetAddress: ""
                     }
                     $scope.addbirthday = function() {
-                        addServiceService.addbirthdayService($scope.celebration).then(function(response) {
+                        addServiceService.addbirthdayService($scope.celebration,$scope.providerId).then(function(response) {
                             console.log("birtrhday service added");
                         })
                     }

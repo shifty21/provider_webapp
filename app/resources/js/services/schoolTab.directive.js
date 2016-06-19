@@ -5,8 +5,9 @@
                 restrict: 'E',
                 scope: {},
                 templateUrl: 'partials/services/schoolTab.html',
-                controller: function($scope, addServiceService) {
-                    console.info("Enter Training tab directive controller");
+                controller: function($scope, addServiceService,loginService) {
+                    $scope.providerId = loginService.getProviderId();
+                    // console.info("Enter Training tab directive controller");
                     $scope.type = ["K-8 Schools - CBSE, ICSE , Other",
                         "MONTESSORI SCHOOLS",
                         "Play School"
@@ -21,10 +22,10 @@
                         pincode: "",
                         fees: "",
                         address: "",
-                        streetAddress: ""
+                        streetAddress: "",locality:""
                     }
                     $scope.addschoolservice = function() {
-                        addServiceService.addschoolService($scope.schoolobj).then(function(response) {
+                        addServiceService.addschoolService($scope.schoolobj,$scope.providerId).then(function(response) {
                             console.log("school service added");
                         })
                     }

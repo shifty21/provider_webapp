@@ -17,20 +17,24 @@
     <br>
     <div>
       Event Name<br><br>
-      <input type="text" class="form-control" ng-model="eventobj.eventName" placeholder="Event Name">
+      <input type="text" class="form-control" ng-model="eventobj.eventName" placeholder="Event Name" required>
     </div>
     <br>
     <div>
       Person Name<br><br>
-      <input type="text" class="form-control" ng-model="eventobj.contactPersonName" placeholder="Contact Person">
+      <input type="text" class="form-control" ng-model="eventobj.contactPersonName" placeholder="Contact Person" required>
     </div>
     <br>
     <div>Address of Event<br><br>
-        <input type="text" class="form-control" ng-model="eventobj.streetAddress" placeholder="Address">
+        <input type="text" class="form-control" ng-model="eventobj.streetAddress" placeholder="Address" required>
+      </div>
+      <br>
+      <div>Locality<br><br>
+        <input type="text" class="form-control" ng-model="eventobj.locality" placeholder="Locality" required>
       </div>
       <br>
       <div>Pin<br><br>
-        <input type="text" class="form-control" ng-model="eventobj.pincode" placeholder="Pincode">
+        <input type="text" class="form-control" ng-model="eventobj.pincode" placeholder="Pincode" required>
       </div>
     <br>
     <div>Facility<br><br>
@@ -51,15 +55,15 @@
     <br>
     <div>
       Enter Your Mail Id<br><br>
-      <input type="text" class="form-control" ng-model="eventobj.contactEmail" placeholder="Contact Email">
+      <input type="text" class="form-control" ng-model="eventobj.contactEmail" placeholder="Contact Email" required>
     </div>
       <br>
       <div>Start Date<br><br>
-        <input type="date" class="form-control" ng-model="startDate" placeholder="Start Date" ng-change="dateChange()">
+        <input type="date" class="form-control" ng-model="startDate" placeholder="Start Date" ng-change="dateChange()" required>
       </div>
       <br>
       <div>End Date<br><br>
-        <input type="date" class="form-control" ng-model="endDate" placeholder="End Date" ng-change="dateChange()">
+        <input type="date" class="form-control" ng-model="endDate" placeholder="End Date" ng-change="dateChange()" required>
       </div>
       <br>
       <div>Timing<br><br>
@@ -69,13 +73,13 @@
       <div>
         Contact Number <br><br>
         <input type="text" class="form-control" disabled value="+91" style="width:10%; float:left;"/>
-        <input type="text" class="form-control" ng-model="eventobj.contactPhone" style="width:85%; float:right;" placeholder="Contact Number" />
+        <input type="text" class="form-control" ng-model="eventobj.contactPhone" pattern="[0-9]{10}" style="width:85%; float:right;" placeholder="Enter 10 digit Number" required/>
       </div>
       <br><br>
       <br>
       <div style="margin:bottom:10px;">
-        <input type="submit" class="form-control btn btn-default btn-send"
-               value="Submit New Service" style="background-color:#5c6bc0;">
+        <input type="submit" class="form-control btn btn-default btn-send button-std"
+               value="Submit New Service">
       </div>
   </div>
   </form>

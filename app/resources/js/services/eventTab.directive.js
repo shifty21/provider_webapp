@@ -4,8 +4,9 @@
             return {
                 restrict: 'E',
                 templateUrl: 'partials/services/eventTab.html',
-                controller: function($scope, addServiceService) {
-                    console.info("Enter Event tab directive controller");
+                controller: function($scope, addServiceService,loginService) {
+                    $scope.providerId = loginService.getProviderId();
+                    
                     $scope.category = [
                         "Art & Craft",
                         "Cooking & Baking",
@@ -39,10 +40,11 @@
                         contactEmail: "",
                         contactPersonName: "",
                         webLink: "",
-                        streetAddress: ""
+                        streetAddress: "",
+                        locality:""
                     }
                     $scope.addevent = function() {
-                        addServiceService.addeventService($scope.eventobj).then(function(response) {
+                        addServiceService.addeventService($scope.eventobj,$scope.providerId).then(function(response) {
                             console.log("event service added");
                         })
                     }

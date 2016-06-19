@@ -4,25 +4,26 @@
 function addServiceService($http)
     {
        var obj = {};
-        var tutionUrl = SG.ServerUrl + 'tuition/af6d5d84-278f-42fb-8b2f-b06b2e12b8f8';
-        var trainingUrl = SG.ServerUrl + 'training/af6d5d84-278f-42fb-8b2f-b06b2e12b8f8';
-        var kidcareUrl = SG.ServerUrl + "dayCare/af6d5d84-278f-42fb-8b2f-b06b2e12b8f8";
-        var schoolUrl = SG.ServerUrl + "school/af6d5d84-278f-42fb-8b2f-b06b2e12b8f8";
-        var healthUrl = SG.ServerUrl + "health/af6d5d84-278f-42fb-8b2f-b06b2e12b8f8";
-        var eventUrl = SG.ServerUrl + "event/af6d5d84-278f-42fb-8b2f-b06b2e12b8f8";
-        var sportUrl = SG.ServerUrl + "sport/af6d5d84-278f-42fb-8b2f-b06b2e12b8f8";
-        var birthdayUrl = SG.ServerUrl + "celebration/af6d5d84-278f-42fb-8b2f-b06b2e12b8f8";
+        var tutionUrl = SG.ServerUrl + 'tuition/';
+        var trainingUrl = SG.ServerUrl + 'training/';
+        var kidcareUrl = SG.ServerUrl + "dayCare/";
+        var schoolUrl = SG.ServerUrl + "school/";
+        var healthUrl = SG.ServerUrl + "health/";
+        var eventUrl = SG.ServerUrl + "event/";
+        var sportUrl = SG.ServerUrl + "sport/";
+        var birthdayUrl = SG.ServerUrl + "celebration/";
         
-        obj.addtutionService = function (tutiondata) {
-        return  $http.post(tutionUrl,tutiondata,{
+        obj.addtutionService = function (tutiondata,providerId) {
+            console.log("providerid " + providerId);
+        return  $http.post(tutionUrl + providerId,tutiondata,{
                     headers: {
                         "Content-Type": "text/plain"
 }})      
       }
      
-        obj.addtrainingService = function (trainingdata) {
-           
-        return  $http.post(trainingUrl,trainingdata,{
+        obj.addtrainingService = function (trainingdata,providerId) {
+           console.log("providerid " + providerId);
+        return  $http.post(trainingUrl +providerId,trainingdata,{
                     headers: {
                         'Content-Type': 'text/plain'
                     }
@@ -33,9 +34,9 @@ function addServiceService($http)
                     console.log('FAILURE');
                 });       
       }
-        obj.addkidcareService = function (kidcaredata) {
-           
-        return  $http.post(kidcareUrl,kidcaredata,{
+        obj.addkidcareService = function (kidcaredata,providerId) {
+           console.log("providerid " + providerId);
+        return  $http.post(kidcareUrl + providerId,kidcaredata,{
                     headers: {
                         'Content-Type': 'text/plain'
                     }
@@ -46,9 +47,9 @@ function addServiceService($http)
                     console.log('FAILURE');
                 });       
       }
-        obj.addschoolService = function (schooldata) {
-           
-        return  $http.post(schoolUrl,schooldata,{
+        obj.addschoolService = function (schooldata,providerId) {
+           console.log("providerid " + providerId);
+        return  $http.post(schoolUrl + providerId,schooldata,{
                     headers: {
                         'Content-Type': 'text/plain'
                     }
@@ -59,9 +60,9 @@ function addServiceService($http)
                     console.log('FAILURE');
                 });       
       }
-        obj.addhealthService = function (healthdata) {
-           
-        return  $http.post(healthUrl,healthdata,{
+        obj.addhealthService = function (healthdata,providerId) {
+           console.log("providerid " + providerId);
+        return  $http.post(healthUrl + providerId,healthdata,{
                     headers: {
                         'Content-Type': 'text/plain'
                     }
@@ -72,9 +73,9 @@ function addServiceService($http)
                     console.log('FAILURE');
                 });       
       }
-        obj.addeventService = function (eventdata) {
-           
-        return  $http.post(eventUrl,eventdata,{
+        obj.addeventService = function (eventdata,providerId) {
+           console.log("providerid " + providerId);
+        return  $http.post(eventUrl + providerId,eventdata,{
                     headers: {
                         'Content-Type': 'text/plain'
                     }
@@ -85,9 +86,9 @@ function addServiceService($http)
                     console.log('FAILURE');
                 });       
       }
-        obj.addsportService = function (sportdata) {
-           
-        return  $http.post(sportUrl,sportdata,{
+        obj.addsportService = function (sportdata,providerId) {
+           console.log("providerid " + providerId);
+        return  $http.post(sportUrl + providerId,sportdata,{
                     headers: {
                         'Content-Type': 'text/plain'
                     }
@@ -98,9 +99,9 @@ function addServiceService($http)
                     console.log('FAILURE');
                 });       
       }
-        obj.addbirthdayService = function (birthdaydata) {
-           
-        return  $http.post(birthdayUrl,birthdaydata,{
+        obj.addbirthdayService = function (birthdaydata,providerId) {
+           console.log("providerid " + providerId);
+        return  $http.post(birthdayUrl+providerId,birthdaydata,{
                     headers: {
                         'Content-Type': 'text/plain'
                     }

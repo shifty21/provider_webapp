@@ -3385,6 +3385,11 @@ h2 {
 a:hover {
   text-decoration: none;
 }
+
+.button-std {
+      background-color: #5c6bc0;
+    color: #fff;
+}
 .login-img-div{
 }
 .login-img{

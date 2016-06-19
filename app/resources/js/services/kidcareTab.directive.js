@@ -5,8 +5,9 @@
                 restrict: 'E',
                 scope: {},
                 templateUrl: 'partials/services/kidcareTab.html',
-                controller: function($scope, addServiceService) {
-                    console.info("Enter Kid tab directive controller");
+                controller: function($scope, addServiceService,loginService) {
+                    $scope.providerId = loginService.getProviderId();
+                    // console.info("Enter Kid tab directive controller");
                     $scope.name = [
                         "Day Care Center"
                     ];
@@ -27,7 +28,8 @@
                         fees: "",
                         address: "",
                         streetAddress: "",
-                        name: ""
+                        name: "",
+                        locality:""
                     }
 
                     $scope.addkidcareservice = function() {
@@ -49,7 +51,7 @@
                             {$scope.kidcareobj.minAge = 1; $scope.kidcareobj.maxAge = 8}
                         console.log("startClassRange " + $scope.kidcareobj.minAge)
                         console.log("startClassRange " + $scope.kidcareobj.maxAge)
-                        addServiceService.addkidcareService($scope.kidcareobj).then(function(response) {
+                        addServiceService.addkidcareService($scope.kidcareobj,$scope.providerId).then(function(response) {
                             console.log("kidcare service added");
                         })
                     }

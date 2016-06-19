@@ -9,8 +9,8 @@
   <form id="main-contact-form" name="contact-form" ng-submit="addtution()">
   <div class="col-lg-6 form-group">
     <div>
-      Health <br><br>
-      <select ng-model="tutionobj.subjects" ng-change="selectedvalue()" style="width:100%; height:34px;">
+      Subject <br><br>
+      <select ng-model="tutionobj.subject" ng-change="selectedvalue()" style="width:100%; height:34px;">
         <option ng-repeat="x in subject" value="{{x}}">{{x}}</option>
       </select>
     </div>  <br>
@@ -33,29 +33,34 @@
     <div>
       Board
       <br><br>
-      <form>
       <input type="radio" ng-model="tutionobj.boards" name="board" value="CBSE">&nbsp; CBSE<br>
       <input type="radio" ng-model="tutionobj.boards" name="board" value="ICSE">&nbsp; ICSE<br>
       <input type="radio" ng-model="tutionobj.boards" name="board" value="International Board">&nbsp; International Board<br>
       <input type="radio" ng-model="tutionobj.boards" name="board" value="State Board">&nbsp; State Board<br>
       <input type="radio" ng-model="tutionobj.boards" name="board" value="All type of Boards">&nbsp; All type of Boards<br>
-      </form>
     </div>
     <br>
     <div>Name<br><br>
-        <input type="text" class="form-control" ng-model="tutionobj.instituteName" placeholder="Name" required>
+        <input type="text" class="form-control" ng-model="tutionobj.instituteName" placeholder="Institute Name" required>
+      </div>
+    <div>Schools Name<br><br>
+        <input type="text" class="form-control" ng-model="tutionobj.schools" placeholder="Schools Name" required>
       </div>
       <br>
       <div>Adress<br><br>
         <input type="text" class="form-control" ng-model="tutionobj.streetAddress" placeholder="Address" required>
       </div>
       <br>
-      <div>Pin<br><br>
-        <input type="text" class="form-control" ng-model="tutionobj.pincode" placeholder="Pincode" required>
+      <div>Locality<br><br>
+        <input type="text" class="form-control" ng-model="tutionobj.locality" placeholder="Locality" required>
       </div>
       <br>
   </div>
   <div class="col-lg-6 form-group">
+
+      <div>Pin<br><br>
+        <input type="text" class="form-control" ng-model="tutionobj.pincode" placeholder="Pincode" required>
+      </div><br>
     <div>Facility<br><br>
       <textarea type="text" class="form-control" ng-model="tutionobj.facilities" placeholder="Facilities"></textarea>
     </div><br>
@@ -75,13 +80,14 @@
       <div>
         Contact Number <br><br>
         <input type="text" class="form-control" disabled value="+91" style="width:10%; float:left;"/>
-        <input type="text" class="form-control" ng-model="tutionobj.phoneNumber" style="width:85%; float:right;" placeholder="Contact Number" required/>
+        <input type="text" class="form-control" ng-model="tutionobj.phoneNumber" pattern="[0-9]{10}" style="width:85%; float:right;" placeholder="Enter 10 digit Number" required/>
       </div>
       <br><br>
       <br>
       <div style="margin:bottom:10px;">
-        <input type="submit" class="form-control btn btn-default btn-send"
-               value="Submit New Service" style="background-color:#5c6bc0;">
+        <input type="submit" class="form-control btn btn-default btn-send button-std"
+               value="Submit New Service">
       </div>
-  </div></form>
+  </div>
+</form>
 </div>

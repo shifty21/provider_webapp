@@ -9,7 +9,7 @@
                   $scope.checkloggedIn = function () {
                         if(typeof loginService.getProviderId() == 'undefined')
                         {
-                              $log.info("not loggedId")
+                              // $log.info("not loggedId")
                         $rootScope.loggedIn =  false;
                   }
                   else{
@@ -21,7 +21,7 @@
             $rootScope.username = loginService.getUserName();
                   $scope.logout = function (argument) {
                         loginService.clearProviderId();
-                        $log.info(loginService.getProviderId())
+                        // $log.info(loginService.getProviderId())
                         $rootScope.loggedIn = false;
                         $state.go("homestate");
                         
@@ -33,7 +33,7 @@
             //       $rootScope.loggedIn = true;
             // }
             
-            console.log("HOme Controller");
+            // console.log("HOme Controller");
             $scope.service = [
             {name:"Tuition",image:"resources/images/icons/ic_teacher.png"},
             {name:"Trainer",image:"resources/images/icons/ic_trainer.png"},
@@ -45,24 +45,30 @@
             {name:"Celebration",image:"resources/images/icons/ic_birthday.png"}
             
             ]
-            $scope.socialService = [{name:"Recipes",image:"resources/images/icons/ic_recipe.png"},
+            $scope.socialService = [
+            {name:"Recipes",image:"resources/images/icons/ic_recipe.png"},
             {name:"Stories",image:"resources/images/icons/ic_stories.png"},
             {name:"Q&A",image:"resources/images/icons/ic_qa.png"}
             ];
+            $scope.events = [
+            {name:"Dew Drop",image:"resources/images/portfolio/e1.jpg"},
+            {name:"Bottle Mockup",image:"resources/images/portfolio/e2.jpg"},
+            {name:"Table Design",image:"resources/images/portfolio/e3.jpg"}
+            ]
             $scope.blogs = [
-            {name:"Dew Drop",image:"resources/images/portfolio/item-1.jpg",detail:"Caramel Bottle"},
-            {name:"Bottle Mockup",image:"resources/images/portfolio/item-2.jpg",detail:"Caramel Bottle"},
-            {name:"Table Design",image:"resources/images/portfolio/item-3.jpg",detail:"Caramel Bottle"},
+            {name:"Dew Drop",image:"resources/images/portfolio/a1.jpg"},
+            {name:"Bottle Mockup",image:"resources/images/portfolio/a2.jpg"},
+            {name:"Table Design",image:"resources/images/portfolio/a3.jpg"},
             ]
             $scope.stories = [
-            {name:"Dew Drop",image:"resources/images/portfolio/item-1.jpg",detail:"Caramel Bottle"},
-            {name:"Bottle Mockup",image:"resources/images/portfolio/item-2.jpg",detail:"Caramel Bottle"},
-            {name:"Caramel Bottle",image:"resources/images/portfolio/item-6.jpg",detail:"Caramel Bottle"}
+            {name:"Dew Drop",image:"resources/images/portfolio/s.jpg"},
+            {name:"Bottle Mockup",image:"resources/images/portfolio/s2.jpg"},
+            {name:"Caramel Bottle",image:"resources/images/portfolio/s3.jpg"}
             ]
             $scope.recipes = [
-            {name:"Dew Drop",image:"resources/images/portfolio/item-1.jpg",detail:"Caramel Bottle"},
-            {name:"Bottle Mockup",image:"resources/images/portfolio/item-2.jpg",detail:"Caramel Bottle"},
-            {name:"Caramel Bottle",image:"resources/images/portfolio/item-6.jpg",detail:"Caramel Bottle"}
+            {name:"Dew Drop",image:"resources/images/portfolio/r1.jpg"},
+            {name:"Bottle Mockup",image:"resources/images/portfolio/r2.jpg"},
+            {name:"Caramel Bottle",image:"resources/images/portfolio/r3.jpg"}
             ]
    }
 	

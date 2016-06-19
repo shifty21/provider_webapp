@@ -45,7 +45,7 @@ function getUserName() {
 
    function setProviderId(value) {
      $window.localStorage[storageKey] = value;
-     $window.localStorage[loggedIn] = true;
+     $window.localStorage[loggedIn] = false;
       // $window.localStorage[storageKey] = angular.toJson(value);
      // $log.info("providerid setup to "+ value);
    }

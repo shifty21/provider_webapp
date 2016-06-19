@@ -4,8 +4,9 @@
             return {
                 restrict: 'E',
                 templateUrl: 'partials/services/sportTab.html',
-                controller: function($scope, addServiceService) {
-                    console.info("enter sport tab directive controller");
+                controller: function($scope, addServiceService,loginService) {
+                    $scope.providerId = loginService.getProviderId();
+                    // console.info("enter sport tab directive controller");
                     $scope.clubs = ["Badminton Academy",
                         "Basketball Academy",
                         "Chess Academy",
@@ -30,7 +31,7 @@
                         streetAddress: ""
                     }
                     $scope.addsportservice = function() {
-                        addServiceService.addsportService($scope.sportobj).then(function(response) {
+                        addServiceService.addsportService($scope.sportobj,$scope.providerId).then(function(response) {
                             console.log("sport service added");
                         })
                     }

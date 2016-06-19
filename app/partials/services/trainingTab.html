@@ -1,95 +1,98 @@
 <style type="text/css">
-   input[type="text"],textarea[type="text"] {
+ input[type="text"],textarea[type="text"] {
    background-color : #EEEEEE;
-   }
+ }
 
 </style>
 <div class="row" style="padding:10px;">
   <h3 style="color:#ff3f3f; padding-left:10px;">Enter Details</h3>
-   <form id="main-contact-form" name="contact-form" ng-submit="addtrainingService()">
-  <div class="col-lg-6 form-group">
-    <div>
-      Training <br><br>
-      <select ng-model="trainingobj.subject" ng-change="selectedvalue()" style="width:100%; height:34px;">
-        <option ng-repeat="x in subject" value="{{x}}">{{x}}</option>
-      </select>
-    </div>
-    <br>
-    <div>
-      Age Group
-      <br><br>
-      <input type="checkbox" ng-model="ageGroup.to1_3">&nbsp; 1 to 3 years<br>
-      <input type="checkbox" ng-model="ageGroup.to3_5">&nbsp; 3 to 5 years<br>
-      <input type="checkbox" ng-model="ageGroup.to5_8">&nbsp; 5 to 8 years<br>
-    </div>
-    <br>
-    <div>
-      Class Location
-      <br><br>
-      <form>
-      <input type="checkbox" ng-model="classLocation.kid_home">&nbsp; At Kid Home<br>
-      <input type="checkbox" ng-model="classLocation.teacher_home">&nbsp; At Teacher Home<br>
-      <input type="checkbox" ng-model="classLocation.at_instu">&nbsp; At Institute/Coaching <br>
-      </form>
-    </div><br>
-    <div>
-      Number of days in a week
-      <br><br>
-      <form>
-      <input type="radio" ng-model="trainingobj.daysPerWeek" name="days" value="1">&nbsp; 1 day<br>
-      <input type="radio" ng-model="trainingobj.daysPerWeek" name="days" value="2">&nbsp; 2 days<br>
-      <input type="radio" ng-model="trainingobj.daysPerWeek" name="days" value="3">&nbsp; 3 days<br>
-      <input type="radio" ng-model="trainingobj.daysPerWeek" name="days" value="Weekends">&nbsp; Weekends<br>
-      <input type="radio" ng-model="trainingobj.daysPerWeek" name="days" value="Daily">&nbsp; Daily<br>
-      </form>
-    </div>
-    <br>
-    <div>
-      Add School Name of your students<br><br>
-      <input type="text" class="form-control" ng-model="trainingobj.schoolNames" placeholder="Enter School Name" required>
-    </div>
-    <br>
-    <div>
-      Enter your Institute Name <br><br>
-      <input type="text" class="form-control" ng-model="trainingobj.instituteName" placeholder="Enter Institute Name" required>
-    </div>
-    <br>
-    <div>
-      Speciality<br><br>
-      <textarea type="text" class="form-control" ng-model="trainingobj.specialities" placeholder="Enter Speciality"></textarea>
-    </div>
-    <br>
-  </div>
-  <div class="col-lg-6 form-group">
-    <div>Facility<br><br>
-      <textarea type="text" class="form-control" ng-model="trainingobj.facilities" placeholder="Enter Facility"></textarea>
-    </div><br>
-      <div>Address<br><br>
-        <input type="text" class="form-control" ng-model="trainingobj.streetAddress" placeholder="Address" required>
-      </div>
-      <br>
-      <div>Pin<br><br>
-        <input type="text" class="form-control" ng-model="trainingobj.pincode" placeholder="Pincode" required>
-      </div>
-      <br>
-      <div>Timing<br><br>
-        <input type="text" class="form-control" ng-model="trainingobj.timings" placeholder="Timings" required>
-      </div>
-      <br>
-      <div>Charges<br><br>
-        <input type="text" class="form-control" ng-model="trainingobj.fees" placeholder="Charges" required>
+  <form id="main-contact-form" name="contact-form" ng-submit="addtrainingService()">
+    <div class="col-lg-6 form-group">
+      <div>
+        Training <br><br>
+        <select ng-model="trainingobj.subject" ng-change="selectedvalue()" style="width:100%; height:34px;">
+          <option ng-repeat="x in subject" value="{{x}}">{{x}}</option>
+        </select>
       </div>
       <br>
       <div>
-        Contact Number <br><br>
-        <input type="text" class="form-control" disabled value="+91" style="width:10%; float:left;"/>
-        <input type="text" class="form-control" ng-model="trainingobj.phoneNumber" style="width:85%; float:right;" placeholder="Contact Number" required/>
+        Age Group
+        <br><br>
+        <input type="checkbox" ng-model="ageGroup.to1_3">&nbsp; 1 to 3 years<br>
+        <input type="checkbox" ng-model="ageGroup.to3_5">&nbsp; 3 to 5 years<br>
+        <input type="checkbox" ng-model="ageGroup.to5_8">&nbsp; 5 to 8 years<br>
       </div>
-      <br><br>
       <br>
-      <div style="margin:bottom:10px;">
-        <input type="submit" class="form-control btn btn-default btn-send"
-               value="Submit New Service" style="background-color:#5c6bc0;">
+      <div>
+        Class Location
+        <br><br>
+        <form>
+          <input type="checkbox" ng-model="classLocation.kid_home">&nbsp; At Kid Home<br>
+          <input type="checkbox" ng-model="classLocation.teacher_home">&nbsp; At Teacher Home<br>
+          <input type="checkbox" ng-model="classLocation.at_instu">&nbsp; At Institute/Coaching <br>
+          
+        </div><br>
+        <div>
+          Number of days in a week
+          <br><br>
+          <form>
+            <input type="radio" ng-model="trainingobj.daysPerWeek" name="days" value="1">&nbsp; 1 day<br>
+            <input type="radio" ng-model="trainingobj.daysPerWeek" name="days" value="2">&nbsp; 2 days<br>
+            <input type="radio" ng-model="trainingobj.daysPerWeek" name="days" value="3">&nbsp; 3 days<br>
+            <input type="radio" ng-model="trainingobj.daysPerWeek" name="days" value="Weekends">&nbsp; Weekends<br>
+            <input type="radio" ng-model="trainingobj.daysPerWeek" name="days" value="Daily">&nbsp; Daily<br>
+            
+          </div>
+          <br>
+          <div>
+            Add School Name of your students<br><br>
+            <input type="text" class="form-control" ng-model="trainingobj.schoolNames" placeholder="Enter School Name" required>
+          </div>
+          <br>
+          <div>
+            Enter your Institute Name <br><br>
+            <input type="text" class="form-control" ng-model="trainingobj.instituteName" placeholder="Enter Institute Name" required>
+          </div>
+          <br>
+          <div>
+            Speciality<br><br>
+            <textarea type="text" class="form-control" ng-model="trainingobj.specialities" placeholder="Enter Speciality"></textarea>
+          </div>
+          <br>
+        </div>
+        <div class="col-lg-6 form-group">
+          <div>Facility<br><br>
+            <textarea type="text" class="form-control" ng-model="trainingobj.facilities" placeholder="Enter Facility"></textarea>
+          </div><br>
+          <div>Address<br><br>
+            <input type="text" class="form-control" ng-model="trainingobj.streetAddress" placeholder="Address" required>
+          </div>
+          <br>
+          <div>Locality<br><br>
+            <input type="text" class="form-control" ng-model="trainingobj.locality" placeholder="Locality" required>
+          </div><br>
+          <div>Pin<br><br>
+            <input type="text" class="form-control" ng-model="trainingobj.pincode" placeholder="Pincode" required>
+          </div>
+          <br>
+          <div>Timing<br><br>
+            <input type="text" class="form-control" ng-model="trainingobj.timings" placeholder="Timings" required>
+          </div>
+          <br>
+          <div>Charges<br><br>
+            <input type="text" class="form-control" ng-model="trainingobj.fees" placeholder="Charges" required>
+          </div>
+          <br>
+          <div>
+            Contact Number <br><br>
+            <input type="text" class="form-control" disabled value="+91" style="width:10%; float:left;"/>
+            <input type="text" class="form-control" ng-model="trainingobj.phoneNumber" pattern="[0-9]{10}" style="width:85%; float:right;" placeholder="Enter 10 digit Number" required/>
+          </div>
+          <br><br>
+          <br>
+          <div style="margin:bottom:10px;">
+            <input  type="submit" class="form-control btn btn-default btn-send button-std"
+            value="Submit New Service">
+          </div>
+        </div></form>
       </div>
-  </div></form>
-</div>

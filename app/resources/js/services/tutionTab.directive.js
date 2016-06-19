@@ -5,8 +5,9 @@
                 restrict: 'E',
                 scope: {},
                 templateUrl: 'partials/services/tutionTab.html',
-                controller: function($scope, addServiceService) {
-                    console.info("Enter Training tab directive controller");
+                controller: function($scope, addServiceService,loginService) {
+                    $scope.providerId = loginService.getProviderId();
+                    // console.info("Enter Training tab directive controller");
                     $scope.subject = ["All Subject",
                         "FOREIGN LANGUAGES",
                         "INDIAN LANGUAGES",
@@ -28,7 +29,6 @@
                     $scope.tutionobj = {
                         startClassRange: "",
                         endClassRange: "",
-                        subjects: "",
                         boards: "",
                         phoneNumber: "",
                         schools: "",
@@ -40,6 +40,7 @@
                         pincode: "",
                         fees: "",
                         address: "",
+                        locality: "",
                         classLocation: "",
                         streetAddress: "",
                         subject: "",
@@ -81,15 +82,15 @@
                         else
                             {$scope.tutionobj.classLocation = "At Institute/Coaching, At Teacher Home, At Kid Home"}
 
-                        addServiceService.addtutionService($scope.tutionobj).then(function(response) {
+                        addServiceService.addtutionService($scope.tutionobj,$scope.providerId).then(function(response) {
                             
                             console.log("tution service added" + response.data.status.title);
-                            console.log("tution service added");
+                            // console.log("tution service added");
                         })
                     }
                     $scope.getProfile = function() {
                         console.log("getting profile data")
-                        addServiceService.getProfile().then(function(response) {
+                        addServiceService.getProfile($scope.providerId).then(function(response) {
                             // console.log("profile " +  response.data.providerProfile[0].providerName);
                             for(x in response.data.providerProfile){console.log("provider name " + x.providerName)}
                         })
@@ -97,7 +98,7 @@
 
                     $scope.selected = "";
                     $scope.selectedvalue = function() {
-                        console.log("value " + $scope.tutionobj.subjects)
+                        console.log("value " + $scope.tutionobj.subject);
                     }
                 }
             }

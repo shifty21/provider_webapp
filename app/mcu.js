@@ -29,7 +29,7 @@
 	 *
 	 * This Module initializes the SG Angular module.
 	**/
-	Modules.SG = angular.module("sg", ['ngRoute','ui.router','angularUtils.directives.dirPagination']);
+	Modules.SG = angular.module("sg", ['ngRoute','ui.router','angularUtils.directives.dirPagination','angularUtils.directives.dirDisqus']);
 
 }(SG.Modules = SG.Modules || {} ));
 (function (Configs, undefined)
@@ -40,6 +40,8 @@
           
 // $logProvider.debugEnabled(true);
 // $compileProvider.debugInfoEnabled(true);
+// $disqusProvider.setShortname('smartgrowthforkids');
+$locationProvider.hashPrefix('!');
 
 		$stateProvider
 			.state('homestate', {
@@ -214,7 +216,7 @@ $rootScope.$on('$stateChangeStart',
                   $scope.checkloggedIn = function () {
                         if(typeof loginService.getProviderId() == 'undefined')
                         {
-                              $log.info("not loggedId")
+                              // $log.info("not loggedId")
                         $rootScope.loggedIn =  false;
                   }
                   else{
@@ -226,7 +228,7 @@ $rootScope.$on('$stateChangeStart',
             $rootScope.username = loginService.getUserName();
                   $scope.logout = function (argument) {
                         loginService.clearProviderId();
-                        $log.info(loginService.getProviderId())
+                        // $log.info(loginService.getProviderId())
                         $rootScope.loggedIn = false;
                         $state.go("homestate");
                         
@@ -238,7 +240,7 @@ $rootScope.$on('$stateChangeStart',
             //       $rootScope.loggedIn = true;
             // }
             
-            console.log("HOme Controller");
+            // console.log("HOme Controller");
             $scope.service = [
             {name:"Tuition",image:"resources/images/icons/ic_teacher.png"},
             {name:"Trainer",image:"resources/images/icons/ic_trainer.png"},
@@ -250,24 +252,30 @@ $rootScope.$on('$stateChangeStart',
             {name:"Celebration",image:"resources/images/icons/ic_birthday.png"}
             
             ]
-            $scope.socialService = [{name:"Recipes",image:"resources/images/icons/ic_recipe.png"},
+            $scope.socialService = [
+            {name:"Recipes",image:"resources/images/icons/ic_recipe.png"},
             {name:"Stories",image:"resources/images/icons/ic_stories.png"},
             {name:"Q&A",image:"resources/images/icons/ic_qa.png"}
             ];
+            $scope.events = [
+            {name:"Dew Drop",image:"resources/images/portfolio/e1.jpg"},
+            {name:"Bottle Mockup",image:"resources/images/portfolio/e2.jpg"},
+            {name:"Table Design",image:"resources/images/portfolio/e3.jpg"}
+            ]
             $scope.blogs = [
-            {name:"Dew Drop",image:"resources/images/portfolio/item-1.jpg",detail:"Caramel Bottle"},
-            {name:"Bottle Mockup",image:"resources/images/portfolio/item-2.jpg",detail:"Caramel Bottle"},
-            {name:"Table Design",image:"resources/images/portfolio/item-3.jpg",detail:"Caramel Bottle"},
+            {name:"Dew Drop",image:"resources/images/portfolio/a1.jpg"},
+            {name:"Bottle Mockup",image:"resources/images/portfolio/a2.jpg"},
+            {name:"Table Design",image:"resources/images/portfolio/a3.jpg"},
             ]
             $scope.stories = [
-            {name:"Dew Drop",image:"resources/images/portfolio/item-1.jpg",detail:"Caramel Bottle"},
-            {name:"Bottle Mockup",image:"resources/images/portfolio/item-2.jpg",detail:"Caramel Bottle"},
-            {name:"Caramel Bottle",image:"resources/images/portfolio/item-6.jpg",detail:"Caramel Bottle"}
+            {name:"Dew Drop",image:"resources/images/portfolio/s.jpg"},
+            {name:"Bottle Mockup",image:"resources/images/portfolio/s2.jpg"},
+            {name:"Caramel Bottle",image:"resources/images/portfolio/s3.jpg"}
             ]
             $scope.recipes = [
-            {name:"Dew Drop",image:"resources/images/portfolio/item-1.jpg",detail:"Caramel Bottle"},
-            {name:"Bottle Mockup",image:"resources/images/portfolio/item-2.jpg",detail:"Caramel Bottle"},
-            {name:"Caramel Bottle",image:"resources/images/portfolio/item-6.jpg",detail:"Caramel Bottle"}
+            {name:"Dew Drop",image:"resources/images/portfolio/r1.jpg"},
+            {name:"Bottle Mockup",image:"resources/images/portfolio/r2.jpg"},
+            {name:"Caramel Bottle",image:"resources/images/portfolio/r3.jpg"}
             ]
    }
 	
@@ -307,14 +315,38 @@ $rootScope.$on('$stateChangeStart',
 	function quesandansController ($scope, $http,$window,$templateCache,$state,$rootScope,$location)
 		{   
 
-            $scope.PAGE_URL = window.location.href;
-            console.log("quesandansController")
-          $scope.disqusConfig = {
+            $scope.PAGE_URL =  $location.absUrl();
+            // console.log("quesandansController")
+          $scope.disqusConfigeducation = {
     disqus_shortname: 'smartgrowthforkids',
-    disqus_identifier: 'health',disqus_title: 'health',
+    disqus_identifier: 'education-identifier',
+    disqus_title: 'Education Q&A',
     disqus_url: $scope.PAGE_URL
 };
-          
+          $scope.disqusConfigevents = {
+    disqus_shortname: 'smartgrowthforkids',
+    disqus_identifier: 'event-identifier',
+    disqus_title: 'Kids Events Q&A',
+    disqus_url: $scope.PAGE_URL
+};
+$scope.disqusConfigcelebration = {
+    disqus_shortname: 'smartgrowthforkids',
+    disqus_identifier: 'celebration-identifier',
+    disqus_title: 'Celebration Q&A',
+    disqus_url: $scope.PAGE_URL
+};
+$scope.disqusConfighealth = {
+    disqus_shortname: 'smartgrowthforkids',
+    disqus_identifier: 'health-identifier',
+    disqus_title: 'Health Q&A',
+    disqus_url: $scope.PAGE_URL
+};
+$scope.disqusConfigsports = {
+    disqus_shortname: 'smartgrowthforkids',
+    disqus_identifier: 'sports-identifier',
+    disqus_title: 'Sports Q&A',
+    disqus_url: $scope.PAGE_URL
+};
    }
 	
 
@@ -338,7 +370,7 @@ $rootScope.$on('$stateChangeStart',
     // MainCtrl.$inject = ['healthAZModuleData'];
 	function loginController ($scope, $http,$window,$templateCache,loginService,$state,$rootScope,userService)
 		{
-            console.log("Login Controller");
+            // console.log("Login Controller");
             $scope.registerData = {fullName:"",phoneNumber:"",emailAddress:"abc@gmail.com",
             password:"",osVersion:"",deviceModel:""};
             $scope.login = {emailAddress:"",password:""}
@@ -350,13 +382,13 @@ $rootScope.$on('$stateChangeStart',
                 userService.loginUser($scope.login).then(function(response){
                     if(response.data.status.statusCode == 403)
                         {
-                            console.log("invalid username or pass" + response.data.status.statusCode)
-                            console.log("invalid username or pass" + response.data.status.title)
+                            // console.log("invalid username or pass" + response.data.status.statusCode)
+                            // console.log("invalid username or pass" + response.data.status.title)
                         $window.alert("Invalid UserName or Password")
                     }
                     else{
-                        console.log("loggedin")
-                    loginService.setProviderId("logedIn");
+                        // console.log("loggedin" + response.data.provider.id);
+                    loginService.setProviderId(response.data.provider.id);
                     loginService.setUserName(response.data.provider.name);
                     // console.log("provider name " + response.data.provider.name)
                     $rootScope.username = loginService.getUserName();
@@ -420,7 +452,7 @@ function getUserName() {
 
    function setProviderId(value) {
      $window.localStorage[storageKey] = value;
-     $window.localStorage[loggedIn] = true;
+     $window.localStorage[loggedIn] = false;
       // $window.localStorage[storageKey] = angular.toJson(value);
      // $log.info("providerid setup to "+ value);
    }
@@ -480,7 +512,7 @@ function userService($http,$log)
        var obj = {};
         var registerUrl = SG.ServerUrl + 'providerRegistration';
         var loginUrl = SG.ServerUrl + 'providerLogin';
-        var profile = 'http://144.76.237.246:6060/superkids/r1/providerProfile/1a6f54af-41a1-441d-a835-9cbbe914095b';
+        var profile = SG.ServerUrl + 'providerProfile/';
         var getConnectUrl = SG.ServerUrl + 'connectRequest/';
         var connectedUrl = SG.ServerUrl + 'connectRequest/';
         // var getConnectUrl = 'http://144.76.237.246:6060/superkids/r1/connectRequest/1a6f54af-41a1-441d-a835-9cbbe914095b?sender=provider';
@@ -488,17 +520,18 @@ function userService($http,$log)
            // console.log("getting Connect Request")
            // console.log("providerid " + providerId)
         // return  $http.get(getConnectUrl)
+        console.log("profileId " + providerId)
         return  $http.get(getConnectUrl + providerId+"?sender=provider")
 
       } 
        obj.connected = function (providerid,connectRequestid) {
-
+        console.log("profileId " + providerid)
         return  $http.get(connectedUrl +providerid+"?sender=provider&connectRequestId="+connectRequestid);   
 
       }   
-      obj.getProfile = function () {
-           // console.log(profile)
-        return  $http.get(profile)
+      obj.getProfile = function (providerid) {
+           console.log("profileId " + providerid)
+        return  $http.get(profile + providerid)
 
       }      
       obj.registerUser = function (registerData) {
@@ -531,16 +564,17 @@ function userService($http,$log)
 		return {
 			restrict: 'E',
 			templateUrl : 'partials/user/enquiryTab.html',
-			controller : function($scope, userService,$log){
+			controller : function($scope, userService,$log,loginService){
+
 				$scope.getConnectData = function () {
-					var providerId = 'af6d5d84-278f-42fb-8b2f-b06b2e12b8f8';
+					var providerId = loginService.getProviderId();
 					userService.getConnectData(providerId).then(function (response) {
 						$scope.connectRequests = response.data.connectRequest;
                  		$log.info("connect Request " + response.data.connectRequest)
                  	})
 				}
 				$scope.connected = function (connectRequestid) {
-					var providerId = 'af6d5d84-278f-42fb-8b2f-b06b2e12b8f8';
+					var providerId = loginService.getProviderId();
 					
 					userService.connected(providerId,connectRequestid).then(function (response) {
 						$scope.getConnectData();
@@ -560,10 +594,11 @@ function userService($http,$log)
 		return {
 			restrict: 'E',
 			templateUrl : 'partials/user/profileTab.html',
-			controller: function($scope, userService,$log) {
+			controller: function($scope, userService,$log,loginService) {
                                $scope.detailDiv =false;
-                        $scope.getProfile = function (argument) {
-                 	userService.getProfile().then(function (response) {
+                               $scope.providerId = loginService.getProviderId();
+                        $scope.getProfile = function () {
+                 	userService.getProfile($scope.providerId).then(function (response) {
                  		$scope.profileData = response.data;
                  		$scope.profiletraining = response.data.training;
                  		$scope.profileschool = response.data.school;
@@ -574,7 +609,7 @@ function userService($http,$log)
                  		$scope.profilecelebration = response.data.celebration;
                  		$scope.profilehealth = response.data.health;
                  		$scope.providerdetails = response.data.provider;
-                 		$log.info("user profile " + $scope.profileschool[0].providerName)
+                 		// $log.info("user profile " + $scope.profileschool[0].providerName)
                                 for (x in $scope.profiletraining)
                                 {
                                         console.log("profile data " + $scope.profiletraining[0].providerName )
@@ -626,25 +661,26 @@ function userService($http,$log)
 function addServiceService($http)
     {
        var obj = {};
-        var tutionUrl = SG.ServerUrl + 'tuition/af6d5d84-278f-42fb-8b2f-b06b2e12b8f8';
-        var trainingUrl = SG.ServerUrl + 'training/af6d5d84-278f-42fb-8b2f-b06b2e12b8f8';
-        var kidcareUrl = SG.ServerUrl + "dayCare/af6d5d84-278f-42fb-8b2f-b06b2e12b8f8";
-        var schoolUrl = SG.ServerUrl + "school/af6d5d84-278f-42fb-8b2f-b06b2e12b8f8";
-        var healthUrl = SG.ServerUrl + "health/af6d5d84-278f-42fb-8b2f-b06b2e12b8f8";
-        var eventUrl = SG.ServerUrl + "event/af6d5d84-278f-42fb-8b2f-b06b2e12b8f8";
-        var sportUrl = SG.ServerUrl + "sport/af6d5d84-278f-42fb-8b2f-b06b2e12b8f8";
-        var birthdayUrl = SG.ServerUrl + "celebration/af6d5d84-278f-42fb-8b2f-b06b2e12b8f8";
+        var tutionUrl = SG.ServerUrl + 'tuition/';
+        var trainingUrl = SG.ServerUrl + 'training/';
+        var kidcareUrl = SG.ServerUrl + "dayCare/";
+        var schoolUrl = SG.ServerUrl + "school/";
+        var healthUrl = SG.ServerUrl + "health/";
+        var eventUrl = SG.ServerUrl + "event/";
+        var sportUrl = SG.ServerUrl + "sport/";
+        var birthdayUrl = SG.ServerUrl + "celebration/";
         
-        obj.addtutionService = function (tutiondata) {
-        return  $http.post(tutionUrl,tutiondata,{
+        obj.addtutionService = function (tutiondata,providerId) {
+            console.log("providerid " + providerId);
+        return  $http.post(tutionUrl + providerId,tutiondata,{
                     headers: {
                         "Content-Type": "text/plain"
 }})      
       }
      
-        obj.addtrainingService = function (trainingdata) {
-           
-        return  $http.post(trainingUrl,trainingdata,{
+        obj.addtrainingService = function (trainingdata,providerId) {
+           console.log("providerid " + providerId);
+        return  $http.post(trainingUrl +providerId,trainingdata,{
                     headers: {
                         'Content-Type': 'text/plain'
                     }
@@ -655,9 +691,9 @@ function addServiceService($http)
                     console.log('FAILURE');
                 });       
       }
-        obj.addkidcareService = function (kidcaredata) {
-           
-        return  $http.post(kidcareUrl,kidcaredata,{
+        obj.addkidcareService = function (kidcaredata,providerId) {
+           console.log("providerid " + providerId);
+        return  $http.post(kidcareUrl + providerId,kidcaredata,{
                     headers: {
                         'Content-Type': 'text/plain'
                     }
@@ -668,9 +704,9 @@ function addServiceService($http)
                     console.log('FAILURE');
                 });       
       }
-        obj.addschoolService = function (schooldata) {
-           
-        return  $http.post(schoolUrl,schooldata,{
+        obj.addschoolService = function (schooldata,providerId) {
+           console.log("providerid " + providerId);
+        return  $http.post(schoolUrl + providerId,schooldata,{
                     headers: {
                         'Content-Type': 'text/plain'
                     }
@@ -681,9 +717,9 @@ function addServiceService($http)
                     console.log('FAILURE');
                 });       
       }
-        obj.addhealthService = function (healthdata) {
-           
-        return  $http.post(healthUrl,healthdata,{
+        obj.addhealthService = function (healthdata,providerId) {
+           console.log("providerid " + providerId);
+        return  $http.post(healthUrl + providerId,healthdata,{
                     headers: {
                         'Content-Type': 'text/plain'
                     }
@@ -694,9 +730,9 @@ function addServiceService($http)
                     console.log('FAILURE');
                 });       
       }
-        obj.addeventService = function (eventdata) {
-           
-        return  $http.post(eventUrl,eventdata,{
+        obj.addeventService = function (eventdata,providerId) {
+           console.log("providerid " + providerId);
+        return  $http.post(eventUrl + providerId,eventdata,{
                     headers: {
                         'Content-Type': 'text/plain'
                     }
@@ -707,9 +743,9 @@ function addServiceService($http)
                     console.log('FAILURE');
                 });       
       }
-        obj.addsportService = function (sportdata) {
-           
-        return  $http.post(sportUrl,sportdata,{
+        obj.addsportService = function (sportdata,providerId) {
+           console.log("providerid " + providerId);
+        return  $http.post(sportUrl + providerId,sportdata,{
                     headers: {
                         'Content-Type': 'text/plain'
                     }
@@ -720,9 +756,9 @@ function addServiceService($http)
                     console.log('FAILURE');
                 });       
       }
-        obj.addbirthdayService = function (birthdaydata) {
-           
-        return  $http.post(birthdayUrl,birthdaydata,{
+        obj.addbirthdayService = function (birthdaydata,providerId) {
+           console.log("providerid " + providerId);
+        return  $http.post(birthdayUrl+providerId,birthdaydata,{
                     headers: {
                         'Content-Type': 'text/plain'
                     }
@@ -746,8 +782,9 @@ function addServiceService($http)
                 restrict: 'E',
                 scope: {},
                 templateUrl: 'partials/services/celebrationTab.html',
-                controller: function($scope, addServiceService) {
-                    console.info("Enter Training tab directive controller");
+                controller: function($scope, addServiceService,loginService) {
+                    $scope.providerId = loginService.getProviderId();
+                    // console.info("Enter Training tab directive controller");
                     $scope.type = ["Kids Celebration",
                         "Catering",
                         "Cakes"
@@ -772,7 +809,7 @@ function addServiceService($http)
                         streetAddress: ""
                     }
                     $scope.addbirthday = function() {
-                        addServiceService.addbirthdayService($scope.celebration).then(function(response) {
+                        addServiceService.addbirthdayService($scope.celebration,$scope.providerId).then(function(response) {
                             console.log("birtrhday service added");
                         })
                     }
@@ -789,8 +826,9 @@ function addServiceService($http)
             return {
                 restrict: 'E',
                 templateUrl: 'partials/services/eventTab.html',
-                controller: function($scope, addServiceService) {
-                    console.info("Enter Event tab directive controller");
+                controller: function($scope, addServiceService,loginService) {
+                    $scope.providerId = loginService.getProviderId();
+                    
                     $scope.category = [
                         "Art & Craft",
                         "Cooking & Baking",
@@ -824,10 +862,11 @@ function addServiceService($http)
                         contactEmail: "",
                         contactPersonName: "",
                         webLink: "",
-                        streetAddress: ""
+                        streetAddress: "",
+                        locality:""
                     }
                     $scope.addevent = function() {
-                        addServiceService.addeventService($scope.eventobj).then(function(response) {
+                        addServiceService.addeventService($scope.eventobj,$scope.providerId).then(function(response) {
                             console.log("event service added");
                         })
                     }
@@ -849,8 +888,9 @@ function addServiceService($http)
                 restrict: 'E',
                 scope: {},
                 templateUrl: 'partials/services/healthTab.html',
-                controller: function($scope, addServiceService) {
-                    console.info("Enter Training tab directive controller");
+                controller: function($scope, addServiceService,loginService) {
+                    $scope.providerId = loginService.getProviderId();
+                    // console.info("Enter Training tab directive controller");
                     $scope.serviceName = ["Fitness Trainer",
                         "Child Specialist",
                         "Child Counsellor",
@@ -870,7 +910,7 @@ function addServiceService($http)
                         streetAddress: ""
                     }
                     $scope.addhealthservice = function() {
-                        addServiceService.addhealthService($scope.healthobj).then(function(response) {
+                        addServiceService.addhealthService($scope.healthobj,$scope.providerId).then(function(response) {
                             console.log("health service added");
                         })
                     }
@@ -893,8 +933,9 @@ function addServiceService($http)
                 restrict: 'E',
                 scope: {},
                 templateUrl: 'partials/services/kidcareTab.html',
-                controller: function($scope, addServiceService) {
-                    console.info("Enter Kid tab directive controller");
+                controller: function($scope, addServiceService,loginService) {
+                    $scope.providerId = loginService.getProviderId();
+                    // console.info("Enter Kid tab directive controller");
                     $scope.name = [
                         "Day Care Center"
                     ];
@@ -915,7 +956,8 @@ function addServiceService($http)
                         fees: "",
                         address: "",
                         streetAddress: "",
-                        name: ""
+                        name: "",
+                        locality:""
                     }
 
                     $scope.addkidcareservice = function() {
@@ -937,7 +979,7 @@ function addServiceService($http)
                             {$scope.kidcareobj.minAge = 1; $scope.kidcareobj.maxAge = 8}
                         console.log("startClassRange " + $scope.kidcareobj.minAge)
                         console.log("startClassRange " + $scope.kidcareobj.maxAge)
-                        addServiceService.addkidcareService($scope.kidcareobj).then(function(response) {
+                        addServiceService.addkidcareService($scope.kidcareobj,$scope.providerId).then(function(response) {
                             console.log("kidcare service added");
                         })
                     }
@@ -958,8 +1000,9 @@ function addServiceService($http)
                 restrict: 'E',
                 scope: {},
                 templateUrl: 'partials/services/schoolTab.html',
-                controller: function($scope, addServiceService) {
-                    console.info("Enter Training tab directive controller");
+                controller: function($scope, addServiceService,loginService) {
+                    $scope.providerId = loginService.getProviderId();
+                    // console.info("Enter Training tab directive controller");
                     $scope.type = ["K-8 Schools - CBSE, ICSE , Other",
                         "MONTESSORI SCHOOLS",
                         "Play School"
@@ -974,10 +1017,10 @@ function addServiceService($http)
                         pincode: "",
                         fees: "",
                         address: "",
-                        streetAddress: ""
+                        streetAddress: "",locality:""
                     }
                     $scope.addschoolservice = function() {
-                        addServiceService.addschoolService($scope.schoolobj).then(function(response) {
+                        addServiceService.addschoolService($scope.schoolobj,$scope.providerId).then(function(response) {
                             console.log("school service added");
                         })
                     }
@@ -997,8 +1040,9 @@ function addServiceService($http)
             return {
                 restrict: 'E',
                 templateUrl: 'partials/services/sportTab.html',
-                controller: function($scope, addServiceService) {
-                    console.info("enter sport tab directive controller");
+                controller: function($scope, addServiceService,loginService) {
+                    $scope.providerId = loginService.getProviderId();
+                    // console.info("enter sport tab directive controller");
                     $scope.clubs = ["Badminton Academy",
                         "Basketball Academy",
                         "Chess Academy",
@@ -1023,7 +1067,7 @@ function addServiceService($http)
                         streetAddress: ""
                     }
                     $scope.addsportservice = function() {
-                        addServiceService.addsportService($scope.sportobj).then(function(response) {
+                        addServiceService.addsportService($scope.sportobj,$scope.providerId).then(function(response) {
                             console.log("sport service added");
                         })
                     }
@@ -1045,8 +1089,9 @@ function addServiceService($http)
                 restrict: 'E',
                 scope: {},
                 templateUrl: 'partials/services/trainingTab.html',
-                controller: function($scope, addServiceService) {
-                    console.info("Enter Training tab directive controller");
+                controller: function($scope, addServiceService,loginService) {
+                    $scope.providerId = loginService.getProviderId();
+                    // console.info("Enter Training tab directive controller");
                     $scope.subject = [
                         "Guitar classes",
                         "Musical Instrument Classes",
@@ -1086,7 +1131,8 @@ function addServiceService($http)
                         address: "",
                         classLocation: "",
                         streetAddress: "",
-                        instituteName: ""
+                        instituteName: "",
+                        locality:""
                     }
                     $scope.addtrainingService = function() {
                         if($scope.ageGroup.to1_3 && $scope.ageGroup.to3_5 && $scope.ageGroup.to5_8)
@@ -1123,10 +1169,10 @@ function addServiceService($http)
                         else
                             {$scope.trainingobj.classLocation = "At Institute/Coaching, At Teacher Home, At Kid Home"}
 
-                        console.log("startClassRange " + $scope.trainingobj.minAge)
-                        console.log("startClassRange " + $scope.trainingobj.maxAge)
-                        console.log("startClassRange " + $scope.trainingobj.classLocation)
-                        addServiceService.addtrainingService($scope.trainingobj).then(function(response) {
+                        // console.log("startClassRange " + $scope.trainingobj.minAge)
+                        // console.log("startClassRange " + $scope.trainingobj.maxAge)
+                        // console.log("startClassRange " + $scope.trainingobj.classLocation)
+                        addServiceService.addtrainingService($scope.trainingobj,$scope.providerId).then(function(response) {
                             console.log("training service added");
                         })
                     }
@@ -1147,8 +1193,9 @@ function addServiceService($http)
                 restrict: 'E',
                 scope: {},
                 templateUrl: 'partials/services/tutionTab.html',
-                controller: function($scope, addServiceService) {
-                    console.info("Enter Training tab directive controller");
+                controller: function($scope, addServiceService,loginService) {
+                    $scope.providerId = loginService.getProviderId();
+                    // console.info("Enter Training tab directive controller");
                     $scope.subject = ["All Subject",
                         "FOREIGN LANGUAGES",
                         "INDIAN LANGUAGES",
@@ -1170,7 +1217,6 @@ function addServiceService($http)
                     $scope.tutionobj = {
                         startClassRange: "",
                         endClassRange: "",
-                        subjects: "",
                         boards: "",
                         phoneNumber: "",
                         schools: "",
@@ -1182,6 +1228,7 @@ function addServiceService($http)
                         pincode: "",
                         fees: "",
                         address: "",
+                        locality: "",
                         classLocation: "",
                         streetAddress: "",
                         subject: "",
@@ -1223,15 +1270,15 @@ function addServiceService($http)
                         else
                             {$scope.tutionobj.classLocation = "At Institute/Coaching, At Teacher Home, At Kid Home"}
 
-                        addServiceService.addtutionService($scope.tutionobj).then(function(response) {
+                        addServiceService.addtutionService($scope.tutionobj,$scope.providerId).then(function(response) {
                             
                             console.log("tution service added" + response.data.status.title);
-                            console.log("tution service added");
+                            // console.log("tution service added");
                         })
                     }
                     $scope.getProfile = function() {
                         console.log("getting profile data")
-                        addServiceService.getProfile().then(function(response) {
+                        addServiceService.getProfile($scope.providerId).then(function(response) {
                             // console.log("profile " +  response.data.providerProfile[0].providerName);
                             for(x in response.data.providerProfile){console.log("provider name " + x.providerName)}
                         })
@@ -1239,7 +1286,7 @@ function addServiceService($http)
 
                     $scope.selected = "";
                     $scope.selectedvalue = function() {
-                        console.log("value " + $scope.tutionobj.subjects)
+                        console.log("value " + $scope.tutionobj.subject);
                     }
                 }
             }
