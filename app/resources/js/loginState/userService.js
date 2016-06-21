@@ -9,6 +9,7 @@ function userService($http,$log)
         var profile = SG.ServerUrl + 'providerProfile/';
         var getConnectUrl = SG.ServerUrl + 'connectRequest/';
         var connectedUrl = SG.ServerUrl + 'connectRequest/';
+        var forgotpasUrl = SG.ServerUrl + 'providerLogin?email=';
         // var getConnectUrl = 'http://144.76.237.246:6060/superkids/r1/connectRequest/1a6f54af-41a1-441d-a835-9cbbe914095b?sender=provider';
       obj.getConnectData = function (providerId) {
            // console.log("getting Connect Request")
@@ -18,6 +19,10 @@ function userService($http,$log)
         return  $http.get(getConnectUrl + providerId+"?sender=provider")
 
       } 
+      
+      obj.forgotPass = function (email) {
+        return $http.get(forgotpasUrl + email + '&forgotPassword=true');
+      }
        obj.connected = function (providerid,connectRequestid) {
         console.log("profileId " + providerid)
         return  $http.get(connectedUrl +providerid+"?sender=provider&connectRequestId="+connectRequestid);   

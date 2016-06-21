@@ -1,9 +1,3 @@
-<style type="text/css">
-   input[type="text"],textarea[type="text"] {
-   background-color : #EEEEEE;
-   }
-
-</style>
 <div class="row" style="padding:10px;">
   <h3 style="color:#ff3f3f; padding-left:10px;">Enter Details For Day Care Center</h3>
   <form id="main-contact-form" name="contact-form" ng-submit="addkidcareservice()">
@@ -33,15 +27,31 @@
       <div>Address<br><br>
         <input type="text" class="form-control" ng-model="kidcareobj.streetAddress" placeholder="Address" required>
       </div><br>
-            <div>Locality<br><br>
-        <input type="text" class="form-control" ng-model="kidcareobj.locality" placeholder="Locality" required>
-      </div><br>
+             <div class="btn-group" style="width:100%;">
+                    City<br><br>
+                     <input type="text" class="form-control" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model="cityselected" placeholder="City" required/>                     
+                     <div class="dropdown-menu city-dropdown">
+                        <ul style="background-color:#fff;">
+                        <li class="city-item" ng-click="getlocalityInfo('bangalore'); cityselected = 'Bangalore'">Bangalore
+                        </li>
+                     </ul>
+                     </div><br>
+
+                  </div><br>
+         <br>
   </div>
   <div class="col-lg-6 form-group">
+   <div class="btn-group" style="width:100%;">
+                    Pincode<br><br>
+                     <input type="text" class="form-control" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model="kidcareobj.pincode" placeholder="Pincode" required/>                     
+                     <div class="dropdown-menu locality-dropdown">
+                        <ul style="background-color:#fff;">
+                        <li ng-repeat="x in pindirec  | filter : kidcareobj.pincode" class="locality-item" ng-click="pinchange(x.pincode,x.locality)">{{x.locality}}({{x.pincode}})
+                        </li>
+                     </ul>
+                     </div><br>
 
-      <div>Pin<br><br>
-        <input type="text" class="form-control" ng-model="kidcareobj.pincode" placeholder="Pincode" required>
-      </div>
+                  </div>
       <br>
       <div>Timing<br><br>
         <input type="text" class="form-control" ng-model="kidcareobj.timings" placeholder="Timings" required>

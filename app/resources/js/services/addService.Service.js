@@ -12,7 +12,11 @@ function addServiceService($http)
         var eventUrl = SG.ServerUrl + "event/";
         var sportUrl = SG.ServerUrl + "sport/";
         var birthdayUrl = SG.ServerUrl + "celebration/";
+        var localityUrl = SG.ServerUrl + "address/";
         
+        obj.getlocalityInfo = function (city,providerid) {
+            return $http.get(localityUrl + providerid +"?city=" + city);
+        }
         obj.addtutionService = function (tutiondata,providerId) {
             console.log("providerid " + providerId);
         return  $http.post(tutionUrl + providerId,tutiondata,{

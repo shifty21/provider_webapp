@@ -29,7 +29,7 @@
 	 *
 	 * This Module initializes the SG Angular module.
 	**/
-	Modules.SG = angular.module("sg", ['ngRoute','ui.router','angularUtils.directives.dirPagination','angularUtils.directives.dirDisqus']);
+	Modules.SG = angular.module("sg", ['ngRoute','ui.router','angularUtils.directives.dirPagination','angularUtils.directives.dirDisqus','inputDropdown']);
 
 }(SG.Modules = SG.Modules || {} ));
 (function (Configs, undefined)
@@ -224,6 +224,7 @@ $rootScope.$on('$stateChangeStart',
                   }
                   
             }
+            $scope.howitworks = false;
             $scope.PAGE_URL = $location.absUrl();
             $rootScope.username = loginService.getUserName();
                   $scope.logout = function (argument) {
@@ -258,24 +259,24 @@ $rootScope.$on('$stateChangeStart',
             {name:"Q&A",image:"resources/images/icons/ic_qa.png"}
             ];
             $scope.events = [
-            {name:"Dew Drop",image:"resources/images/portfolio/e1.jpg"},
-            {name:"Bottle Mockup",image:"resources/images/portfolio/e2.jpg"},
-            {name:"Table Design",image:"resources/images/portfolio/e3.jpg"}
+            {name:"Natural Fun",image:"resources/images/portfolio/e1.jpg"},
+            {name:"Water Game",image:"resources/images/portfolio/e2.jpg"},
+            {name:"Color Game",image:"resources/images/portfolio/e3.jpg"}
             ]
             $scope.blogs = [
-            {name:"Dew Drop",image:"resources/images/portfolio/a1.jpg"},
-            {name:"Bottle Mockup",image:"resources/images/portfolio/a2.jpg"},
-            {name:"Table Design",image:"resources/images/portfolio/a3.jpg"},
+            {name:"Cute Handprint",image:"resources/images/portfolio/a1.jpg"},
+            {name:"Color Love",image:"resources/images/portfolio/a2.jpg"},
+            {name:"Healthy Apple ",image:"resources/images/portfolio/a3.jpg"},
             ]
             $scope.stories = [
-            {name:"Dew Drop",image:"resources/images/portfolio/s.jpg"},
-            {name:"Bottle Mockup",image:"resources/images/portfolio/s2.jpg"},
-            {name:"Caramel Bottle",image:"resources/images/portfolio/s3.jpg"}
+            {name:"Lion and Rat",image:"resources/images/portfolio/s.jpg"},
+            {name:"Ali baba challis chor",image:"resources/images/portfolio/s2.jpg"},
+            {name:"Cute Knee",image:"resources/images/portfolio/s3.jpg"}
             ]
             $scope.recipes = [
-            {name:"Dew Drop",image:"resources/images/portfolio/r1.jpg"},
-            {name:"Bottle Mockup",image:"resources/images/portfolio/r2.jpg"},
-            {name:"Caramel Bottle",image:"resources/images/portfolio/r3.jpg"}
+            {name:"Bread Cake",image:"resources/images/portfolio/r1.jpg"},
+            {name:"Home Food",image:"resources/images/portfolio/r2.jpg"},
+            {name:"Rice Kheer",image:"resources/images/portfolio/r3.jpg"}
             ]
    }
 	
@@ -376,6 +377,13 @@ $scope.disqusConfigsports = {
             $scope.login = {emailAddress:"",password:""}
             $scope.registerUser = function () {
                 userService.registerUser($scope.registerData).then(function(){
+                })
+            }
+            $scope.emailId = "";
+            $scope.forgotPass = function () {
+                userService.forgotPass($scope.emailId).then(function (response) {
+                    $window.alert(response.data.status.title)
+                    // console.log("response for forgot pass " +response.data.status.statusCode )
                 })
             }
             $scope.loginUser = function () {
@@ -515,6 +523,7 @@ function userService($http,$log)
         var profile = SG.ServerUrl + 'providerProfile/';
         var getConnectUrl = SG.ServerUrl + 'connectRequest/';
         var connectedUrl = SG.ServerUrl + 'connectRequest/';
+        var forgotpasUrl = SG.ServerUrl + 'providerLogin?email=';
         // var getConnectUrl = 'http://144.76.237.246:6060/superkids/r1/connectRequest/1a6f54af-41a1-441d-a835-9cbbe914095b?sender=provider';
       obj.getConnectData = function (providerId) {
            // console.log("getting Connect Request")
@@ -524,6 +533,10 @@ function userService($http,$log)
         return  $http.get(getConnectUrl + providerId+"?sender=provider")
 
       } 
+      
+      obj.forgotPass = function (email) {
+        return $http.get(forgotpasUrl + email + '&forgotPassword=true');
+      }
        obj.connected = function (providerid,connectRequestid) {
         console.log("profileId " + providerid)
         return  $http.get(connectedUrl +providerid+"?sender=provider&connectRequestId="+connectRequestid);   
@@ -669,7 +682,11 @@ function addServiceService($http)
         var eventUrl = SG.ServerUrl + "event/";
         var sportUrl = SG.ServerUrl + "sport/";
         var birthdayUrl = SG.ServerUrl + "celebration/";
+        var localityUrl = SG.ServerUrl + "address/";
         
+        obj.getlocalityInfo = function (city,providerid) {
+            return $http.get(localityUrl + providerid +"?city=" + city);
+        }
         obj.addtutionService = function (tutiondata,providerId) {
             console.log("providerid " + providerId);
         return  $http.post(tutionUrl + providerId,tutiondata,{
@@ -782,7 +799,7 @@ function addServiceService($http)
                 restrict: 'E',
                 scope: {},
                 templateUrl: 'partials/services/celebrationTab.html',
-                controller: function($scope, addServiceService,loginService) {
+                controller: function($scope, addServiceService,loginService,$window) {
                     $scope.providerId = loginService.getProviderId();
                     // console.info("Enter Training tab directive controller");
                     $scope.type = ["Kids Celebration",
@@ -791,10 +808,22 @@ function addServiceService($http)
                     ];
                     $scope.selected = "";
                     $scope.selectedvalue = function() {
-                        console.log("value " + $scope.celebration.type)
+                        // console.log("value " + $scope.celebration.type)
                     }
 
+                    $scope.getlocalityInfo = function (city) {
+                        addServiceService.getlocalityInfo(city,$scope.providerId).then(function (response) {
+                            // console.log("locality response " + response.data.address)
+                            $scope.pindirec = response.data.address
+                        })
+                    }
+                                    $scope.pinchange = function (pin,locality) {
+                        $scope.celebration.pincode = pin;
+                        $scope.celebration.locality = locality;
+                        // console.log("selected pin " +  $scope.celebration.pincode)
+                        // console.log("selected pin " +  $scope.celebration.locality)
 
+                    }
                     $scope.celebration = {
                         name: "",
                         type: "",
@@ -810,7 +839,24 @@ function addServiceService($http)
                     }
                     $scope.addbirthday = function() {
                         addServiceService.addbirthdayService($scope.celebration,$scope.providerId).then(function(response) {
-                            console.log("birtrhday service added");
+                            // console.log("birtrhday service added");
+                            $window.alert(response.data.status.title)
+                            if(response.data.status.statusCode != 404 || response.data.status.statusCode != 500)
+                             {
+                            $scope.celebration = {
+                        name: "",
+                        type: "",
+                        timings: "",
+                        facilities: "",
+                        specialities: "",
+                        phoneNumber: "",
+                        webLink: "",
+                        services: "",
+                        pincode: "",
+                        priceRange: "",
+                        streetAddress: ""
+                    }
+                }
                         })
                     }
 
@@ -826,7 +872,7 @@ function addServiceService($http)
             return {
                 restrict: 'E',
                 templateUrl: 'partials/services/eventTab.html',
-                controller: function($scope, addServiceService,loginService) {
+                controller: function($scope, addServiceService,loginService,$window) {
                     $scope.providerId = loginService.getProviderId();
                     
                     $scope.category = [
@@ -849,6 +895,19 @@ function addServiceService($http)
                         $scope.eventobj.startDate =  moment(new Date($scope.startDate)).format('MMDDYYYY')
                         $scope.eventobj.endDate = moment(new Date($scope.endDate)).format('MMDDYYYY')
                     }
+                  $scope.getlocalityInfo = function (city) {
+                        addServiceService.getlocalityInfo(city,$scope.providerId).then(function (response) {
+                            // console.log("locality response " + response.data.address)
+                            $scope.pindirec = response.data.address
+                        })
+                    }
+                                    $scope.pinchange = function (pin,locality) {
+                        $scope.eventobj.pincode = pin;
+                        $scope.eventobj.locality = locality;
+                        // console.log("selected pin " +  $scope.eventobj.pincode)
+                        // console.log("selected pin " +  $scope.eventobj.locality)
+
+                    }
                     $scope.eventobj = {
                         eventName: "",
                         category: "",
@@ -867,13 +926,33 @@ function addServiceService($http)
                     }
                     $scope.addevent = function() {
                         addServiceService.addeventService($scope.eventobj,$scope.providerId).then(function(response) {
-                            console.log("event service added");
+                            // console.log("event service added");
+                            $window.alert(response.data.status.title)
+                            if(response.data.status.statusCode != 404 || response.data.status.statusCode != 500)
+                             {
+                            $scope.eventobj = {
+                        eventName: "",
+                        category: "",
+                        startDate: moment(new Date()).format('MMDDYYYY'),
+                        endDate: moment(new Date()).format('MMDDYYYY'),
+                        facilities: "",
+                        specialities: "",
+                        timings: "",
+                        pincode: "",
+                        contactPhone: "",
+                        contactEmail: "",
+                        contactPersonName: "",
+                        webLink: "",
+                        streetAddress: "",
+                        locality:""
+                    }
+                }
                         })
                     }
 
                     $scope.selected = "";
                     $scope.selectedvalue = function() {
-                        console.log("value " + $scope.selected)
+                        // console.log("value " + $scope.selected)
                     }
                 }
             }
@@ -888,7 +967,7 @@ function addServiceService($http)
                 restrict: 'E',
                 scope: {},
                 templateUrl: 'partials/services/healthTab.html',
-                controller: function($scope, addServiceService,loginService) {
+                controller: function($scope, addServiceService,loginService,$window) {
                     $scope.providerId = loginService.getProviderId();
                     // console.info("Enter Training tab directive controller");
                     $scope.serviceName = ["Fitness Trainer",
@@ -896,7 +975,19 @@ function addServiceService($http)
                         "Child Counsellor",
                         "Ditesian and Nutrision"
                     ];
+                     $scope.getlocalityInfo = function (city) {
+                        addServiceService.getlocalityInfo(city,$scope.providerId).then(function (response) {
+                            // console.log("locality response " + response.data.address)
+                            $scope.pindirec = response.data.address
+                        })
+                    }
+                                    $scope.pinchange = function (pin,locality) {
+                        $scope.healthobj.pincode = pin;
+                        $scope.healthobj.locality = locality;
+                        // console.log("selected pin " +  $scope.healthobj.pincode)
+                        // console.log("selected pin " +  $scope.healthobj.locality)
 
+                    }
                     $scope.healthobj = {
                         name: "",
                         serviceName: "",
@@ -909,16 +1000,33 @@ function addServiceService($http)
                         address: "",
                         streetAddress: ""
                     }
+                      
                     $scope.addhealthservice = function() {
                         addServiceService.addhealthService($scope.healthobj,$scope.providerId).then(function(response) {
-                            console.log("health service added");
+                            // console.log("health service added");
+                            $window.alert(response.data.status.title)
+                            if(response.data.status.statusCode != 404 || response.data.status.statusCode != 500)
+                             {
+                            $scope.healthobj = {
+                        name: "",
+                        serviceName: "",
+                        timings: "",
+                        facilities: "",
+                        specialities: "",
+                        phoneNumber: "",
+                        pincode: "",
+                        fees: "",
+                        address: "",
+                        streetAddress: ""
+                    }
+                }
                         })
                     }
 
 
                     $scope.selected = "";
                     $scope.selectedvalue = function() {
-                        console.log("value " + $scope.selected)
+                        // console.log("value " + $scope.selected)
                     }
                 }
             }
@@ -933,7 +1041,7 @@ function addServiceService($http)
                 restrict: 'E',
                 scope: {},
                 templateUrl: 'partials/services/kidcareTab.html',
-                controller: function($scope, addServiceService,loginService) {
+                controller: function($scope, addServiceService,loginService,$window) {
                     $scope.providerId = loginService.getProviderId();
                     // console.info("Enter Kid tab directive controller");
                     $scope.name = [
@@ -944,7 +1052,19 @@ function addServiceService($http)
                         to3_5 : false,
                         to5_8 : false
                     }
-                    
+                       $scope.getlocalityInfo = function (city) {
+                        addServiceService.getlocalityInfo(city,$scope.providerId).then(function (response) {
+                            // console.log("locality response " + response.data.address)
+                            $scope.pindirec = response.data.address
+                        })
+                    }
+                                    $scope.pinchange = function (pin,locality) {
+                        $scope.kidcareobj.pincode = pin;
+                        $scope.kidcareobj.locality = locality;
+                        // console.log("selected pin " +  $scope.kidcareobj.pincode)
+                        // console.log("selected pin " +  $scope.kidcareobj.locality)
+
+                    }
                     $scope.kidcareobj = {
                         minAge: "",
                         maxAge: "",
@@ -959,7 +1079,6 @@ function addServiceService($http)
                         name: "",
                         locality:""
                     }
-
                     $scope.addkidcareservice = function() {
                         if($scope.ageGroup.to1_3 && $scope.ageGroup.to3_5 && $scope.ageGroup.to5_8)
                             {$scope.kidcareobj.minAge = 1; $scope.kidcareobj.maxAge = 8}
@@ -977,15 +1096,33 @@ function addServiceService($http)
                             {$scope.kidcareobj.minAge = 5; $scope.kidcareobj.maxAge = 8}
                         else
                             {$scope.kidcareobj.minAge = 1; $scope.kidcareobj.maxAge = 8}
-                        console.log("startClassRange " + $scope.kidcareobj.minAge)
-                        console.log("startClassRange " + $scope.kidcareobj.maxAge)
+                        // console.log("startClassRange " + $scope.kidcareobj.minAge)
+                        // console.log("startClassRange " + $scope.kidcareobj.maxAge)
                         addServiceService.addkidcareService($scope.kidcareobj,$scope.providerId).then(function(response) {
-                            console.log("kidcare service added");
+                            // console.log("kidcare service added");
+                            $window.alert(response.data.status.title)
+                            if(response.data.status.statusCode != 404 || response.data.status.statusCode != 500)
+                             {
+                            $scope.kidcareobj = {
+                        minAge: "",
+                        maxAge: "",
+                        timings: "",
+                        facilities: "",
+                        specialities: "",
+                        phoneNumber: "",
+                        pincode: "",
+                        fees: "",
+                        address: "",
+                        streetAddress: "",
+                        name: "",
+                        locality:""
+                    }
+                }
                         })
                     }
                     $scope.selected = "";
                     $scope.selectedvalue = function() {
-                        console.log("value " + $scope.selected)
+                        // console.log("value " + $scope.selected)
                     }
                 }
             }
@@ -1000,13 +1137,26 @@ function addServiceService($http)
                 restrict: 'E',
                 scope: {},
                 templateUrl: 'partials/services/schoolTab.html',
-                controller: function($scope, addServiceService,loginService) {
+                controller: function($scope, addServiceService,loginService,$window) {
                     $scope.providerId = loginService.getProviderId();
                     // console.info("Enter Training tab directive controller");
                     $scope.type = ["K-8 Schools - CBSE, ICSE , Other",
                         "MONTESSORI SCHOOLS",
                         "Play School"
                     ];
+                           $scope.getlocalityInfo = function (city) {
+                        addServiceService.getlocalityInfo(city,$scope.providerId).then(function (response) {
+                            // console.log("locality response " + response.data.address)
+                            $scope.pindirec = response.data.address
+                        })
+                    }
+                                    $scope.pinchange = function (pin,locality) {
+                        $scope.schoolobj.pincode = pin;
+                        $scope.schoolobj.locality = locality;
+                        // console.log("selected pin " +  $scope.schoolobj.pincode)
+                        // console.log("selected pin " +  $scope.schoolobj.locality)
+
+                    }
                     $scope.schoolobj = {
                         name: "",
                         type: "",
@@ -1021,12 +1171,28 @@ function addServiceService($http)
                     }
                     $scope.addschoolservice = function() {
                         addServiceService.addschoolService($scope.schoolobj,$scope.providerId).then(function(response) {
-                            console.log("school service added");
+                            // console.log("school service added");
+                            $window.alert(response.data.status.title)
+                            if(response.data.status.statusCode != 404 || response.data.status.statusCode != 500)
+                             {
+                            $scope.schoolobj = {
+                        name: "",
+                        type: "",
+                        timings: "",
+                        facilities: "",
+                        specialities: "",
+                        phoneNumber: "",
+                        pincode: "",
+                        fees: "",
+                        address: "",
+                        streetAddress: "",locality:""
+                    }
+                }
                         })
                     }
                     $scope.selected = "";
                     $scope.selectedvalue = function() {
-                        console.log("value " + $scope.selected)
+                        // console.log("value " + $scope.selected)
                     }
                 }
             }
@@ -1040,7 +1206,7 @@ function addServiceService($http)
             return {
                 restrict: 'E',
                 templateUrl: 'partials/services/sportTab.html',
-                controller: function($scope, addServiceService,loginService) {
+                controller: function($scope, addServiceService,loginService,$window) {
                     $scope.providerId = loginService.getProviderId();
                     // console.info("enter sport tab directive controller");
                     $scope.clubs = ["Badminton Academy",
@@ -1054,6 +1220,19 @@ function addServiceService($http)
                         "Tennis Academy",
                         "Volleyball Academy"
                     ];
+                            $scope.getlocalityInfo = function (city) {
+                        addServiceService.getlocalityInfo(city,$scope.providerId).then(function (response) {
+                            // console.log("locality response " + response.data.address)
+                            $scope.pindirec = response.data.address
+                        })
+                    }
+                                    $scope.pinchange = function (pin,locality) {
+                        $scope.sportobj.pincode = pin;
+                        $scope.sportobj.locality = locality;
+                        // console.log("selected pin " +  $scope.sportobj.pincode)
+                        // console.log("selected pin " +  $scope.sportobj.locality)
+
+                    }
                     $scope.sportobj = {
                         name: "",
                         type: "",
@@ -1068,12 +1247,27 @@ function addServiceService($http)
                     }
                     $scope.addsportservice = function() {
                         addServiceService.addsportService($scope.sportobj,$scope.providerId).then(function(response) {
-                            console.log("sport service added");
+                            // console.log("sport service added");
+                            $window.alert(response.data.status.title)
+                            if(response.data.status.statusCode != 404 || response.data.status.statusCode != 500)
+                             {$scope.sportobj = {
+                        name: "",
+                        type: "",
+                        timings: "",
+                        facilities: "",
+                        specialities: "",
+                        phoneNumber: "",
+                        pincode: "",
+                        fees: "",
+                        address: "",
+                        streetAddress: ""
+                    }}
+
                         })
                     }
                     $scope.selected = "";
                     $scope.selectedvalue = function() {
-                        console.log("value " + $scope.selected)
+                        // console.log("value " + $scope.selected)
                     }
 
                 }
@@ -1089,7 +1283,7 @@ function addServiceService($http)
                 restrict: 'E',
                 scope: {},
                 templateUrl: 'partials/services/trainingTab.html',
-                controller: function($scope, addServiceService,loginService) {
+                controller: function($scope, addServiceService,loginService,$window) {
                     $scope.providerId = loginService.getProviderId();
                     // console.info("Enter Training tab directive controller");
                     $scope.subject = [
@@ -1104,6 +1298,34 @@ function addServiceService($http)
                         "Theater",
                         "Computer"
                     ]; 
+                    $scope.daysPerWeek = [
+                    {day1 : false},
+                    {day2 : false},
+                    {day3 : false},
+                    {weekend : false},
+                    {daily : false}
+                    ];
+                     function adddays() {
+                        if($scope.daysPerWeek.day1) $scope.trainingobj.daysPerWeek = "1 day"
+                            if($scope.daysPerWeek.day2)$scope.trainingobj.daysPerWeek = $scope.trainingobj.daysPerWeek + " 2 days"
+                            if($scope.daysPerWeek.day3)$scope.trainingobj.daysPerWeek = $scope.trainingobj.daysPerWeek + " 3 days"
+                            if($scope.daysPerWeek.weekend)$scope.trainingobj.daysPerWeek = $scope.trainingobj.daysPerWeek + " Weekends"
+                            if($scope.daysPerWeek.daily)$scope.trainingobj.daysPerWeek = $scope.trainingobj.daysPerWeek + " Daily"
+                        // console.log($scope.trainingobj.daysPerWeek + "boards")
+                    }
+                           $scope.getlocalityInfo = function (city) {
+                        addServiceService.getlocalityInfo(city,$scope.providerId).then(function (response) {
+                            // console.log("locality response " + response.data.address)
+                            $scope.pindirec = response.data.address
+                        })
+                    }
+                                    $scope.pinchange = function (pin,locality) {
+                        $scope.trainingobj.pincode = pin;
+                        $scope.trainingobj.locality = locality;
+                        console.log("selected pin " +  $scope.trainingobj.pincode)
+                        console.log("selected pin " +  $scope.trainingobj.locality)
+
+                    }
                     $scope.ageGroup = {
                         to1_3 : false,
                         to3_5 : false,
@@ -1168,17 +1390,39 @@ function addServiceService($http)
                             {$scope.trainingobj.classLocation = "At Institute/Coaching"}
                         else
                             {$scope.trainingobj.classLocation = "At Institute/Coaching, At Teacher Home, At Kid Home"}
-
+                        adddays();
                         // console.log("startClassRange " + $scope.trainingobj.minAge)
                         // console.log("startClassRange " + $scope.trainingobj.maxAge)
                         // console.log("startClassRange " + $scope.trainingobj.classLocation)
                         addServiceService.addtrainingService($scope.trainingobj,$scope.providerId).then(function(response) {
-                            console.log("training service added");
+                            // console.log("training service added");
+                            $window.alert(response.data.status.title)
+                             if(response.data.status.statusCode != 404 || response.data.status.statusCode != 500)
+                             {$scope.trainingobj = {
+                        minAge: "",
+                        maxAge: "",
+                        subject: "",
+                        schoolNames: "",
+                        daysPerWeek: "",
+                        timings: "",
+                        facilities: "",
+                        specialities: "",
+                        phoneNumber: "",
+                        pincode: "",
+                        fees: "",
+                        address: "",
+                        classLocation: "",
+                        streetAddress: "",
+                        instituteName: "",
+                        locality:""
+                    }
+                }
                         })
                     }
                     $scope.selected = "";
                     $scope.selectedvalue = function() {
-                        console.log("value " + $scope.trainingobj.daysPerWeek)
+                        // console.log("value " + $scope.trainingobj.daysPerWeek)
+                        
                     }
                 }
             }
@@ -1193,7 +1437,7 @@ function addServiceService($http)
                 restrict: 'E',
                 scope: {},
                 templateUrl: 'partials/services/tutionTab.html',
-                controller: function($scope, addServiceService,loginService) {
+                controller: function($scope, addServiceService,loginService,$window) {
                     $scope.providerId = loginService.getProviderId();
                     // console.info("Enter Training tab directive controller");
                     $scope.subject = ["All Subject",
@@ -1203,6 +1447,50 @@ function addServiceService($http)
                         "SCIENCE",
                         "English"
                     ];
+                    $scope.boards = [
+                        {cbse : false},
+                        {icse : false},
+                        {international :  false},
+                        {state :  false},
+                        {all :  false}
+                    ]
+                    function addboard() {
+                        if($scope.boards.cbse) $scope.tutionobj.boards = " CBSE"
+                            if($scope.boards.icse)$scope.tutionobj.boards = $scope.tutionobj.boards + " ICSE"
+                            if($scope.boards.international)$scope.tutionobj.boards = $scope.tutionobj.boards + " International Board"
+                            if($scope.boards.state)$scope.tutionobj.boards = $scope.tutionobj.boards + " State Board"
+                            if($scope.boards.all)$scope.tutionobj.boards = $scope.tutionobj.boards + " All type of Boards"
+                        console.log($scope.tutionobj.boards + "boards")
+                    }
+                    $scope.daysPerWeek = [
+                    {day1 : false},
+                    {day2 : false},
+                    {day3 : false},
+                    {weekend : false},
+                    {daily : false}
+                    ];
+                     function adddays() {
+                        if($scope.daysPerWeek.day1) $scope.tutionobj.daysPerWeek = "1 day"
+                            if($scope.daysPerWeek.day2)$scope.tutionobj.daysPerWeek = $scope.tutionobj.daysPerWeek + " 2 days"
+                            if($scope.daysPerWeek.day3)$scope.tutionobj.daysPerWeek = $scope.tutionobj.daysPerWeek + " 3 days"
+                            if($scope.daysPerWeek.weekend)$scope.tutionobj.daysPerWeek = $scope.tutionobj.daysPerWeek + " Weekends"
+                            if($scope.daysPerWeek.daily)$scope.tutionobj.daysPerWeek = $scope.tutionobj.daysPerWeek + " Daily"
+                        console.log($scope.tutionobj.daysPerWeek + "boards")
+                    }
+                     $scope.getlocalityInfo = function (city) {
+                        addServiceService.getlocalityInfo(city,$scope.providerId).then(function (response) {
+                            // console.log("locality response " + response.data.address)
+                            $scope.pindirec = response.data.address;
+                        })
+                    }             
+                    $scope.pinchange = function (pin,locality) {
+                        $scope.tutionobj.pincode = pin;
+                        $scope.tutionobj.locality = locality;
+                        console.log("selected pin " +  $scope.tutionobj.pincode)
+                        console.log("selected pin " +  $scope.tutionobj.locality)
+
+                    }
+                    
                     $scope.ageGroup = {
                         to1_3 : false,
                         to3_5 : false,
@@ -1232,8 +1520,9 @@ function addServiceService($http)
                         classLocation: "",
                         streetAddress: "",
                         subject: "",
-                        instituteName: ""
+                        instituteName: "",daysPerWeek :""
                     }
+                    
                     $scope.addtution = function() {
                         // console.log("age group " + $scope.ageGroup.to1_3)
                         if($scope.ageGroup.to1_3 && $scope.ageGroup.to3_5 && $scope.ageGroup.to5_8)
@@ -1269,10 +1558,32 @@ function addServiceService($http)
                             {$scope.tutionobj.classLocation = "At Institute/Coaching"}
                         else
                             {$scope.tutionobj.classLocation = "At Institute/Coaching, At Teacher Home, At Kid Home"}
-
+                            addboard();adddays();
                         addServiceService.addtutionService($scope.tutionobj,$scope.providerId).then(function(response) {
-                            
-                            console.log("tution service added" + response.data.status.title);
+                            $window.alert(response.data.status.title)
+                            // console.log("tution service added" + response.data.status.title);
+                            if(response.data.status.statusCode != 404 || response.data.status.statusCode != 500)
+                             {
+                            $scope.tutionobj = {
+                        startClassRange: "",
+                        endClassRange: "",
+                        boards: "",
+                        phoneNumber: "",
+                        schools: "",
+                        daysPerWeek: "",
+                        startHour: "",
+                        endHour: "",
+                        facilities: "",
+                        specialities: "",
+                        pincode: "",
+                        fees: "",
+                        address: "",
+                        locality: "",
+                        classLocation: "",
+                        streetAddress: "",
+                        subject: "",
+                        instituteName: "",daysPerWeek :""
+                    }}
                             // console.log("tution service added");
                         })
                     }
@@ -1280,7 +1591,7 @@ function addServiceService($http)
                         console.log("getting profile data")
                         addServiceService.getProfile($scope.providerId).then(function(response) {
                             // console.log("profile " +  response.data.providerProfile[0].providerName);
-                            for(x in response.data.providerProfile){console.log("provider name " + x.providerName)}
+                            // for(x in response.data.providerProfile){console.log("provider name " + x.providerName)}
                         })
                     }
 

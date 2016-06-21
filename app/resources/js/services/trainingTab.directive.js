@@ -5,7 +5,7 @@
                 restrict: 'E',
                 scope: {},
                 templateUrl: 'partials/services/trainingTab.html',
-                controller: function($scope, addServiceService,loginService) {
+                controller: function($scope, addServiceService,loginService,$window) {
                     $scope.providerId = loginService.getProviderId();
                     // console.info("Enter Training tab directive controller");
                     $scope.subject = [
@@ -20,6 +20,34 @@
                         "Theater",
                         "Computer"
                     ]; 
+                    $scope.daysPerWeek = [
+                    {day1 : false},
+                    {day2 : false},
+                    {day3 : false},
+                    {weekend : false},
+                    {daily : false}
+                    ];
+                     function adddays() {
+                        if($scope.daysPerWeek.day1) $scope.trainingobj.daysPerWeek = "1 day"
+                            if($scope.daysPerWeek.day2)$scope.trainingobj.daysPerWeek = $scope.trainingobj.daysPerWeek + " 2 days"
+                            if($scope.daysPerWeek.day3)$scope.trainingobj.daysPerWeek = $scope.trainingobj.daysPerWeek + " 3 days"
+                            if($scope.daysPerWeek.weekend)$scope.trainingobj.daysPerWeek = $scope.trainingobj.daysPerWeek + " Weekends"
+                            if($scope.daysPerWeek.daily)$scope.trainingobj.daysPerWeek = $scope.trainingobj.daysPerWeek + " Daily"
+                        // console.log($scope.trainingobj.daysPerWeek + "boards")
+                    }
+                           $scope.getlocalityInfo = function (city) {
+                        addServiceService.getlocalityInfo(city,$scope.providerId).then(function (response) {
+                            // console.log("locality response " + response.data.address)
+                            $scope.pindirec = response.data.address
+                        })
+                    }
+                                    $scope.pinchange = function (pin,locality) {
+                        $scope.trainingobj.pincode = pin;
+                        $scope.trainingobj.locality = locality;
+                        console.log("selected pin " +  $scope.trainingobj.pincode)
+                        console.log("selected pin " +  $scope.trainingobj.locality)
+
+                    }
                     $scope.ageGroup = {
                         to1_3 : false,
                         to3_5 : false,
@@ -84,17 +112,39 @@
                             {$scope.trainingobj.classLocation = "At Institute/Coaching"}
                         else
                             {$scope.trainingobj.classLocation = "At Institute/Coaching, At Teacher Home, At Kid Home"}
-
+                        adddays();
                         // console.log("startClassRange " + $scope.trainingobj.minAge)
                         // console.log("startClassRange " + $scope.trainingobj.maxAge)
                         // console.log("startClassRange " + $scope.trainingobj.classLocation)
                         addServiceService.addtrainingService($scope.trainingobj,$scope.providerId).then(function(response) {
-                            console.log("training service added");
+                            // console.log("training service added");
+                            $window.alert(response.data.status.title)
+                             if(response.data.status.statusCode != 404 || response.data.status.statusCode != 500)
+                             {$scope.trainingobj = {
+                        minAge: "",
+                        maxAge: "",
+                        subject: "",
+                        schoolNames: "",
+                        daysPerWeek: "",
+                        timings: "",
+                        facilities: "",
+                        specialities: "",
+                        phoneNumber: "",
+                        pincode: "",
+                        fees: "",
+                        address: "",
+                        classLocation: "",
+                        streetAddress: "",
+                        instituteName: "",
+                        locality:""
+                    }
+                }
                         })
                     }
                     $scope.selected = "";
                     $scope.selectedvalue = function() {
-                        console.log("value " + $scope.trainingobj.daysPerWeek)
+                        // console.log("value " + $scope.trainingobj.daysPerWeek)
+                        
                     }
                 }
             }

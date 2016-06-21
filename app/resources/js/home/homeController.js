@@ -17,6 +17,7 @@
                   }
                   
             }
+            $scope.howitworks = false;
             $scope.PAGE_URL = $location.absUrl();
             $rootScope.username = loginService.getUserName();
                   $scope.logout = function (argument) {
@@ -51,24 +52,24 @@
             {name:"Q&A",image:"resources/images/icons/ic_qa.png"}
             ];
             $scope.events = [
-            {name:"Dew Drop",image:"resources/images/portfolio/e1.jpg"},
-            {name:"Bottle Mockup",image:"resources/images/portfolio/e2.jpg"},
-            {name:"Table Design",image:"resources/images/portfolio/e3.jpg"}
+            {name:"Natural Fun",image:"resources/images/portfolio/e1.jpg"},
+            {name:"Water Game",image:"resources/images/portfolio/e2.jpg"},
+            {name:"Color Game",image:"resources/images/portfolio/e3.jpg"}
             ]
             $scope.blogs = [
-            {name:"Dew Drop",image:"resources/images/portfolio/a1.jpg"},
-            {name:"Bottle Mockup",image:"resources/images/portfolio/a2.jpg"},
-            {name:"Table Design",image:"resources/images/portfolio/a3.jpg"},
+            {name:"Cute Handprint",image:"resources/images/portfolio/a1.jpg"},
+            {name:"Color Love",image:"resources/images/portfolio/a2.jpg"},
+            {name:"Healthy Apple ",image:"resources/images/portfolio/a3.jpg"},
             ]
             $scope.stories = [
-            {name:"Dew Drop",image:"resources/images/portfolio/s.jpg"},
-            {name:"Bottle Mockup",image:"resources/images/portfolio/s2.jpg"},
-            {name:"Caramel Bottle",image:"resources/images/portfolio/s3.jpg"}
+            {name:"Lion and Rat",image:"resources/images/portfolio/s.jpg"},
+            {name:"Ali baba challis chor",image:"resources/images/portfolio/s2.jpg"},
+            {name:"Cute Knee",image:"resources/images/portfolio/s3.jpg"}
             ]
             $scope.recipes = [
-            {name:"Dew Drop",image:"resources/images/portfolio/r1.jpg"},
-            {name:"Bottle Mockup",image:"resources/images/portfolio/r2.jpg"},
-            {name:"Caramel Bottle",image:"resources/images/portfolio/r3.jpg"}
+            {name:"Bread Cake",image:"resources/images/portfolio/r1.jpg"},
+            {name:"Home Food",image:"resources/images/portfolio/r2.jpg"},
+            {name:"Rice Kheer",image:"resources/images/portfolio/r3.jpg"}
             ]
    }
 	

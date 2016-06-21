@@ -12,6 +12,13 @@
                 userService.registerUser($scope.registerData).then(function(){
                 })
             }
+            $scope.emailId = "";
+            $scope.forgotPass = function () {
+                userService.forgotPass($scope.emailId).then(function (response) {
+                    $window.alert(response.data.status.title)
+                    // console.log("response for forgot pass " +response.data.status.statusCode )
+                })
+            }
             $scope.loginUser = function () {
                 userService.loginUser($scope.login).then(function(response){
                     if(response.data.status.statusCode == 403)

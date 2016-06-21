@@ -17,7 +17,8 @@ var depsJS 			= ['bower_components/jquery/dist/jquery.js',
 						'bower_components/angular-ui-router/release/angular-ui-router.js',
 						'bower_components/angular-loading-bar/build/loading-bar.js',
 						'bower_components/moment/moment.js',
-						'bower_components/angularUtils-disqus/dirDisqus.js'
+						'bower_components/angularUtils-disqus/dirDisqus.js',
+						'bower_components/angular-input-dropdown/inputDropdown.js'
 						];
 var supportJS 		= 	['app/resources/js/support/owl.carousel.min.js'
 							,'app/resources/js/support/wow.min.js'
@@ -44,7 +45,8 @@ var devCSS 			=	['app/resources/css/bootstrap.min.css'
 						,'app/resources/css/jquery.fancybox.css'
 						,'app/resources/css/main.css'
 						,'app/resources/css/responsive.css'
-						,'app/resources/css/loading-bar.min.css' 
+						,'app/resources/css/loading-bar.min.css'
+						,'app/resources/css/inputDropdownStyles.css'
 						];
 
 /** tasks **/
