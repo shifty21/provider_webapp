@@ -5,11 +5,23 @@
 	function loginController ($scope, $http,$window,$templateCache,loginService,$state,$rootScope,userService)
 		{
             // console.log("Login Controller");
-            $scope.registerData = {fullName:"",phoneNumber:"",emailAddress:"abc@gmail.com",
+            $scope.registerData = {fullName:"",phoneNumber:"",emailAddress:"",
             password:"",osVersion:"",deviceModel:""};
             $scope.login = {emailAddress:"",password:""}
             $scope.registerUser = function () {
-                userService.registerUser($scope.registerData).then(function(){
+                userService.registerUser($scope.registerData).then(function(response){
+                    if(response.data.status.statusCode != 200)
+                        {
+                            // console.log("invalid username or pass" + response.data.status.statusCode)
+                            // console.log("invalid username or pass" + response.data.status.title)
+                        $window.alert(response.data.status.title)
+                    }
+                    else
+                     {
+                        $window.alert(response.data.status.title)
+                        $state.go("login")
+                    }
+                        
                 })
             }
             $scope.emailId = "";

@@ -1,12 +1,12 @@
 (function (Modules, undefined)
 {
 	/**
-	 * @ngdoc object
-	 * @id SG
+	 * @ngdoc function 
 	 * @name SG
+	 * @id SG
 	 * @description
-	 *
-	 * This Module initializes the SG Angular module.
+	 * @Author Yateender Khedar
+	 * Set up our SG website parameters for AngularJS.
 	**/
 	Modules.SG = angular.module("sg", ['ngRoute','ui.router','angularUtils.directives.dirPagination','angularUtils.directives.dirDisqus','inputDropdown']);
 

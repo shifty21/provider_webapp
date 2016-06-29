@@ -10,19 +10,19 @@
                                 <form id="contact-form" ng-submit="registerUser()" role="form">
                         
                                     <div class="form-group">
-                                        <input type="text" placeholder="Your Name / Company" ng-model="registerData.fullName" class="form-control" name="name" id="name">
+                                        <input type="text" placeholder="Your Name / Company" ng-model="registerData.fullName" class="form-control" name="name" id="name" required>
                                     </div>
                                     
                                     <div class="form-group">
-                                        <input type="email" placeholder="Your Email" ng-model="registerData.emailAddress" class="form-control" name="email" id="email" >
+                                        <input type="email" placeholder="Your Email" ng-model="registerData.emailAddress" class="form-control" name="email" id="email" required>
                                     </div>
                                     
                                     <div class="form-group">
-                                        <input type="text" placeholder="Your Phone Number" ng-model="registerData.phoneNumber" class="form-control" name="subject" id="subject">
+                                        <input type="text" placeholder="Your Phone Number" ng-model="registerData.phoneNumber" class="form-control" name="subject" id="subject" required>
                                     </div>
                                     
                                     <div class="form-group">
-                                        <input type="password" placeholder="Your Password" ng-model="registerData.password" class="form-control" name="password" id="password">   
+                                        <input type="password" placeholder="Your Password" ng-model="registerData.password" class="form-control" name="password" id="password" required>   
                                     </div>
                                     
                                     

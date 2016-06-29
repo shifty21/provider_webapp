@@ -35,6 +35,7 @@ var appJS 			= 	['app/resources/js/general/app.js',
 						'app/resources/js/loginState/*.js',
 						'app/resources/js/user/*.js',,
 						'app/resources/js/services/*.js',
+						'app/resources/eventsjs/*.js'
 						];
 var devCSS 			=	['app/resources/css/bootstrap.min.css'
 						,'app/resources/css/ionicons.min.css'

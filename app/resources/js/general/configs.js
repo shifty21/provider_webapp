@@ -7,11 +7,12 @@
 // $logProvider.debugEnabled(true);
 // $compileProvider.debugInfoEnabled(true);
 // $disqusProvider.setShortname('smartgrowthforkids');
+// $locationProvider.html5Mode(true);
 $locationProvider.hashPrefix('!');
 
 		$stateProvider
 			.state('homestate', {
-              url: "/homestate",
+              url: "/home",
               templateUrl: SG.PartialsPath + "home/home.html",
               controller : 'homeController'
 
@@ -98,7 +99,12 @@ $locationProvider.hashPrefix('!');
               templateUrl: SG.PartialsPath + "user/userprofile.html",
               controller : 'userController'
         })
-			 $urlRouterProvider.otherwise("/homestate");
+      .state('events', {
+              url: "/events",
+              templateUrl: SG.PartialsPath + "eventspartial/eventspartial.html",
+              controller : 'eventsController'
+        })
+			 $urlRouterProvider.otherwise("/home");
        // $locationProvider.hashPrefix('!');
 	})
   SG.Modules.SG.run(function($rootScope){
@@ -122,7 +128,8 @@ $rootScope.$on('$stateChangeStart',
         var sportsqa = toState.name === "sportsqa";
         var celebrationqa = toState.name === "celebrationqa";
         var terms_of_use = toState.name === "terms_policy";
-        if(isLogin || home || register || eductionqa || terms_of_use || healthqueqa || eventqa || sportsqa || celebrationqa){
+        var events = toState.name === "events";
+        if(isLogin || home || register || eductionqa || terms_of_use || healthqueqa || eventqa || sportsqa || celebrationqa || events){
            return; // no need to redirect 
         }
 

@@ -1,0 +1,117 @@
+<!-- 
+   ================================================== 
+       Service Page Section  Start
+   ================================================== -->
+<!-- <section id="service-page" class="pages service-page" ng-init="getEvents();">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-6 ng-cloak"  ng-cloak>
+            <div class="block">
+               <h2 class="subtitle wow fadeInUp animated" data-wow-delay=".3s" data-wow-duration="500ms">{{firstEvent.title}}</h2>
+               <span ng-repeat="x in firstEvent.upcoming_occurrences">{{x.date}}<br></span>
+               <p class="subtitle-des wow fadeInUp animated" data-wow-delay=".5s" data-wow-duration="500ms">
+                  <span ng-bind-html="firstEvent.description | sanitizeimg"></span>
+               </p>
+            </div>
+         </div>
+         <div class="col-md-6" style="padding: 4%;">
+            <div class="block" style="max-height:400px;">
+               <img class="img-responsive" ng-src="{{firstEvent.img_url}}" alt="">
+            </div>
+            <div class="block">
+               {{firstEvent.title}}
+            </div>
+         </div>
+      </div>
+   </div>
+</section> -->
+<!-- 
+   ================================================== 
+       Works Section Start
+   ================================================== -->
+<section class="works service-page"  ng-init="getEvents();" style="min-height:500px;">
+   <div class="container">
+         <div class="section-heading">
+         <h1 class="title wow fadeInDown" data-wow-delay=".3s">LATEST BLOGS</h1>
+         <p class="wow fadeInDown" data-wow-delay=".5s">
+            Be a smart parent by reading the useful parenting tips and resources. <br>Have a glance and discover a new journey of Parenthood...
+         </p>
+      </div>
+      <div class="row" style="padding-top:10px;padding-bottom:10px;">
+          <div class="col-lg-offset-8 col-lg-4">
+              <input type="text" placeholder="Search Events" ng-model="eventSearch" style="width:100%; padding:5px;"/>
+              </div>
+          </div>
+      
+      <div class="row">
+         <div class="col-lg-4" ng-repeat="x in event | filter : eventSearch">
+            <figure class="wow fadeInLeft animated" data-wow-duration="500ms" data-wow-delay="600ms">
+               <div class="img-wrapper">
+                  <div class="event-image"><img ng-src="{{x.img_url}}" class="img-responsive img-event" style="" alt=""></div>
+                  <div class="overlay">
+                     <div class="buttons" style="left: 25%;">
+                        <a href="" data-toggle="modal" data-target="#myModal" ng-click="getDetail(x)">Details</a>        
+                        <a target="_blank" ng-href="{{x.booking_url}}">Book</a>
+                     </div>
+                  </div>
+               </div>
+               <figcaption class="event-text">
+                  <h3 class="title-event">
+                     <a  data-toggle="modal" data-target="#myModal" ng-click="getDetail(x)">
+                     <span>{{x.title}}</span>
+                     </a>
+                  </h3>
+                  <p>
+                  <span ng-repeat="y in x.price | limitTo : 1">
+                     <span ng-repeat="z in y.occurrences | limitTo : 1"><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; {{z.date | date:'fullDate'}}<br></span></span>
+                     <span>{{x.venue.name}}</span>                                
+                  </p>
+                  <div style="display: inline-block; text-transform: capitalize;text-align:left;">
+                     <a style="color:#52afc2;" ng-repeat="y in x.cats| limitTo:2">{{y}}&nbsp;&nbsp;</a>
+                  </div>
+                  <!-- <div style="text-transform: capitalize;">
+                     <a ng-repeat="y in x.price">Rs. {{y.value}}&nbsp;</a>
+                     </div> -->
+               </figcaption>
+            </figure>
+         </div>
+      </div>
+   </div>
+</section>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content" style="width:100%;">
+         <div class="modal-header"  style="display:none">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <!-- <h4 class="modal-title" id="myModalLabel">Modal title</h4> -->
+         </div>
+         <div class="modal-body raisedbox" style="padding:10px;">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <div class="raisedbox"><img ng-src="{{details.img_url}}" class="img-responsive"></div>
+            <div class="raisedbox">
+            <h3>{{details.title}}</h3>
+            <p>
+               <span ng-if='{{details.venue.address}} != undefined ||{{details.venue.address}}!=""'><i class="fa fa-map-marker" aria-hidden="true"></i> &nbsp; {{details.venue.address}}<br></span>
+               
+               <span ng-repeat="x in details.price">
+               <span ng-repeat="y in x.occurrences"><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; {{y.date | date:'fullDate'}}<br></span>
+               <span><i class="fa fa-money" aria-hidden="true"></i> &nbsp{{x.name}}&nbsp;{{x.value}}<br></span>
+               
+               </span>
+            </p>
+            </div>
+            <div class="raisedbox">
+               <button class="btn btn-default btn-send button-std"><a style="color: #fff;" ng-href="{{details.booking_enquiry_url}}" target="_blank">Enquire</a></button>
+               <button class="btn btn-default btn-send button-std"><a style="color: #fff;" ng-href="{{details.booking_url}}" target="_blank">Book</a></button>
+            </div>
+            <div style="padding-top:10px;" class="raisedbox">
+               <span ng-bind-html="details.description | sanitizeimg"></span>
+            </div>
+         </div>
+         <div class="modal-footer"  style="display:none">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+         </div>
+      </div>
+   </div>
+</div>

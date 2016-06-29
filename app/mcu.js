@@ -5,12 +5,13 @@
 	 * @name SG
 	 * @id SG
 	 * @description
-	 * 
+	 * @Author Yateender Khedar
 	 * Set up our SG website parameters for AngularJS.
 	**/
 	SG.Version 		= "0.0.0";
 	SG.PartialsPath 	= "partials/";
-	SG.ServerUrl 	= 'http://144.76.237.246:6060/superkids/r1/';
+	// SG.ServerUrl 	= 'http://144.76.237.246:6060/superkids/r1/';
+	SG.ServerUrl 	= 'http://128.199.196.34:8080/smartgrowth/r1/';
 	SG.Service 		= {};
 	SG.Modules 		= {};
 	SG.Configs 		= {};
@@ -22,12 +23,12 @@
 (function (Modules, undefined)
 {
 	/**
-	 * @ngdoc object
-	 * @id SG
+	 * @ngdoc function 
 	 * @name SG
+	 * @id SG
 	 * @description
-	 *
-	 * This Module initializes the SG Angular module.
+	 * @Author Yateender Khedar
+	 * Set up our SG website parameters for AngularJS.
 	**/
 	Modules.SG = angular.module("sg", ['ngRoute','ui.router','angularUtils.directives.dirPagination','angularUtils.directives.dirDisqus','inputDropdown']);
 
@@ -41,11 +42,12 @@
 // $logProvider.debugEnabled(true);
 // $compileProvider.debugInfoEnabled(true);
 // $disqusProvider.setShortname('smartgrowthforkids');
+// $locationProvider.html5Mode(true);
 $locationProvider.hashPrefix('!');
 
 		$stateProvider
 			.state('homestate', {
-              url: "/homestate",
+              url: "/home",
               templateUrl: SG.PartialsPath + "home/home.html",
               controller : 'homeController'
 
@@ -132,7 +134,12 @@ $locationProvider.hashPrefix('!');
               templateUrl: SG.PartialsPath + "user/userprofile.html",
               controller : 'userController'
         })
-			 $urlRouterProvider.otherwise("/homestate");
+      .state('events', {
+              url: "/events",
+              templateUrl: SG.PartialsPath + "eventspartial/eventspartial.html",
+              controller : 'eventsController'
+        })
+			 $urlRouterProvider.otherwise("/home");
        // $locationProvider.hashPrefix('!');
 	})
   SG.Modules.SG.run(function($rootScope){
@@ -156,7 +163,8 @@ $rootScope.$on('$stateChangeStart',
         var sportsqa = toState.name === "sportsqa";
         var celebrationqa = toState.name === "celebrationqa";
         var terms_of_use = toState.name === "terms_policy";
-        if(isLogin || home || register || eductionqa || terms_of_use || healthqueqa || eventqa || sportsqa || celebrationqa){
+        var events = toState.name === "events";
+        if(isLogin || home || register || eductionqa || terms_of_use || healthqueqa || eventqa || sportsqa || celebrationqa || events){
            return; // no need to redirect 
         }
 
@@ -372,11 +380,23 @@ $scope.disqusConfigsports = {
 	function loginController ($scope, $http,$window,$templateCache,loginService,$state,$rootScope,userService)
 		{
             // console.log("Login Controller");
-            $scope.registerData = {fullName:"",phoneNumber:"",emailAddress:"abc@gmail.com",
+            $scope.registerData = {fullName:"",phoneNumber:"",emailAddress:"",
             password:"",osVersion:"",deviceModel:""};
             $scope.login = {emailAddress:"",password:""}
             $scope.registerUser = function () {
-                userService.registerUser($scope.registerData).then(function(){
+                userService.registerUser($scope.registerData).then(function(response){
+                    if(response.data.status.statusCode != 200)
+                        {
+                            // console.log("invalid username or pass" + response.data.status.statusCode)
+                            // console.log("invalid username or pass" + response.data.status.title)
+                        $window.alert(response.data.status.title)
+                    }
+                    else
+                     {
+                        $window.alert(response.data.status.title)
+                        $state.go("login")
+                    }
+                        
                 })
             }
             $scope.emailId = "";
@@ -1605,3 +1625,56 @@ function addServiceService($http)
         }
     ])
 }(SG.Directives = SG.Directives || {}));
+(function (Controllers, undefined)
+{   
+       function sanitize($sce) {
+  return function(htmlCode){
+    return $sce.trustAsHtml(htmlCode);
+  }
+}
+function sanitizeimg($sce) {
+  return function(htmlCode){
+    return $sce.trustAsHtml(String(htmlCode).replace(/<img[^>]+\>/gm, ''));
+  }
+}
+
+	SG.Modules.SG.controller("eventsController",eventsController);
+      SG.Modules.SG.filter("sanitize",sanitize);
+      SG.Modules.SG.filter("sanitizeimg",sanitizeimg);
+    // MainCtrl.$inject = ['healthAZModuleData'];
+	function eventsController ($scope, $http,$window,eventsService)
+		{  
+                  $scope.eventSearch = "";
+                  $scope.getEvents = function () {
+                              eventsService.getEvents().then(function (response) {
+                                    // console.log("response  " + response.data.events)
+                                    $scope.event = response.data.events;
+                                    $scope.firstEvent = $scope.event[0];
+                              })                        
+                  }
+                  $scope.getDetail = function (event) {
+                        $scope.details = event;
+                  }
+
+
+   }
+	
+
+}(SG.Controllers = SG.Controllers || {} ));
+
+
+(function (Service, undefined)
+{
+function eventsService($http,$log)
+    {
+       var obj = {};
+        var eventUrl = 'https://developer.eventshigh.com/events/bangalore?key=ev3nt5h1ghte5tK3y';
+
+        obj.getEvents = function () {
+          return $http.get(eventUrl);
+        }
+ return obj;
+}
+	SG.Modules.SG.service("eventsService",eventsService);
+
+}(SG.Service = SG.Service || {} ));
