@@ -7,8 +7,8 @@
 // $logProvider.debugEnabled(true);
 // $compileProvider.debugInfoEnabled(true);
 // $disqusProvider.setShortname('smartgrowthforkids');
-// $locationProvider.html5Mode(true);
-$locationProvider.hashPrefix('!');
+$locationProvider.html5Mode(true);
+// $locationProvider.hashPrefix('!');
 
 		$stateProvider
 			.state('homestate', {
@@ -104,6 +104,16 @@ $locationProvider.hashPrefix('!');
               templateUrl: SG.PartialsPath + "eventspartial/eventspartial.html",
               controller : 'eventsController'
         })
+      .state('intern', {
+              url: "/career-at-smartgrowth",
+              templateUrl: SG.PartialsPath + "general/internship-requirement.html",
+              controller : 'homeController'
+        })
+      .state('contact', {
+              url: "/conatct-us",
+              templateUrl: SG.PartialsPath + "general/contact-us.html",
+              controller : 'homeController'
+        })
 			 $urlRouterProvider.otherwise("/home");
        // $locationProvider.hashPrefix('!');
 	})
@@ -129,7 +139,9 @@ $rootScope.$on('$stateChangeStart',
         var celebrationqa = toState.name === "celebrationqa";
         var terms_of_use = toState.name === "terms_policy";
         var events = toState.name === "events";
-        if(isLogin || home || register || eductionqa || terms_of_use || healthqueqa || eventqa || sportsqa || celebrationqa || events){
+        var intern  = toState.name  ==="intern";
+        var contact  = toState.name  ==="contact";
+        if(isLogin || home || register || eductionqa ||contact||terms_of_use || healthqueqa || eventqa || sportsqa || celebrationqa || events || intern){
            return; // no need to redirect 
         }
 

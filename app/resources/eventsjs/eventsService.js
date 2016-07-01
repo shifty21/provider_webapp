@@ -4,7 +4,7 @@
 function eventsService($http,$log)
     {
        var obj = {};
-        var eventUrl = 'https://developer.eventshigh.com/events/bangalore?key=ev3nt5h1ghte5tK3y';
+        var eventUrl = 'https://developer.eventshigh.com/events/bangalore?key=5m@r1gr0wth@ppk3y';
 
         obj.getEvents = function () {
           return $http.get(eventUrl);

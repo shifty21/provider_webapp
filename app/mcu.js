@@ -42,8 +42,8 @@
 // $logProvider.debugEnabled(true);
 // $compileProvider.debugInfoEnabled(true);
 // $disqusProvider.setShortname('smartgrowthforkids');
-// $locationProvider.html5Mode(true);
-$locationProvider.hashPrefix('!');
+$locationProvider.html5Mode(true);
+// $locationProvider.hashPrefix('!');
 
 		$stateProvider
 			.state('homestate', {
@@ -139,6 +139,16 @@ $locationProvider.hashPrefix('!');
               templateUrl: SG.PartialsPath + "eventspartial/eventspartial.html",
               controller : 'eventsController'
         })
+      .state('intern', {
+              url: "/career-at-smartgrowth",
+              templateUrl: SG.PartialsPath + "general/internship-requirement.html",
+              controller : 'homeController'
+        })
+      .state('contact', {
+              url: "/conatct-us",
+              templateUrl: SG.PartialsPath + "general/contact-us.html",
+              controller : 'homeController'
+        })
 			 $urlRouterProvider.otherwise("/home");
        // $locationProvider.hashPrefix('!');
 	})
@@ -164,7 +174,9 @@ $rootScope.$on('$stateChangeStart',
         var celebrationqa = toState.name === "celebrationqa";
         var terms_of_use = toState.name === "terms_policy";
         var events = toState.name === "events";
-        if(isLogin || home || register || eductionqa || terms_of_use || healthqueqa || eventqa || sportsqa || celebrationqa || events){
+        var intern  = toState.name  ==="intern";
+        var contact  = toState.name  ==="contact";
+        if(isLogin || home || register || eductionqa ||contact||terms_of_use || healthqueqa || eventqa || sportsqa || celebrationqa || events || intern){
            return; // no need to redirect 
         }
 
@@ -1627,7 +1639,7 @@ function addServiceService($http)
 }(SG.Directives = SG.Directives || {}));
 (function (Controllers, undefined)
 {   
-       function sanitize($sce) {
+ function sanitize($sce) {
   return function(htmlCode){
     return $sce.trustAsHtml(htmlCode);
   }
@@ -1638,29 +1650,35 @@ function sanitizeimg($sce) {
   }
 }
 
-	SG.Modules.SG.controller("eventsController",eventsController);
-      SG.Modules.SG.filter("sanitize",sanitize);
-      SG.Modules.SG.filter("sanitizeimg",sanitizeimg);
+SG.Modules.SG.controller("eventsController",eventsController);
+SG.Modules.SG.filter("sanitize",sanitize);
+SG.Modules.SG.filter("sanitizeimg",sanitizeimg);
     // MainCtrl.$inject = ['healthAZModuleData'];
-	function eventsController ($scope, $http,$window,eventsService)
-		{  
-                  $scope.eventSearch = "";
-                  $scope.getEvents = function () {
-                              eventsService.getEvents().then(function (response) {
+    function eventsController ($scope, $http,$window,eventsService)
+    {              $scope.showmore=false;
+
+      $scope.getUrl = function(url) {
+        if(url==undefined) return url;
+        else
+        return (url.substring(url.lastIndexOf('/') + 1) == "") ? "resources/images/kidss_banner.png" : url;
+      };      
+      $scope.eventSearch = "";
+      $scope.getEvents = function () {
+        eventsService.getEvents().then(function (response) {
                                     // console.log("response  " + response.data.events)
                                     $scope.event = response.data.events;
                                     $scope.firstEvent = $scope.event[0];
-                              })                        
-                  }
-                  $scope.getDetail = function (event) {
-                        $scope.details = event;
-                  }
+                                  })                        
+      }
+      $scope.getDetail = function (event) {
+        $scope.details = event;
+      }
 
 
-   }
-	
+    }
 
-}(SG.Controllers = SG.Controllers || {} ));
+
+  }(SG.Controllers = SG.Controllers || {} ));
 
 
 (function (Service, undefined)
@@ -1668,7 +1686,7 @@ function sanitizeimg($sce) {
 function eventsService($http,$log)
     {
        var obj = {};
-        var eventUrl = 'https://developer.eventshigh.com/events/bangalore?key=ev3nt5h1ghte5tK3y';
+        var eventUrl = 'https://developer.eventshigh.com/events/bangalore?key=5m@r1gr0wth@ppk3y';
 
         obj.getEvents = function () {
           return $http.get(eventUrl);

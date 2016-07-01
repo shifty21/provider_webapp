@@ -34,12 +34,13 @@
 </section>
 <section id="works" class="works">
    <div class="container raisedbox">
-      <div class="section-heading">
-         <h1 class="title wow fadeInDown" data-wow-delay=".3s">LATEST EVENTS</h1>
+      <div class="section-heading row">
+        <div class="col-lg-6 col-lg-offset-3"> <h1 class="title wow fadeInDown" data-wow-delay=".3s">LATEST EVENTS</h1>
          <p class="wow fadeInDown" data-wow-delay=".5s">
             
 Looking for upcoming events and activities for your kids?<br> Discover and book amazing events nearby your area.
-         </p>
+         </p></div>
+         <div class="col-lg-3" style="text-align:right"><button  class="btn btn-default btn-send button-std" ><a href=""  ui-sref="events" style="color: #fff;">View More</a></button></div>
       </div>
       <div class="row">
          <div class="col-sm-4 col-xs-12" ng-repeat="x in events">
@@ -48,7 +49,7 @@ Looking for upcoming events and activities for your kids?<br> Discover and book 
                   <img ng-src="{{x.image}}" class="img-responsive" alt="this is a title" >
                   <div class="overlay">
                      <div class="buttons">
-                        <a href="" data-toggle="modal" data-target="#myModal">Details</a>
+                        <a href=""  ui-sref="events">View More</a>
                      </div>
                   </div>
                </div>

@@ -149,4 +149,10 @@ px      68    160    252    344    436    */
     /*padding-top: 10px;*/
   }
 
+  .works.service-page figure .buttons {
+  position: absolute;
+  top: 35%;
+  left: 18%;
+}
+
 }
