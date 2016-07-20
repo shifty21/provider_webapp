@@ -433,7 +433,7 @@ $scope.disqusConfigsports = {
                     // console.log("provider name " + response.data.provider.name)
                     $rootScope.username = loginService.getUserName();
                     // console.log("provider name" + $rootScope.username);
-                    $state.go("userprofile");
+                    $state.go("newservice");
                     $rootScope.loggedIn = true;}
                 })
             	
